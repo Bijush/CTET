@@ -1,0 +1,477 @@
+/* ======================
+   MOCK HEADER
+====================== */
+.mock-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.timer {
+  font-weight: bold;
+  color: #dc2626;
+  margin-top: 4px;
+}
+
+/* ======================
+   LANGUAGE SWITCH
+====================== */
+.lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+/* ======================
+   PROGRESS BAR
+====================== */
+.progress-wrap {
+  width: 90%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  margin: 12px auto;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#2563eb,#22c55e);
+  border-radius: 10px;
+  transition: width .3s ease;
+}
+
+/* ======================
+   QUESTION CARD
+====================== */
+.question-box {
+  margin: 12px;
+  font-size: 16px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  position: relative;
+}
+
+/* Bengali question */
+.q-bn {
+  font-size: 14px;
+  color: #374151;
+  margin-top: 6px;
+}
+
+/* ======================
+   OPTIONS
+====================== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.options button {
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+  transition: background .2s ease, border .2s ease;
+}
+
+.options button:hover {
+  background: #f8fafc;
+}
+
+/* Option text */
+.option-text {
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.45;
+}
+
+.option-bn {
+  font-size: 13px;
+  color: #4b5563;
+  margin-top: 4px;
+}
+
+/* ======================
+   OPTION STATES
+====================== */
+.options button.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.options button.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.options button.trap-active {
+  background: #fff7ed;
+  border-color: #f97316;
+}
+
+.options button:disabled {
+  cursor: not-allowed;
+  opacity: .95;
+}
+
+/* ======================
+   BOOKMARK
+====================== */
+.bookmark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.bookmark svg {
+  width: 22px;
+  height: 22px;
+  fill: #9ca3af;
+  transition: fill .25s ease, transform .2s ease;
+}
+
+.bookmark.active svg {
+  fill: #f59e0b;
+  transform: scale(1.15);
+}
+
+/* ======================
+   TRAP UI
+====================== */
+.trap-badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #f97316;
+  color: #fff;
+}
+
+.trap-hint {
+  font-size: 12px;
+  margin-top: 6px;
+  color: #92400e;
+}
+
+/* ======================
+   BUTTON ROW
+====================== */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 14px;
+}
+
+/* ======================
+   CORRECT / EXPLANATION BOX
+====================== */
+.correct-box,
+#explainBox {
+  margin: 16px 12px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  border-left: 6px solid #16a34a;
+  line-height: 1.6;
+}
+
+/* Title */
+#explainBox h4,
+.correct-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #065f46;
+}
+
+/* Divider */
+#explainBox hr {
+  border: none;
+  border-top: 1px dashed #e5e7eb;
+  margin: 12px 0;
+}
+
+/* Explanation text */
+#explainBox p,
+#explainBox li {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* ======================
+   AI BLOCKS
+====================== */
+.ai-block {
+  background: #eef2ff;
+  border-left: 4px solid #6366f1;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.classroom {
+  background: #ecfeff;
+  border-left: 4px solid #06b6d4;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.ncert {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.personal {
+  background: #fff7ed;
+  border-left: 4px solid #f97316;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* ======================
+   SNACKBAR
+====================== */
+#snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background: #111827;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+#snackbar.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ======================
+   MOBILE
+====================== */
+@media (max-width: 480px) {
+  .option-text {
+    font-size: 14px;
+  }
+  #explainBox {
+    padding: 14px;
+  }
+}
+/* ======================
+   EXPLANATION OPTION HIGHLIGHT
+====================== */
+.ex-opt {
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Correct option */
+.ex-opt.correct {
+  background: #dcfce7;
+  border-left: 4px solid #16a34a;
+  color: #065f46;
+}
+
+/* Wrong option (clicked by user) */
+.ex-opt.wrong {
+  background: #fee2e2;
+  border-left: 4px solid #dc2626;
+  color: #7f1d1d;
+}
+
+/* Neutral / other options */
+.ex-opt.neutral {
+  background: #f8fafc;
+  border-left: 4px solid #cbd5e1;
+  color: #1f2937;
+}
+/* ======================
+   OPTION DIVIDER
+====================== */
+.options button:not(:last-child)::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: #e5e7eb;
+  margin-top: 12px;
+}
+.options button.correct::after,
+.options button.wrong::after {
+  background: transparent;
+}
+/* Option-wise explanation cards (same style everywhere) */
+.ex-opt {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ex-opt.correct {
+  background: #dcfce7;
+  border-left: 5px solid #16a34a;
+}
+
+.ex-opt.wrong {
+  background: #fee2e2;
+  border-left: 5px solid #dc2626;
+}
+
+.ex-opt.neutral {
+  background: #f1f5f9;
+  border-left: 5px solid #94a3b8;
+}
+/* ======================
+   CONCEPT LINK
+====================== */
+.concept-link{
+  color:#2563eb;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:underline dotted;
+}
+
+/* ======================
+   POPUP OVERLAY
+====================== */
+.concept-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+/* ======================
+   CARD
+====================== */
+.concept-card{
+  background:#fff;
+  padding:20px;
+  border-radius:16px;
+  width:90%;
+  max-width:420px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* GRID */
+.ped-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+/* PED CARD */
+.ped-card{
+  background:#f9fafb;
+  padding:12px;
+  border-radius:12px;
+  font-size:14px;
+  border:1px solid #e5e7eb;
+}
+
+/* BUTTON */
+.concept-card button{
+  margin-top:14px;
+  padding:8px 14px;
+  border:none;
+  background:#2563eb;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+}
+/* ======================
+BOOKMARK BASE
+====================== */
+
+.bookmark{
+
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  cursor:pointer;
+
+  background:rgba(255,255,255,.08);
+
+  transition:.3s;
+}
+
+
+/* ======================
+HOVER
+====================== */
+
+.bookmark:hover{
+
+  transform:scale(1.1);
+
+  background:rgba(30,136,229,.15);
+}
+
+
+/* ======================
+ACTIVE BLUE
+====================== */
+
+.bookmark.active{
+
+  background:rgba(30,136,229,.25);
+
+  box-shadow:
+    0 0 12px #1e88e5,
+    inset 0 0 6px #1e88e5;
+}
+.bookmark{
+
+  color:#cbd5e1;
+}
+
+/* Active Blue */
+
+.bookmark.active{
+
+  color:#1e88e5;
+}

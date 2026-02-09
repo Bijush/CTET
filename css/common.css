@@ -1,0 +1,260 @@
+/* ===============================
+   🌐 GLOBAL RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  color: #111827;
+  padding: 14px;
+}
+
+/* ===============================
+   🔝 TOP BAR
+================================ */
+.top-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.top-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ===============================
+   🧱 CARD
+================================ */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  transition: transform .2s ease;
+}
+
+.card:active {
+  transform: scale(.98);
+}
+
+/* ===============================
+   🔘 BUTTONS
+================================ */
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #2563eb;
+  color: #fff;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+.link-btn {
+  background: none;
+  color: #2563eb;
+  padding: 0;
+}
+
+/* ===============================
+   🏷️ BADGE
+================================ */
+.badge {
+  background: #fde68a;
+  color: #92400e;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/* ===============================
+   📄 TEXT
+================================ */
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+
+small {
+  color: #6b7280;
+}
+/* 🔙 Floating Back Button (CTET Style) */
+.back-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #2563eb;       /* CTET blue */
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.back-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+/* 🔙 Floating Back Button (SVG • CTET Style) */
+.back-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #2563eb;      /* CTET blue */
+  color: #ffffff;          /* SVG stroke color */
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.back-btn:hover {
+  background: #1d4ed8;
+}
+
+.back-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* SVG smoothness */
+.back-btn svg {
+  display: block;
+}
+/* ❌ CTET Trap Option */
+.option-trap {
+  border: 2px solid #dc2626 !important;
+  background: #fee2e2;
+}
+
+.trap-badge {
+  display: inline-block;
+  background: #dc2626;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+}
+
+.trap-hint {
+  font-size: 12px;
+  color: #991b1b;
+  margin-top: 4px;
+}
+/* ======================
+   CONCEPT LINK
+====================== */
+.concept-link{
+  color:#2563eb;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:underline dotted;
+}
+
+/* ======================
+   POPUP OVERLAY
+====================== */
+.concept-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+/* ======================
+   CARD
+====================== */
+.concept-card{
+  background:#fff;
+  padding:20px;
+  border-radius:16px;
+  width:90%;
+  max-width:420px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* GRID */
+.ped-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+/* PED CARD */
+.ped-card{
+  background:#f9fafb;
+  padding:12px;
+  border-radius:12px;
+  font-size:14px;
+  border:1px solid #e5e7eb;
+}
+
+/* BUTTON */
+.concept-card button{
+  margin-top:14px;
+  padding:8px 14px;
+  border:none;
+  background:#2563eb;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+}
+/* ======================
+GLASSMORPHISM BASE
+====================== */
+
+.glass{
+
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  background:rgba(255,255,255,0.18);
+
+  border:1px solid
+         rgba(255,255,255,0.35);
+
+  box-shadow:
+    0 8px 32px
+    rgba(0,0,0,0.15);
+
+  border-radius:18px;
+}

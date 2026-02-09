@@ -1,0 +1,40 @@
+.diagram-wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:15px 0;
+}
+
+.stage{
+  width:140px;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  font-size:13px;
+  color:#fff;
+  box-shadow:0 3px 8px rgba(0,0,0,.2);
+}
+
+.stage h4{
+  margin:0;
+  font-size:14px;
+}
+
+.stage span{
+  font-size:12px;
+  opacity:.9;
+}
+
+.arrow{
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* Colors */
+
+.s1{background:#ff6b6b;}
+.s2{background:#4dabf7;}
+.s3{background:#51cf66;}
+.s4{background:#845ef7;}
