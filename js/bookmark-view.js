@@ -2,8 +2,23 @@
 📦 IMPORT DATA + AI
 ====================== */
 
+import { mcqQuestion }
+from "../data/mcq_question.js";
+
 import { mockQuestion }
 from "../data/mock_question.js";
+
+import { conceptCDP }
+from "../data/concept_cdp.js";
+
+import { conceptMath }
+from "../data/concept_math.js";
+
+import { conceptEVS }
+from "../data/concept_evs.js";
+
+import { piagetMcq }
+from "../data/piaget_mcq_question.js";
 
 import { detectTraps }
 from "../utils/trap_detector.js";
@@ -19,44 +34,93 @@ from "../utils/ai_explainer.js";
 const box =
 document.getElementById("viewBox");
 
-const params =
-new URLSearchParams(location.search);
-
-const id =
-params.get("id");
-
-if(!id){
-  box.innerHTML =
-  "<p>Invalid bookmark</p>";
-  throw new Error("No ID");
+if(!box){
+  console.error("viewBox not found");
+  throw new Error("Container missing");
 }
 
 
 /* ======================
-🔎 FIND QUESTION
+🔎 READ PARAMS
 ====================== */
 
-const q =
-mockQuestion.find(
-x => x.id === id
-);
+const params =
+new URLSearchParams(location.search);
 
-if(!q){
+const type =
+params.get("type");
+
+const id =
+params.get("id");
+
+if(!type || !id){
+
+  box.innerHTML =
+  "<p>Invalid bookmark</p>";
+
+  throw new Error("Invalid params");
+}
+
+
+/* ======================
+📦 FIND DATA
+====================== */
+
+let item = null;
+
+if(type === "MCQ"){
+
+  item =
+    mcqQuestion.find(
+      q => q.id === id
+    )
+    ||
+    piagetMcq.find(
+      q => q.id === id
+    );
+}
+
+else if(type === "MOCK"){
+
+  item =
+    mockQuestion.find(
+      q => q.id === id
+    );
+}
+
+else if(type === "CONCEPT"){
+
+  const all = [
+    ...conceptCDP,
+    ...conceptMath,
+    ...conceptEVS
+  ];
+
+  item =
+    all.find(
+      c => c.id === id
+    );
+}
+
+
+if(!item){
+
   box.innerHTML =
   "<p>Question not found</p>";
+
   throw new Error("Not found");
 }
 
 
 /* ======================
-🧠 TRAP DETECT
+🧠 TRAP SUMMARY
 ====================== */
 
 const trapWords =
 detectTraps(
-  q.q_en +
-  (q.q_bn || ""),
-  q.subject
+  (item.q_en || "") +
+  (item.q_bn || ""),
+  item.subject
 );
 
 
@@ -65,8 +129,11 @@ detectTraps(
 ====================== */
 
 const ai =
-offlineAIExplain(q,null,"BOTH")
-|| {};
+offlineAIExplain(
+  item,
+  null,
+  "BOTH"
+) || {};
 
 
 /* ======================
@@ -77,96 +144,106 @@ let html = `
 <div class="card">
 
 <h3>
-${q.q_en}
+${item.q_en || ""}
 </h3>
 
 <p>
-${q.q_bn || ""}
+${item.q_bn || ""}
 </p>
 `;
 
 
 /* ======================
-OPTIONS
+📌 OPTIONS
 ====================== */
 
-html += "<ul>";
+if(item.options_en?.length){
 
-q.options_en.forEach((op,i)=>{
+html += `<ul class="option-list">`;
+
+item.options_en.forEach((op,i)=>{
 
 const traps =
 detectTraps(
-  op + " " +
-  (q.options_bn?.[i]||""),
-  q.subject
+  op +
+  " " +
+  (item.options_bn?.[i]||""),
+  item.subject
 );
 
-html+=`
+html += `
+
 <li class="
-${i===q.ans?"correct":""}
+option-item
+${i===item.ans?"correct":""}
 ${traps.length?" trap-active":""}
 ">
 
 <b>${String.fromCharCode(65+i)}.</b>
 
 ${op}
-${q.options_bn?.[i]?" / "+q.options_bn[i]:""}
+${item.options_bn?.[i]
+? " / " + item.options_bn[i]
+: ""}
 
 ${
 traps.length
-? `<div class="trap-hint">
+?`
+<div class="trap-hint">
 ⚠️ ${traps.join(", ")}
-</div>`
+</div>
+`
 :""
 }
 
-</li>`;
+</li>
+
+`;
 });
 
-html+="</ul>";
+html += "</ul>";
+}
 
 
 /* ======================
-ANSWER
+✅ CORRECT ANSWER
 ====================== */
 
-html+=`
-<div class="card"
-style="background:#e8f7e8">
+if(item.ans !== undefined){
+
+html += `
+<div class="card correct-box">
 
 <h4>✔ Correct Answer</h4>
 
-${q.options_en[q.ans]}
+${item.options_en?.[item.ans] || ""}
 <br>
-${q.options_bn?.[q.ans]||""}
+${item.options_bn?.[item.ans] || ""}
 
 </div>`;
-  
+}
 
-/* ======================
-STATIC EXPLANATION
-====================== */
 
 /* ======================
 📝 STATIC EXPLANATION
 ====================== */
 
 if(
-  q.ans_reason_en ||
-  q.ans_reason_bn
+item.ans_reason_en ||
+item.ans_reason_bn
 ){
 
-html+=`
+html += `
 <div class="card explain-card">
 
 <h4>📝 Explanation</h4>
 
-<div class="explain-text">
-  ${q.ans_reason_en || ""}
+<div>
+${item.ans_reason_en || ""}
 </div>
 
-<div class="explain-text bn">
-  ${q.ans_reason_bn || ""}
+<div>
+${item.ans_reason_bn || ""}
 </div>
 
 </div>`;
@@ -177,7 +254,7 @@ html+=`
 🤖 AI TEACHER
 ====================== */
 
-html+=`
+html += `
 <div class="card ai-card">
 
 <h4>🤖 AI Teacher Explanation</h4>
@@ -186,16 +263,14 @@ ${
 ai.concept
 ?`
 <div class="ai-concept">
-  ${ai.concept}
+${ai.concept}
 </div>
 `
 :""
 }
 
 
-/* ======================
-  OPTION-WISE AI
-====================== */
+/* OPTION-WISE AI */
 
 ${
 ai.elimination?.length
@@ -209,9 +284,7 @@ ${ai.elimination.map((t,i)=>{
 let cls="ai-neutral";
 let icon="➖";
 
-/* Correct / Wrong */
-
-if(i===q.ans){
+if(i===item.ans){
   cls="ai-correct";
   icon="✔️";
 }
@@ -220,14 +293,12 @@ else{
   icon="❌";
 }
 
-/* Trap detect */
-
 const traps=
 detectTraps(
-  q.options_en[i] +
+  item.options_en[i] +
   " " +
-  (q.options_bn?.[i]||""),
-  q.subject
+  (item.options_bn?.[i]||""),
+  item.subject
 );
 
 return `
@@ -236,26 +307,25 @@ return `
 
   <div class="ai-head">
 
-    <span class="ai-label">
-      ${String.fromCharCode(65+i)}
+    <span>
+    ${String.fromCharCode(65+i)}
     </span>
 
-    <span class="ai-icon">
-      ${icon}
+    <span>
+    ${icon}
     </span>
 
   </div>
 
   <div class="ai-text">
-    ${t}
+  ${t}
   </div>
 
   ${
     traps.length
     ?`
     <div class="ai-trap">
-      ⚠️ Trap:
-      ${traps.join(", ")}
+    ⚠️ ${traps.join(", ")}
     </div>
     `
     :""
@@ -274,14 +344,12 @@ return `
 }
 
 
-/*  ======================
 /* CLASSROOM */
-======================  */
 
 ${
 ai.classroom
 ?`
-<div class="ai-extra classroom">
+<div class="ai-extra">
 
 🏫 <b>Classroom Example:</b><br>
 ${ai.classroom}
@@ -292,16 +360,12 @@ ${ai.classroom}
 }
 
 
-/* 
-======================
-NCERT
-======================
-*/
+/* NCERT */
 
 ${
 ai.ncert
 ?`
-<div class="ai-extra ncert">
+<div class="ai-extra">
 
 📘 <b>NCERT Reference:</b><br>
 ${ai.ncert}
@@ -312,16 +376,12 @@ ${ai.ncert}
 }
 
 
-/*
-======================
-PERSONAL TIP
-======================
-*/
+/* PERSONAL */
 
 ${
 ai.personal
 ?`
-<div class="ai-extra personal">
+<div class="ai-extra">
 
 🎯 <b>Personal Tip:</b><br>
 ${ai.personal}
@@ -331,19 +391,17 @@ ${ai.personal}
 :""
 }
 
-</div>`;
-  
+</div>
+`;
 
 
-/*
-======================
+/* ======================
 ⚠️ TRAP SUMMARY
-====================== 
-*/
+====================== */
 
 if(trapWords.length){
 
-html+=`
+html += `
 <div class="card trap-summary">
 
 <h4>⚠️ Trap Summary</h4>
@@ -354,12 +412,10 @@ ${trapWords.join(", ")}
 }
 
 
-/* 
-======================
+/* ======================
 END
-====================== 
-*/
+====================== */
 
-html+="</div>";
+html += "</div>";
 
 box.innerHTML = html;
