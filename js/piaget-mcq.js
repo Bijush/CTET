@@ -1,8 +1,13 @@
-import { mcqQuestion } from "../data/mcq_question.js";
+
+
+import { piagetMcq } from "../data/piaget_mcq_question.js";
+//import { mcqQuestion } from "../data/mcq_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
 
+console.log("MCQ FILE LOADED");
+console.log(piagetMcq);
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
@@ -15,7 +20,7 @@ let langMode = localStorage.getItem("mcq_lang") || "BOTH"; // BOTH | EN | BN
 ====================== */
 let questionOrder =
   JSON.parse(localStorage.getItem("mcq_q_order")) ||
-  mcqQuestion.map((_, i) => i).sort(() => Math.random() - 0.5);
+  piagetMcq.map((_, i) => i).sort(() => Math.random() - 0.5);
 
 localStorage.setItem("mcq_q_order", JSON.stringify(questionOrder));
 
@@ -26,6 +31,9 @@ const qBox = document.getElementById("qBox");
 const optBox = document.getElementById("options");
 const explainBox = document.getElementById("explainBox");
 const progressBar = document.getElementById("progressBar");
+/* ======================
+AUTO HIDE BOTTOM NAV
+====================== */
 
 let lastScroll = 0;
 
@@ -74,7 +82,7 @@ function checkResumePractice() {
       localStorage.removeItem("mcq_q_order");
       index = 0;
 
-      questionOrder = mcqQuestion
+      questionOrder = piagetMcq
         .map((_, i) => i)
         .sort(() => Math.random() - 0.5);
 
@@ -135,18 +143,16 @@ function showSnack(msg) {
    ❓ LOAD QUESTION (FULL REBUILD)
 ====================== */
 function loadQ() {
-  
   // Data not loaded yet
-  if (!mcqQuestion || !mcqQuestion.length) {
+  if (!piagetMcq || !piagetMcq.length) {
 
     console.warn("MCQ data not ready → retrying");
 
     setTimeout(loadQ, 100);
     return;
   }
-  
   const currentQIndex = questionOrder[index];
-  const q = mcqQuestion[currentQIndex];
+  const q = piagetMcq[currentQIndex];
   if (!q) return;
 
   localStorage.setItem("mcq_q_index", index);
@@ -174,7 +180,7 @@ if (statusBox) {
 
   /* 📊 progress */
   progressBar.style.width =
-    ((index + 1) / mcqQuestion.length) * 100 + "%";
+    ((index + 1) / piagetMcq.length) * 100 + "%";
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
@@ -199,13 +205,26 @@ if (statusBox) {
   }
 
   qBox.innerHTML = `
-    <div>
-      <h3>Q${index + 1}. ${qText}</h3>
-    </div>
-    <div class="bookmark ${isBookmarked ? "active" : ""}" id="bookmarkBtn">
+
+  <div class="q-wrap">
+
+    <!-- Question -->
+    <h3 class="q-text">
+      Q${index + 1}. ${qText}
+    </h3>
+
+    <!-- Bookmark -->
+    <div class="bookmark ${isBookmarked ? "active" : ""}"
+         id="bookmarkBtn"
+         title="Save Bookmark">
+
       ${bookmarkSVG()}
+
     </div>
-  `;
+
+  </div>
+
+`;
 
   document.getElementById("bookmarkBtn").onclick = toggleBookmark;
 
@@ -695,7 +714,7 @@ function highlightTraps(
    ⭐ BOOKMARK TOGGLE
 ====================== */
 function toggleBookmark() {
-  const q = mcqQuestion[questionOrder[index]];
+  const q = piagetMcq[questionOrder[index]];
   let b = getBookmarks();
 
   const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
@@ -726,7 +745,7 @@ window.toggleAIExplain = function (el) {
    NAVIGATION
 ====================== */
 window.nextQ = () => {
-  if (index < mcqQuestion.length - 1) {
+  if (index < piagetMcq.length - 1) {
     index++;
     loadQ();
   }
@@ -798,20 +817,7 @@ window.showConceptPedagogy = function (concept) {
 
   document.body.appendChild(box);
 };
-
-window.goBack = function(){
-
-  if(history.length > 1){
-
-    history.back();
-
-  }else{
-
-    location.href = "dashboard.html";
-
-  }
-
-};
+window.goBack = () => history.back();
 
 /* ======================
    🧠 TRACK WEAK CONCEPT
@@ -902,25 +908,23 @@ document.addEventListener("click", e => {
 /* ======================
    INIT
 ====================== */
+/* ======================
+   INIT SAFE LOAD
+====================== */
+
 window.addEventListener("DOMContentLoaded", () => {
 
-  try {
+  console.log("MCQ Page Loaded");
 
-    // Resume check
-    checkResumePractice();
+  checkResumePractice();
 
-    // Small delay → ensure module data ready
-    setTimeout(() => {
+  // Ensure data + DOM ready
+  setTimeout(() => {
+
+    if (typeof loadQ === "function") {
       loadQ();
-    }, 50);
+    }
 
-  } catch (e) {
-
-    console.error("MCQ Init Error:", e);
-
-    // Retry fallback
-    setTimeout(loadQ, 200);
-
-  }
+  }, 80);
 
 });
