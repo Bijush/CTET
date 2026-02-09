@@ -1,0 +1,83 @@
+<!-- pages/mock.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CTET Mock Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- 🌐 COMMON -->
+  <link rel="stylesheet" href="../css/common.css">
+  <!-- 🎨 MOCK STYLE -->
+  <link rel="stylesheet" href="../css/mock.css">
+    <link rel="stylesheet" href="../css/mcq.css">
+        <link rel="stylesheet" href="../css/theory.css">
+    
+</head>
+<body>
+
+<!-- 🔝 HEADER -->
+<div class="mock-header">
+  <h2>⏱️ CTET Mock Test</h2>
+
+  <!-- 🌐 LANGUAGE SWITCH (Top Right) -->
+  <div class="lang-switch" onclick="toggleLangView()">🌐 EN+BN</div>
+
+  <div id="timer" class="timer">Time Left: 10:00</div>
+</div>
+
+<!-- 📊 PROGRESS -->
+<div class="progress-wrap">
+  <div id="progressBar" class="progress-bar"></div>
+</div>
+
+<!-- ❓ QUESTION (bookmark icon injected by JS here) -->
+<div class="card question-box" id="qBox">
+  Loading question…
+</div>
+
+<!-- 🔘 OPTIONS -->
+<div class="options" id="options"></div>
+
+<!-- ✅ CORRECT ANSWER + FULL EXPLANATION (NEW) -->
+<div id="correctBox" class="correct-box" style="display:none;"></div>
+
+<!-- 🤖 AI HINT -->
+<div class="hint-box" id="hintBox" style="display:none;"></div>
+
+<!-- 🔘 BUTTONS -->
+<div class="bottom-tabs">
+
+  <!-- Previous -->
+  <button class="btab"
+          onclick="prevQ()">
+    <span>⬅</span>
+    <label>Prev</label>
+  </button>
+  
+  <button onclick="showHint()" style="display:none;">🤖 Get Hint</button>
+
+  <!-- Next -->
+  <button class="btab"
+          onclick="nextQ()">
+    <span>➡</span>
+    <label>Next</label>
+  </button>
+
+  <!-- Back -->
+  <button class="btab"
+          onclick="goBack()">
+    <span>🏠</span>
+    <label>Back</label>
+  </button>
+
+</div>
+
+<!-- 🔔 SNACKBAR -->
+<div id="snackbar"></div>
+
+<!-- ⚡ JS (module VERY IMPORTANT) -->
+<script type="module" src="../js/mock.js"></script>
+
+</body>
+</html>

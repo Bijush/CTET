@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Dashboard Pro</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+
+<!-- ======================
+CSS
+====================== -->
+
+<link rel="stylesheet"
+      href="../css/dashboard.css">
+
+</head>
+
+<body class="bg1">
+
+<!-- ======================
+🌊 LIQUID MORPH BACKGROUND
+====================== -->
+
+<div class="liquid-bg">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+<!-- ======================
+TOP BANNER
+====================== -->
+
+<div class="top-banner glass hologram">
+
+  <div>
+
+    <!-- Moving Neon Greeting -->
+    <h3 id="greetText"
+        class="neon-text">
+      Good Evening 👋
+    </h3>
+
+    <p id="userName">
+      Bijush Kumar Roy
+    </p>
+    <p id="appVersion">v1.0.0</p>
+
+  </div>
+
+
+  <!-- ======================
+  PROGRESS RING
+  ====================== -->
+
+  <div class="progress-ring">
+
+    <svg width="70"
+         height="70">
+
+      <circle
+        cx="35"
+        cy="35"
+        r="28"
+        class="ring-bg"/>
+
+      <circle
+        cx="35"
+        cy="35"
+        r="28"
+        class="ring-fill"
+        id="progressRing"/>
+
+    </svg>
+
+    <span id="progressText">
+      75%
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- ======================
+BG SWITCH
+====================== -->
+
+<div class="bg-switch glass hologram">
+
+<button onclick="setBG('bg1')"></button>
+<button onclick="setBG('bg2')"></button>
+<button onclick="setBG('bg3')"></button>
+<button onclick="setBG('bg4')"></button>
+
+</div>
+
+
+<!-- ======================
+TITLE
+====================== -->
+
+<h2 class="title neon-text">
+🏠 Dashboard
+</h2>
+
+
+<!-- ======================
+GRID
+====================== -->
+
+<div class="grid">
+
+<!-- MCQ -->
+<button onclick="go('mcq.html')"
+        class="card hologram ripple">
+
+  <div class="icon">📝</div>
+  <span>MCQ Practice</span>
+
+</button>
+
+
+<!-- MOCK -->
+<button onclick="go('mock.html')"
+        class="card hologram ripple">
+
+  <div class="icon">🎯</div>
+  <span>Mock Test</span>
+
+</button>
+
+
+<!-- CONCEPT -->
+<button onclick="go('concept/concept-list.html')"
+        class="card hologram ripple">
+
+  <div class="icon">📘</div>
+  <span>Concepts</span>
+
+</button>
+
+
+<!-- BOOKMARK -->
+<button onclick="go('bookmarks.html')"
+        class="card hologram ripple">
+
+  <div class="icon">💾</div>
+  <span>Save Questions</span>
+
+</button>
+
+
+<!-- PREDICTOR -->
+<button onclick="go('predictor.html')"
+        class="card hologram ripple">
+
+  <div class="icon">🔮</div>
+  <span>Predictor</span>
+
+</button>
+
+
+<!-- PIAGET -->
+<button onclick="go('piaget.html')"
+        class="card hologram ripple">
+
+  <div class="icon">🧠</div>
+  <span>Piaget</span>
+
+</button>
+
+</div>
+
+<!-- ======================
+📲 INSTALL BUTTON
+====================== -->
+
+
+
+
+<!-- ======================
+🔄 UPDATE POPUP
+====================== -->
+
+<!-- ======================
+JS
+====================== -->
+
+<script src="../js/dashboard.js"></script>
+
+</body>
+</html>

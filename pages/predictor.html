@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+  <title>Exam Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/predictor.css">
+</head>
+
+<body>
+
+<div class="page-head">
+
+  <button onclick="goDashboard()"
+          class="back-btn">
+    ⬅
+  </button>
+
+  <h2>🧠 Exam Probability Predictor</h2>
+
+</div>
+
+<!-- 🎯 FILTER -->
+<div class="filter-wrap">
+
+  <select id="probFilter">
+
+    <option value="ALL">
+      All Probability
+    </option>
+
+    <option value="VERY_HIGH">
+      Very High
+    </option>
+
+    <option value="HIGH">
+      High
+    </option>
+
+    <option value="MEDIUM">
+      Medium
+    </option>
+
+    <option value="LOW">
+      Low
+    </option>
+
+  </select>
+
+</div>
+
+<!-- 📚 SUBJECT TABS -->
+<div class="subject-tabs">
+
+  <button class="tab active"
+          data-subject="ALL">
+    All
+  </button>
+
+  <button class="tab"
+          data-subject="CDP">
+    CDP
+  </button>
+
+  <button class="tab"
+          data-subject="Math">
+    Math
+  </button>
+
+  <button class="tab"
+          data-subject="EVS">
+    EVS
+  </button>
+
+</div>
+<div id="predictBox"></div>
+
+<!-- 🔝 BACK TO TOP -->
+<button id="backTopBtn"
+        onclick="scrollToTop()">
+  ⬆
+</button>
+<script type="module"
+        src="../js/predictor.js">
+</script>
+
+</body>
+</html>
