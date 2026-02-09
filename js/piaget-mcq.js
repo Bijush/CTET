@@ -6,8 +6,7 @@ import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
 
-console.log("MCQ FILE LOADED");
-console.log(piagetMcq);
+
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
