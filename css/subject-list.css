@@ -1,0 +1,258 @@
+/* ======================
+PAGE
+====================== */
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f5f7fb;
+}
+
+
+/* ======================
+PREMIUM GLASS HEADER
+====================== */
+
+.header{
+
+  position:sticky;
+  top:0;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  background:rgba(30,136,229,.85);
+  backdrop-filter:blur(12px);
+
+  color:#fff;
+  padding:12px 14px;
+
+  font-weight:bold;
+  z-index:1000;
+
+  box-shadow:
+  0 4px 14px rgba(0,0,0,.15);
+}
+
+
+/* ======================
+INLINE BACK BUTTON
+====================== */
+
+.header-left{
+
+  width:38px;
+  height:38px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.18);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:18px;
+  cursor:pointer;
+
+  backdrop-filter:blur(6px);
+  transition:.2s;
+}
+
+.header-left:hover{
+  background:rgba(255,255,255,.28);
+  transform:scale(1.05);
+}
+
+.header-left:active{
+  transform:scale(.9);
+}
+
+
+/* ======================
+HEADER TITLE
+====================== */
+
+.header-title{
+
+  flex:1;
+  text-align:center;
+  font-size:18px;
+  letter-spacing:.3px;
+
+  background:linear-gradient(
+    90deg,
+    #ffffff,
+    #e3f2fd
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+
+/* ======================
+TABS
+====================== */
+
+.tabs{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  background:#fff;
+}
+
+.tab{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#e3f2fd;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.tab.active{
+  background:#1e88e5;
+  color:#fff;
+}
+
+
+/* ======================
+TITLE
+====================== */
+
+#subjectTitle{
+  padding:12px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+
+/* ======================
+CARD PREMIUM
+====================== */
+
+.card{
+
+  position:relative;
+
+  background:linear-gradient(
+    145deg,
+    #ffffff,
+    #eef3ff
+  );
+
+  padding:16px;
+  border-radius:18px;
+  margin:12px;
+
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  box-shadow:
+  0 10px 24px rgba(0,0,0,.12);
+
+  cursor:pointer;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+
+/* ======================
+ICON
+====================== */
+
+.icon{
+
+  width:46px;
+  height:46px;
+  border-radius:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+}
+
+
+/* ======================
+PROGRESS RING
+====================== */
+
+.progress{
+
+  width:44px;
+  height:44px;
+  border-radius:50%;
+
+  background:
+  conic-gradient(
+    #1e88e5 var(--value),
+    #e0e0e0 0
+  );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:11px;
+  font-weight:bold;
+
+  box-shadow:
+  0 0 10px rgba(30,136,229,.4);
+}
+
+
+/* ======================
+LOCK BADGE
+====================== */
+
+.lock{
+
+  position:absolute;
+  top:10px;
+  right:10px;
+
+  padding:4px 8px;
+  border-radius:10px;
+  font-size:10px;
+  color:#fff;
+
+  background:linear-gradient(
+    45deg,
+    #ff5252,
+    #ff1744
+  );
+}
+
+
+/* ======================
+RIPPLE EFFECT
+====================== */
+
+.ripple{
+
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.6);
+  transform:scale(0);
+  animation:ripple .6s linear;
+}
+
+@keyframes ripple{
+  to{
+    transform:scale(4);
+    opacity:0;
+  }
+}
