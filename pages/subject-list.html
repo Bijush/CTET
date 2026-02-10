@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
+
+<title>Subjects</title>
+
+<link rel="stylesheet"
+      href="../css/subject-list.css">
+</head>
+<body>
+
+<!-- ======================
+GLASS HEADER
+====================== -->
+
+<!-- ======================
+PREMIUM HEADER
+====================== -->
+
+<div class="header">
+
+  <div class="header-left"
+       onclick="history.back()">
+    ⬅
+  </div>
+
+  <div class="header-title">
+    📘 Concept Subjects
+  </div>
+
+</div>
+
+<!-- ======================
+TABS
+====================== -->
+
+<div class="tabs">
+
+<button class="tab active"
+onclick="changeSubject(event,'CDP')">
+CDP
+</button>
+
+<button class="tab"
+onclick="changeSubject(event,'MATH')">
+MATH
+</button>
+
+<button class="tab"
+onclick="changeSubject(event,'EVS')">
+EVS
+</button>
+
+<button class="tab"
+onclick="changeSubject(event,'ENGLISH')">
+ENGLISH
+</button>
+
+<button class="tab"
+onclick="changeSubject(event,'BENGALI')">
+BENGALI
+</button>
+
+</div>
+
+<!-- TITLE -->
+
+<div id="subjectTitle">
+Loading…
+</div>
+
+<!-- LIST -->
+
+<div id="conceptList">
+Loading concepts…
+</div>
+
+<script src="../js/subject-list.js"></script>
+
+</body>
+</html>

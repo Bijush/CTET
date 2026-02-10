@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../css/mock.css">
     <link rel="stylesheet" href="../css/mcq.css">
         <link rel="stylesheet" href="../css/theory.css">
+            <link rel="stylesheet"
+      href="../css/spinner.css">
     
 </head>
 <body>
@@ -75,6 +77,18 @@
 
 <!-- 🔔 SNACKBAR -->
 <div id="snackbar"></div>
+
+<script type="module">
+
+import {
+  initSpinner
+} from "../js/spinner.js";
+
+/* Load spinner HTML */
+
+await initSpinner();
+
+</script>
 
 <!-- ⚡ JS (module VERY IMPORTANT) -->
 <script type="module" src="../js/mock.js"></script>
