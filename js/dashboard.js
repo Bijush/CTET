@@ -6,14 +6,16 @@ window.go = page => {
 
   if(!page) return;
 
-  // Smooth click delay
   setTimeout(()=>{
 
     try{
       window.location.href = page;
     }
     catch(err){
-      console.error("Navigation error:", err);
+      console.error(
+        "Navigation error:",
+        err
+      );
     }
 
   },150);
@@ -29,25 +31,33 @@ window.go = page => {
 function setGreeting(){
 
   const greetEl =
-    document.getElementById("greetText");
+    document.getElementById(
+      "greetText"
+    );
 
   if(!greetEl) return;
 
-  const h = new Date().getHours();
+  const h =
+    new Date().getHours();
 
-  let text = "Good Evening 👋";
+  let text =
+    "Good Evening 👋";
 
   if(h < 12)
-    text = "Good Morning ☀️";
+    text =
+    "Good Morning ☀️";
 
   else if(h < 17)
-    text = "Good Afternoon 🌤";
+    text =
+    "Good Afternoon 🌤";
 
   else if(h < 21)
-    text = "Good Evening 🌆";
+    text =
+    "Good Evening 🌆";
 
   else
-    text = "Good Night 🌙";
+    text =
+    "Good Night 🌙";
 
   greetEl.textContent = text;
 }
@@ -61,12 +71,16 @@ function setGreeting(){
 function loadUsername(){
 
   const userEl =
-    document.getElementById("userName");
+    document.getElementById(
+      "userName"
+    );
 
   if(!userEl) return;
 
   const name =
-    localStorage.getItem("username")
+    localStorage.getItem(
+      "username"
+    )
     || "Bijush Kumar Roy";
 
   userEl.textContent = name;
@@ -81,16 +95,21 @@ function loadUsername(){
 function loadProgress(){
 
   const circle =
-    document.getElementById("progressRing");
+    document.getElementById(
+      "progressRing"
+    );
 
   const text =
-    document.getElementById("progressText");
+    document.getElementById(
+      "progressText"
+    );
 
   if(!circle) return;
 
-  const percent = 75; // dynamic later
+  const percent = 75;
 
   const radius = 28;
+
   const circumference =
     2 * Math.PI * radius;
 
@@ -104,12 +123,14 @@ function loadProgress(){
 
     circle.style.strokeDashoffset =
       circumference -
-      (percent/100) * circumference;
+      (percent/100)
+      * circumference;
 
   },300);
 
   if(text)
-    text.textContent = percent + "%";
+    text.textContent =
+      percent + "%";
 }
 
 
@@ -122,7 +143,8 @@ function setBG(bg){
 
   if(!bg) return;
 
-  document.body.className = bg;
+  document.body.className =
+    bg;
 
   localStorage.setItem(
     "dashboardBG",
@@ -143,7 +165,8 @@ function loadSavedBG(){
       "dashboardBG"
     ) || "bg1";
 
-  document.body.className = saved;
+  document.body.className =
+    saved;
 
   updateActiveBG(saved);
 }
@@ -161,10 +184,14 @@ function updateActiveBG(bg){
 
   buttons.forEach((btn,i)=>{
 
-    btn.classList.remove("active");
+    btn.classList.remove(
+      "active"
+    );
 
     if("bg"+(i+1) === bg)
-      btn.classList.add("active");
+      btn.classList.add(
+        "active"
+      );
 
   });
 }
@@ -172,12 +199,13 @@ function updateActiveBG(bg){
 
 
 /* ======================
-💧 RIPPLE EFFECT (SAFE)
+💧 RIPPLE EFFECT
 ====================== */
 
 function initRipple(){
 
-  document.querySelectorAll(".ripple")
+  document
+  .querySelectorAll(".ripple")
   .forEach(btn=>{
 
     btn.addEventListener(
@@ -185,7 +213,9 @@ function initRipple(){
       function(e){
 
         const wave =
-          document.createElement("span");
+          document.createElement(
+            "span"
+          );
 
         wave.classList.add(
           "ripple-wave"
@@ -195,10 +225,12 @@ function initRipple(){
           this.getBoundingClientRect();
 
         wave.style.left =
-          e.clientX - rect.left + "px";
+          e.clientX -
+          rect.left + "px";
 
         wave.style.top =
-          e.clientY - rect.top + "px";
+          e.clientY -
+          rect.top + "px";
 
         this.appendChild(wave);
 
@@ -234,20 +266,157 @@ function setVersion(){
 
 
 
-/* ======================
+/* ===============================
+📲 INSTALL PROMPT SYSTEM
+=============================== */
+
+let deferredPrompt;
+
+function initInstallPrompt(){
+
+const installBox =
+document.getElementById(
+  "installBox"
+);
+
+const installBtn =
+document.getElementById(
+  "installBtnTop"
+);
+
+if(!installBox || !installBtn)
+return;
+
+
+// Detect availability
+window.addEventListener(
+"beforeinstallprompt",
+e=>{
+
+console.log(
+"Install Ready 🔥"
+);
+
+e.preventDefault();
+
+deferredPrompt = e;
+
+installBox.style.display =
+"flex";
+
+}
+);
+
+
+// Install click
+installBtn.addEventListener(
+"click",
+async ()=>{
+
+if(!deferredPrompt){
+
+alert(
+"Install not available"
+);
+
+return;
+
+}
+
+deferredPrompt.prompt();
+
+const { outcome } =
+await deferredPrompt
+.userChoice;
+
+if(outcome==="accepted"){
+
+alert(
+"App Installed ✅"
+);
+
+localStorage.setItem(
+"appInstalled",
+"yes"
+);
+
+}
+
+installBox.style.display =
+"none";
+
+deferredPrompt = null;
+
+}
+);
+
+
+// Hide if already installed
+if(
+window.matchMedia(
+"(display-mode: standalone)"
+).matches ||
+localStorage.getItem(
+"appInstalled"
+)
+){
+installBox.style.display =
+"none";
+}
+
+}
+
+
+
+/* ===============================
+🔧 SERVICE WORKER REGISTER
+=============================== */
+
+function registerSW(){
+
+if(
+"serviceWorker"
+in navigator
+){
+
+navigator
+.serviceWorker
+.register("../sw.js")
+.then(()=>
+console.log(
+"SW Ready"
+)
+)
+.catch(err=>
+console.error(
+"SW Error:",
+err
+)
+);
+
+}
+
+}
+
+
+
+/* ===============================
 🚀 INIT AFTER DOM LOAD
-====================== */
+=============================== */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
+"DOMContentLoaded",
+()=>{
 
-    setGreeting();
-    loadUsername();
-    loadProgress();
-    loadSavedBG();
-    initRipple();
-    setVersion();
+setGreeting();
+loadUsername();
+loadProgress();
+loadSavedBG();
+initRipple();
+setVersion();
 
-  }
+initInstallPrompt(); // ⭐ Install
+registerSW();        // ⭐ SW
+
+}
 );
