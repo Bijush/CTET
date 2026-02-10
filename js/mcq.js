@@ -2,6 +2,24 @@ import { mcqQuestion } from "../data/mcq_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
+/* ======================
+SPINNER IMPORT
+====================== */
+
+import {
+  initSpinner,
+  showSpinner,
+  hideSpinner
+} from "../js/spinner.js";
+
+
+/* Init spinner HTML */
+
+await initSpinner();
+
+/* Page start → show */
+
+showSpinner();
 
 /* ======================
    GLOBAL STATE (NO TIMER)
@@ -144,6 +162,11 @@ function loadQ() {
     setTimeout(loadQ, 100);
     return;
   }
+  /* ======================
+DATA READY → HIDE SPINNER
+====================== */
+
+hideSpinner();
   
   const currentQIndex = questionOrder[index];
   const q = mcqQuestion[currentQIndex];

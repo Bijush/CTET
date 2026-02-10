@@ -1,6 +1,20 @@
 import { mockQuestion } from "../data/mock_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
+import {
+  initSpinner,
+  showSpinner,
+  hideSpinner
+} from "../js/spinner.js";
+
+
+/* Init spinner HTML */
+
+await initSpinner();
+
+/* Page start → show */
+
+showSpinner();
 
 /* ======================
    GLOBAL STATE (RESUME SAFE)
@@ -417,7 +431,11 @@ correctBox.innerHTML += `
 
   progressBar.style.width =
     ((index + 1) / mockQuestion.length) * 100 + "%";
+/* ======================
+DATA READY → HIDE SPINNER
+====================== */
 
+hideSpinner();
   hintBox.style.display = "none";
 }
 
