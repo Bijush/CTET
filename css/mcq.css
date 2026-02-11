@@ -455,3 +455,40 @@ MOBILE
   }
 
 }
+/* ======================
+ELIMINATION COLOR SYSTEM
+====================== */
+
+.elim-list{
+  list-style:none;
+  padding-left:0;
+  margin-top:8px;
+}
+
+.elim-list li{
+  padding:8px 10px;
+  margin-bottom:6px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+/* ✔ Correct */
+.elim-correct{
+  background:#e6f9ed;
+  border-left:4px solid #22c55e;
+  color:#166534;
+}
+
+/* ❌ Wrong */
+.elim-wrong{
+  background:#fde8e8;
+  border-left:4px solid #ef4444;
+  color:#7f1d1d;
+}
+
+/* ❌ Your choice */
+.elim-your{
+  background:#fff7ed;
+  border-left:4px solid #f97316;
+  color:#7c2d12;
+}
