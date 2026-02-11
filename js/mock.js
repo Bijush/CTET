@@ -1,20 +1,7 @@
 import { mockQuestion } from "../data/mock_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
-import {
-  initSpinner,
-  showSpinner,
-  hideSpinner
-} from "../js/spinner.js";
 
-
-/* Init spinner HTML */
-
-await initSpinner();
-
-/* Page start → show */
-
-showSpinner();
 
 /* ======================
    GLOBAL STATE (RESUME SAFE)
@@ -333,7 +320,56 @@ btn.innerHTML = `
         `
         : ""
     }
+${
+  q.elimination_en?.length ||
+  q.elimination_bn?.length ||
+  q.elimination?.length
+  ? `
+  <hr>
+  <b>Why other options are wrong?</b>
 
+  <ul class="elim-list">
+
+    ${
+      (
+        langMode === "BN"
+          ? (q.elimination_bn?.length
+              ? q.elimination_bn
+              : q.elimination)
+          : (q.elimination_en?.length
+              ? q.elimination_en
+              : q.elimination)
+      )
+      ?.map((e, i) => {
+
+        let cls = "elim-wrong";
+        let icon = "❌";
+
+        if(i === correctIndex){
+          cls = "elim-correct";
+          icon = "✔";
+        }
+        else if(i === userWrongIndex){
+          cls = "elim-your";
+          icon = "❌";
+        }
+
+        return `
+          <li class="${cls}">
+            <b>${icon} Option ${
+              String.fromCharCode(65 + i)
+            }:</b>
+            ${e}
+          </li>
+        `;
+      })
+      .join("") || ""
+    }
+
+  </ul>
+  `
+  : ""
+}
     <hr>
     <b>🧠 Option-wise Explanation:</b>
     ${optionExplainHTML}
@@ -354,7 +390,8 @@ const ai = offlineAIExplain(q, i, langMode) || {
 };
 
 /* option-wise AI explanation with divider */
-const aiOptionHTML = ai.elimination.map((text, idx) => {
+const aiOptionHTML =
+  (ai.elimination || []).map((text, idx) => {
   let cls = "neutral";
 
   if (idx === q.ans) cls = "correct";
@@ -378,15 +415,15 @@ correctBox.innerHTML += `
     ${ai.concept}
   </div>
 
-  ${
-    ai.elimination.length
-      ? `
-      <hr>
-      <b>🧠 Why options (AI view):</b>
-      ${aiOptionHTML}
-      `
-      : ""
-  }
+${
+  (ai.elimination || []).length
+    ? `
+    <hr>
+    <b>🧠 Why options (AI view):</b>
+    ${aiOptionHTML}
+    `
+    : ""
+}
 
   ${
     ai.classroom
@@ -435,7 +472,6 @@ correctBox.innerHTML += `
 DATA READY → HIDE SPINNER
 ====================== */
 
-hideSpinner();
   hintBox.style.display = "none";
 }
 

@@ -2,24 +2,7 @@ import { mcqQuestion } from "../data/mcq_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
-/* ======================
-SPINNER IMPORT
-====================== */
 
-import {
-  initSpinner,
-  showSpinner,
-  hideSpinner
-} from "../js/spinner.js";
-
-
-/* Init spinner HTML */
-
-await initSpinner();
-
-/* Page start → show */
-
-showSpinner();
 
 /* ======================
    GLOBAL STATE (NO TIMER)
@@ -162,11 +145,6 @@ function loadQ() {
     setTimeout(loadQ, 100);
     return;
   }
-  /* ======================
-DATA READY → HIDE SPINNER
-====================== */
-
-hideSpinner();
   
   const currentQIndex = questionOrder[index];
   const q = mcqQuestion[currentQIndex];
@@ -281,6 +259,10 @@ btn.innerHTML = `
   const labels = ["A","B","C","D"];
   const clickedIndex = i;
   const correctIndex = q.ans;
+  const userWrongIndex =
+  clickedIndex !== correctIndex
+    ? clickedIndex
+    : null;
 
   /* ======================
      ✅ CORRECT / WRONG
@@ -430,25 +412,55 @@ if (statusBox) {
       : ""
     }
 
+${
+  q.elimination_en?.length ||
+  q.elimination_bn?.length ||
+  q.elimination?.length
+  ? `
+  <hr>
+  <b>Why other options are wrong?</b>
+
+  <ul class="elim-list">
+
     ${
-      q.elimination_en?.length ||
-      q.elimination_bn?.length
-      ? `
-      <hr>
-      <b>Why other options are wrong?</b>
-      <ul>
-        ${
-          (langMode === "BN"
-            ? q.elimination_bn
-            : q.elimination_en
-          )
-          ?.map(e => `<li>${e}</li>`)
-          .join("") || ""
+      (
+        langMode === "BN"
+          ? (q.elimination_bn || q.elimination)
+          : (q.elimination_en || q.elimination)
+      )
+      ?.map((e, i) => {
+
+        let cls = "elim-wrong";
+        let icon = "❌";
+
+        if(i === correctIndex){
+          cls = "elim-correct";
+          icon = "✔";
         }
-      </ul>
-      `
-      : ""
+        else if(i === userWrongIndex){
+          cls = "elim-your";
+          icon = "❌";
+        }
+
+        return `
+          <li class="${cls}">
+
+            <b>${icon} Option ${
+              String.fromCharCode(65 + i)
+            }:</b>
+
+            ${e}
+
+          </li>
+        `;
+      })
+      .join("") || ""
     }
+
+  </ul>
+  `
+  : ""
+}
 
     <hr>
 

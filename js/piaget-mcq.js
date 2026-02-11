@@ -6,7 +6,6 @@ import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
 
-
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
@@ -33,7 +32,7 @@ const progressBar = document.getElementById("progressBar");
 /* ======================
 AUTO HIDE BOTTOM NAV
 ====================== */
-
+const labels = ["A","B","C","D"];
 let lastScroll = 0;
 
 const bottomNav =
@@ -41,25 +40,20 @@ const bottomNav =
 
 window.addEventListener("scroll", ()=>{
 
-  const currentScroll =
-    window.pageYOffset;
+  if(!bottomNav) return;   // SAFE GUARD
+
+  const currentScroll = window.pageYOffset;
 
   if(currentScroll > lastScroll){
 
-    /* Scroll Down → Hide */
-
     bottomNav.style.transform =
       "translate(-50%, 120px)";
-
     bottomNav.style.opacity = "0";
 
   }else{
 
-    /* Scroll Up → Show */
-
     bottomNav.style.transform =
       "translate(-50%, 0)";
-
     bottomNav.style.opacity = "1";
   }
 
@@ -150,11 +144,36 @@ function loadQ() {
     setTimeout(loadQ, 100);
     return;
   }
-  const currentQIndex = questionOrder[index];
-  const q = piagetMcq[currentQIndex];
-  if (!q) return;
+  /* ======================
+   SAFE INDEX GUARD
+====================== */
 
-  localStorage.setItem("mcq_q_index", index);
+if(index >= questionOrder.length){
+  console.warn("Index overflow → reset");
+
+  index = 0;
+  localStorage.setItem("mcq_q_index", 0);
+}
+
+/* ======================
+   LOAD CURRENT QUESTION
+====================== */
+
+const currentQIndex = questionOrder[index];
+const q = piagetMcq[currentQIndex];
+
+if (!q) {
+
+  console.warn("Question undefined → retry");
+
+  index = 0;
+  localStorage.setItem("mcq_q_index", 0);
+
+  return loadQ();   // retry load
+}
+
+/* SAVE PROGRESS */
+localStorage.setItem("mcq_q_index", index);
 
   answered = false;
   optBox.innerHTML = "";
@@ -179,7 +198,7 @@ if (statusBox) {
 
   /* 📊 progress */
   progressBar.style.width =
-    ((index + 1) / piagetMcq.length) * 100 + "%";
+  ((index + 1) / questionOrder.length) * 100 + "%";
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
@@ -251,7 +270,7 @@ if (statusBox) {
       optText = (bn && bn.trim() !== "") ? bn : en; // BN fallback
     }
 
-    const labels = ["A", "B", "C", "D"];
+    
 
 btn.innerHTML = `
   <div class="option-text">
@@ -273,7 +292,7 @@ btn.innerHTML = `
     .querySelectorAll("#options button")
     .forEach(b => (b.disabled = true));
 
-  const labels = ["A","B","C","D"];
+  
   const clickedIndex = i;
   const correctIndex = q.ans;
 
@@ -426,24 +445,51 @@ if (statusBox) {
     }
 
     ${
-      q.elimination_en?.length ||
-      q.elimination_bn?.length
-      ? `
-      <hr>
-      <b>Why other options are wrong?</b>
-      <ul>
-        ${
-          (langMode === "BN"
-            ? q.elimination_bn
-            : q.elimination_en
-          )
-          ?.map(e => `<li>${e}</li>`)
-          .join("") || ""
+  q.elimination_en?.length ||
+  q.elimination_bn?.length ||
+  q.elimination?.length
+  ? `
+  <hr>
+  <b>Why other options are wrong?</b>
+
+  <ul class="elim-list">
+
+    ${
+      (
+        langMode === "BN"
+          ? (q.elimination_bn || q.elimination)
+          : (q.elimination_en || q.elimination)
+      )
+      ?.map((e, i) => {
+
+        let cls = "elim-wrong";
+        let icon = "❌";
+
+        if(i === correctIndex){
+          cls = "elim-correct";
+          icon = "✔";
         }
-      </ul>
-      `
-      : ""
+        else if(i === clickedIndex){
+          cls = "elim-your";
+          icon = "❌";
+        }
+
+        return `
+          <li class="${cls}">
+            <b>${icon} Option ${
+              String.fromCharCode(65 + i)
+            }:</b>
+            ${e}
+          </li>
+        `;
+      })
+      .join("") || ""
     }
+
+  </ul>
+  `
+  : ""
+}
 
     <hr>
 
@@ -498,6 +544,7 @@ if (statusBox) {
   /* ======================
      🤖 AI SAFE LOAD
   ====================== */
+  
   let ai = {};
 
   try {
