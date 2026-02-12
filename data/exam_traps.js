@@ -14,7 +14,7 @@ export const examTraps = {
     "recall",
     "recall and rehearsal",
     "Scold",
-    "Ignore",
+    "Ignore","Same instruction","Strict curriculum","Competition","Fear","Fear of failure","Frequent testing","High expectations","not explore","Segregation",
 
     "rote",
     "rote learning",
