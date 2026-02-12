@@ -1,53 +1,52 @@
-<!-- pages/mock.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CTET Mock Test</title>
+  <meta charset="UTF-8" />
+  <title>Mock Practice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- 🌐 COMMON -->
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/common.css">
-  <!-- 🎨 MOCK STYLE -->
-  <link rel="stylesheet" href="../css/mock.css">
-    <link rel="stylesheet" href="../css/mcq.css">
-        <link rel="stylesheet" href="../css/theory.css">
-            <link rel="stylesheet"
-      href="../css/spinner.css">
-    
+  <link rel="stylesheet" href="../css/mcq.css">
+    <link rel="stylesheet" href="../css/theory.css">
+
 </head>
 <body>
 
-<!-- 🔝 HEADER -->
-<div class="mock-header">
-  <h2>⏱️ CTET Mock Test</h2>
+<!-- PAGE TITLE -->
+<h2 class="page-title">📝 Mock Practice</h2>
 
-  <!-- 🌐 LANGUAGE SWITCH (Top Right) -->
-  <div class="lang-switch" onclick="toggleLangView()">🌐 EN+BN</div>
-
-  <div id="timer" class="timer">Time Left: 10:00</div>
+<!-- Language Switch -->
+<div class="lang-switch" onclick="toggleLangView()">
+  🌐 EN+BN
+</div>
+<div class="weak-btn"
+     onclick="goWeakPage()">
+  🧠 Weak Concepts
 </div>
 
-<!-- 📊 PROGRESS -->
+<!-- PROGRESS -->
 <div class="progress-wrap">
-  <div id="progressBar" class="progress-bar"></div>
+  <div id="progressBar"></div>
 </div>
 
-<!-- ❓ QUESTION (bookmark icon injected by JS here) -->
-<div class="card question-box" id="qBox">
-  Loading question…
+<!-- QUESTION -->
+<div class="card" id="qBox"></div>
+
+<!-- OPTIONS -->
+<div id="options"></div>
+
+<!-- ANSWER STATUS -->
+<div id="answerStatus"></div>
+
+<!-- EXPLANATION -->
+<div id="explainBox"
+     class="card"
+     style="display:none;">
 </div>
 
-<!-- 🔘 OPTIONS -->
-<div class="options" id="options"></div>
+<!-- NAV BUTTONS -->
 
-<!-- ✅ CORRECT ANSWER + FULL EXPLANATION (NEW) -->
-<div id="correctBox" class="correct-box" style="display:none;"></div>
-
-<!-- 🤖 AI HINT -->
-<div class="hint-box" id="hintBox" style="display:none;"></div>
-
-<!-- 🔘 BUTTONS -->
 <div class="bottom-tabs">
 
   <!-- Previous -->
@@ -56,8 +55,6 @@
     <span>⬅</span>
     <label>Prev</label>
   </button>
-  
-  <button onclick="showHint()" style="display:none;">🤖 Get Hint</button>
 
   <!-- Next -->
   <button class="btab"
@@ -75,23 +72,15 @@
 
 </div>
 
-<!-- 🔔 SNACKBAR -->
+<!-- SNACKBAR -->
 <div id="snackbar"></div>
 
-<script type="module">
 
-import {
-  initSpinner
-} from "../js/spinner.js";
-
-/* Load spinner HTML */
-
-await initSpinner();
-
+<!-- JS -->
+<script type="module"
+        src="../js/mock.js">
 </script>
 
-<!-- ⚡ JS (module VERY IMPORTANT) -->
-<script type="module" src="../js/mock.js"></script>
 
 </body>
 </html>
