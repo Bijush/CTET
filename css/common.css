@@ -258,3 +258,117 @@ GLASSMORPHISM BASE
 
   border-radius:18px;
 }
+/* ======================
+   WHY CORRECT CARD
+====================== */
+
+.why-card{
+  background:#f0f9ff;
+  border:1px solid #bae6fd;
+  border-left:4px solid #2563eb;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.why-title{
+  font-weight:700;
+  color:#1d4ed8;
+  margin-bottom:6px;
+}
+
+.why-body{
+  font-size:14px;
+  line-height:1.6;
+  color:#374151;
+}
+/* Positive signal – Correct option */
+.boost-correct{
+  border:2px solid #3b82f6;
+  background:#eff6ff;
+}
+
+/* Positive signal – Wrong option */
+.boost-wrong{
+  border:2px solid #ef4444;
+  background:#fef2f2;
+}
+.boost-word{
+  color:#2563eb;
+  font-weight:600;
+}
+/* ===== Trap ===== */
+.trap-badge{
+  background:#fee2e2;
+  color:#b91c1c;
+  padding:2px 6px;
+  border-radius:6px;
+  font-size:10px;
+  margin-left:6px;
+}
+
+.trap-hint{
+  color:#b91c1c;
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* ===== Boost ===== */
+.boost-badge{
+  background:#dbeafe;
+  color:#1d4ed8;
+  padding:2px 6px;
+  border-radius:6px;
+  font-size:10px;
+  margin-left:6px;
+}
+
+.boost-hint{
+  color:#1d4ed8;
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* ===== Option Color ===== */
+.boost-correct{
+  border:2px solid #3b82f6;
+  background:#eff6ff;
+}
+
+.boost-wrong{
+  border:2px solid #ef4444;
+  background:#fef2f2;
+}
+.predicted-correct{
+  border:2px solid #00cec9;
+  background:#e0f9f8;
+  font-weight:bold;
+}
+.trap-red{
+  background:#fee2e2;
+  color:#dc2626;
+  font-weight:600;
+}
+
+.boost-word{
+  background:#dbeafe;
+  color:#2563eb;
+  font-weight:600;
+}
+#snackbar {
+  visibility: hidden;
+  min-width: 140px;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+#snackbar.show {
+  visibility: visible;
+  opacity: 1;
+}
