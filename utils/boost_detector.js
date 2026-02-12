@@ -1,15 +1,15 @@
-// utils/trap_detector.js
+// utils/boost_detector.js
 
-import { examTraps } from "../data/exam_traps.js";
+import { examBoosts } from "../data/exam_boosts.js";
 
 /* ===================================
-   🧠 Detect CTET Exam Traps — EXPERT
+   🧠 Detect Positive Examiner Signals
    ✔ Single word safe
    ✔ Multi-word safe
    ✔ Bengali + English
    ✔ Substring protected
 =================================== */
-export function detectTraps(text = "", subject = "") {
+export function detectBoosts(text = "", subject = "") {
 
   /* ==============================
      🚫 Safety Check
@@ -19,20 +19,21 @@ export function detectTraps(text = "", subject = "") {
   /* ==============================
      1️⃣ Normalize Input Text
   ============================== */
-  const normalizedText = normalizeText(text);
+  const normalizedText =
+    normalizeText(text);
 
   /* ==============================
-     2️⃣ Collect Trap Lists
+     2️⃣ Collect Boost Lists
   ============================== */
-  const globalTraps =
-    examTraps.GLOBAL || [];
+  const globalBoosts =
+    examBoosts.GLOBAL || [];
 
-  const subjectTraps =
-    examTraps[subject] || [];
+  const subjectBoosts =
+    examBoosts[subject] || [];
 
-  const allTraps = [
-    ...globalTraps,
-    ...subjectTraps
+  const allBoosts = [
+    ...globalBoosts,
+    ...subjectBoosts
   ];
 
   /* ==============================
@@ -40,15 +41,15 @@ export function detectTraps(text = "", subject = "") {
   ============================== */
   const foundSet = new Set();
 
-  for (const rawWord of allTraps) {
+  for (const rawWord of allBoosts) {
 
     if (!rawWord) continue;
 
-    const trapWord =
+    const boostWord =
       normalizeText(rawWord);
 
     const escaped =
-      escapeRegex(trapWord);
+      escapeRegex(boostWord);
 
     // Word / Phrase Boundary Regex
     const regex =
@@ -73,10 +74,7 @@ export function detectTraps(text = "", subject = "") {
    (Same File — Option 1)
 =================================== */
 
-/* Normalize Text
-   ✔ Lowercase
-   ✔ Remove extra spaces
-*/
+/* Normalize Text */
 function normalizeText(text) {
 
   return text
@@ -87,9 +85,7 @@ function normalizeText(text) {
 }
 
 
-/* Escape Regex Special Characters
-   Prevent regex errors
-*/
+/* Escape Regex Special Characters */
 function escapeRegex(text) {
 
   return text.replace(
