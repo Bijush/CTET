@@ -34,27 +34,27 @@ let lastScroll = 0;
 const bottomNav =
   document.querySelector(".bottom-tabs");
 
-window.addEventListener("scroll", ()=>{
+window.addEventListener("scroll", () => {
 
-  const currentScroll =
-    window.pageYOffset;
+  const currentScroll = window.scrollY;
 
-  if(currentScroll > lastScroll){
+  if (currentScroll <= 0) {
+    bottomNav.style.transform =
+      "translateX(-50%) translateY(0)";
+    bottomNav.style.opacity = "1";
+    return;
+  }
 
-    /* Scroll Down → Hide */
+  if (currentScroll > lastScroll) {
 
     bottomNav.style.transform =
-      "translate(-50%, 120px)";
-
+      "translateX(-50%) translateY(120px)";
     bottomNav.style.opacity = "0";
 
-  }else{
-
-    /* Scroll Up → Show */
+  } else {
 
     bottomNav.style.transform =
-      "translate(-50%, 0)";
-
+      "translateX(-50%) translateY(0)";
     bottomNav.style.opacity = "1";
   }
 
