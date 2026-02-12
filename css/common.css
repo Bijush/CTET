@@ -12,6 +12,7 @@ body {
   background: #f5f7fb;
   color: #111827;
   padding: 14px;
+  padding-bottom: 120px;   /* 🔥 Bottom nav space */
 }
 
 /* ===============================

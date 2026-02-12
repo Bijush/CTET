@@ -293,21 +293,35 @@ BOTTOM NAV
 ====================== */
 
 .bottom-tabs{
-  position:fixed;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:92%;
-  max-width:520px;
-  display:flex;
-  justify-content:space-between;
-  padding:10px;
-  border-radius:25px;
-  backdrop-filter:blur(18px);
-  background:rgba(255,255,255,0.25);
-  border:1px solid rgba(255,255,255,0.35);
-  box-shadow:0 10px 30px rgba(0,0,0,0.18);
-  z-index:999;
+  position: fixed;
+
+  /* 🔥 Safe mobile support */
+  bottom: max(18px, env(safe-area-inset-bottom));
+
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+
+  width: 92%;
+  max-width: 520px;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding: 10px;
+
+  border-radius: 25px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+
+  z-index: 999;
+
+  transition: transform .35s ease, opacity .35s ease;
 }
 
 .btab{
