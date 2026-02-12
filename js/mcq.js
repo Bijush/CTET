@@ -2,6 +2,7 @@ import { mcqQuestion } from "../data/mcq_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
+import { detectBoosts } from "../utils/boost_detector.js";
 
 
 /* ======================
@@ -125,11 +126,42 @@ function saveBookmarks(b) {
    🔔 SNACKBAR
 ====================== */
 function showSnack(msg) {
+
   const sb = document.getElementById("snackbar");
-  if (!sb) return;
+  const bookmarkBtn =
+    document.getElementById("bookmarkBtn");
+
+  if (!sb || !bookmarkBtn) return;
+
   sb.innerText = msg;
-  sb.className = "show";
-  setTimeout(() => sb.classList.remove("show"), 2000);
+
+  // 🎨 Dynamic color
+  if (msg.toLowerCase().includes("saved")) {
+    sb.style.background = "#059669"; // green
+  } else {
+    sb.style.background = "#dc2626"; // red
+  }
+
+  const rect = bookmarkBtn.getBoundingClientRect();
+
+  // 🔥 Scroll-safe position
+  const scrollTop = window.scrollY;
+  const scrollLeft = window.scrollX;
+
+  sb.style.position = "absolute";
+  sb.style.left =
+    rect.left + rect.width / 2 + scrollLeft + "px";
+
+  sb.style.top =
+    rect.bottom + 8 + scrollTop + "px";
+
+  sb.style.transform = "translateX(-50%)";
+
+  sb.classList.add("show");
+
+  setTimeout(() => {
+    sb.classList.remove("show");
+  }, 1500);
 }
 
 /* ======================
@@ -242,8 +274,11 @@ btn.innerHTML = `
     ${optText}
   </div>
 
-  <span class="trap-badge" style="display:none;">TRAP</span>
-  <div class="trap-hint" style="display:none;"></div>
+<span class="trap-badge" style="display:none;">TRAP</span>
+<div class="trap-hint" style="display:none;"></div>
+
+<span class="boost-badge" style="display:none;">BOOST</span>
+<div class="boost-hint" style="display:none;"></div>
 `;
 
     btn.onclick = () => {
@@ -361,6 +396,41 @@ if (statusBox) {
         }
       }
     });
+    
+    /* ======================
+   🚀 BOOST HIGHLIGHT
+====================== */
+document
+  .querySelectorAll("#options button")
+  .forEach((b, idx) => {
+
+    const boosts = detectBoosts(
+      (q.options_en[idx] || "") +
+      " " +
+      (q.options_bn?.[idx] || ""),
+      q.subject
+    );
+
+    if (boosts.length) {
+
+      const badge =
+        b.querySelector(".boost-badge");
+
+      const hint =
+        b.querySelector(".boost-hint");
+
+      if (badge)
+        badge.style.display = "inline-block";
+
+      if (hint) {
+
+        hint.innerHTML =
+          `🚀 Boost words: ${boosts.join(", ")}`;
+
+        hint.style.display = "block";
+      }
+    }
+  });
 
   /* ======================
      📘 STATIC EXPLANATION
@@ -461,7 +531,33 @@ ${
   `
   : ""
 }
+${
+      (() => {
 
+        const fullText =
+          q.q_en +
+          " " +
+          (q.options_en?.join(" ") || "");
+
+        const boostSignals =
+          detectBoosts(fullText, q.subject);
+
+        if (!boostSignals.length) return "";
+
+        return `
+          <hr>
+          <div class="boost-box">
+            🚀 <b>Exam Booster Signals:</b><br>
+            ${boostSignals
+              .map(b =>
+                `<span class="boost-green">${b}</span>`
+              )
+              .join(", ")}
+          </div>
+        `;
+
+      })()
+    }
     <hr>
 
     <div style="font-size:13px;color:#374151;">
@@ -719,6 +815,32 @@ function highlightTraps(
 
         /* 🔵 STATIC / NORMAL */
         : `<span class="kw">$1</span>`
+    );
+
+  });
+
+  return highlighted;
+}
+
+function highlightBoosts(
+  text = "",
+  subject = ""
+) {
+
+  if (!text) return "";
+
+  const boosts = detectBoosts(text, subject);
+
+  let highlighted = text;
+
+  boosts.forEach(word => {
+
+    const reg =
+      new RegExp(`\\b(${word})\\b`, "gi");
+
+    highlighted = highlighted.replace(
+      reg,
+      `<span class="boost-green">$1</span>`
     );
 
   });

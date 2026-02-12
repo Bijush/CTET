@@ -1,15 +1,16 @@
 import { mockQuestion } from "../data/mock_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
+import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
+import { detectBoosts } from "../utils/boost_detector.js";
 
 
 /* ======================
-   GLOBAL STATE (RESUME SAFE)
+   GLOBAL STATE (NO TIMER)
 ====================== */
 let index = parseInt(localStorage.getItem("mock_q_index")) || 0;
-let time = parseInt(localStorage.getItem("mock_time_left")) || (10 * 60);
 let answered = false;
-let langMode = "BOTH"; // BOTH | EN | BN
+let langMode = localStorage.getItem("mock_lang") || "BOTH"; // BOTH | EN | BN
 
 /* ======================
    RANDOM QUESTION ORDER (PERSISTENT)
@@ -25,10 +26,8 @@ localStorage.setItem("mock_q_order", JSON.stringify(questionOrder));
 ====================== */
 const qBox = document.getElementById("qBox");
 const optBox = document.getElementById("options");
-const timerBox = document.getElementById("timer");
+const explainBox = document.getElementById("explainBox");
 const progressBar = document.getElementById("progressBar");
-const hintBox = document.getElementById("hintBox");
-const correctBox = document.getElementById("correctBox");
 
 let lastScroll = 0;
 
@@ -66,24 +65,16 @@ window.addEventListener("scroll", ()=>{
 /* ======================
    🔔 RESUME ALERT
 ====================== */
-function checkResumeTest() {
-  const hasProgress =
-    localStorage.getItem("mock_q_index") !== null ||
-    localStorage.getItem("mock_time_left") !== null;
-
-  if (hasProgress && index > 0) {
+function checkResumePractice() {
+  if (index > 0) {
     const resume = confirm(
-      "You have an unfinished test.\nDo you want to continue?"
+      "You have an unfinished practice session.\nDo you want to continue?"
     );
 
     if (!resume) {
-      // ❌ Fresh start
       localStorage.removeItem("mock_q_index");
-      localStorage.removeItem("mock_time_left");
       localStorage.removeItem("mock_q_order");
-
       index = 0;
-      time = 10 * 60;
 
       questionOrder = mockQuestion
         .map((_, i) => i)
@@ -95,13 +86,17 @@ function checkResumeTest() {
 }
 
 /* ======================
-   🌐 LANGUAGE SWITCH
+   🌐 LANGUAGE SWITCH (STRICT)
 ====================== */
 window.toggleLangView = () => {
   if (langMode === "BOTH") langMode = "EN";
   else if (langMode === "EN") langMode = "BN";
   else langMode = "BOTH";
-  loadQ();
+
+  localStorage.setItem("mock_lang", langMode);
+
+  answered = false;      // reset state
+  loadQ();               // full re-render
 };
 
 /* ======================
@@ -115,7 +110,7 @@ function bookmarkSVG() {
 }
 
 /* ======================
-   BOOKMARK STORAGE
+   📦 BOOKMARK STORAGE
 ====================== */
 function getBookmarks() {
   let b = JSON.parse(localStorage.getItem("bookmarks")) || [];
@@ -128,20 +123,61 @@ function saveBookmarks(b) {
 }
 
 /* ======================
-   SNACKBAR
+   🔔 SNACKBAR
 ====================== */
 function showSnack(msg) {
+
   const sb = document.getElementById("snackbar");
-  if (!sb) return;
+  const bookmarkBtn =
+    document.getElementById("bookmarkBtn");
+
+  if (!sb || !bookmarkBtn) return;
+
   sb.innerText = msg;
-  sb.className = "show";
-  setTimeout(() => sb.classList.remove("show"), 2500);
+
+  // 🎨 Dynamic color
+  if (msg.toLowerCase().includes("saved")) {
+    sb.style.background = "#059669"; // green
+  } else {
+    sb.style.background = "#dc2626"; // red
+  }
+
+  const rect = bookmarkBtn.getBoundingClientRect();
+
+  // 🔥 Scroll-safe position
+  const scrollTop = window.scrollY;
+  const scrollLeft = window.scrollX;
+
+  sb.style.position = "absolute";
+  sb.style.left =
+    rect.left + rect.width / 2 + scrollLeft + "px";
+
+  sb.style.top =
+    rect.bottom + 8 + scrollTop + "px";
+
+  sb.style.transform = "translateX(-50%)";
+
+  sb.classList.add("show");
+
+  setTimeout(() => {
+    sb.classList.remove("show");
+  }, 1500);
 }
 
 /* ======================
-   LOAD QUESTION
+   ❓ LOAD QUESTION (FULL REBUILD)
 ====================== */
 function loadQ() {
+  
+  // Data not loaded yet
+  if (!mockQuestion || !mockQuestion.length) {
+
+    console.warn("MCQ data not ready → retrying");
+
+    setTimeout(loadQ, 100);
+    return;
+  }
+  
   const currentQIndex = questionOrder[index];
   const q = mockQuestion[currentQIndex];
   if (!q) return;
@@ -150,79 +186,85 @@ function loadQ() {
 
   answered = false;
   optBox.innerHTML = "";
-  if (correctBox) correctBox.style.display = "none";
+  explainBox.style.display = "none";
+  explainBox.innerHTML = "";
+  /* RESET ANSWER STATUS */
+const statusBox =
+  document.getElementById("answerStatus");
 
-  /* 🌐 language switch label */
-  const switchBtn = document.querySelector(".lang-switch");
-  if (switchBtn) {
-    switchBtn.innerText =
+if (statusBox) {
+  statusBox.innerHTML = "";
+}
+
+  /* 🌐 update language button label */
+  const langBtn = document.querySelector(".lang-switch");
+  if (langBtn) {
+    langBtn.innerText =
       langMode === "BOTH" ? "🌐 EN+BN" :
-      langMode === "EN" ? "🌐 EN" : "🌐 BN";
+      langMode === "EN" ? "🌐 EN" :
+      "🌐 BN";
   }
+
+  /* 📊 progress */
+  progressBar.style.width =
+    ((index + 1) / mockQuestion.length) * 100 + "%";
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
     .some(b => b.type === "MOCK" && b.id === q.id);
 
-  /* ❓ QUESTION TEXT */
-  let qText =
-    langMode === "BOTH"
-      ? `${q.q_en}<div class="q-bn">(${q.q_bn || ""})</div>`
-      : langMode === "EN"
-        ? q.q_en
-        : (q.q_bn || q.q_en);
+  /* ======================
+     QUESTION TEXT (STRICT)
+  ====================== */
+  let qText = "";
 
-qBox.innerHTML = `
+  if (langMode === "BOTH") {
+    qText = q.q_en;
+    if (q.q_bn && q.q_bn.trim() !== "") {
+      qText += `<div class="q-bn">(${q.q_bn})</div>`;
+    }
+  }
+  else if (langMode === "EN") {
+    qText = q.q_en;
+  }
+  else if (langMode === "BN") {
+    qText = (q.q_bn && q.q_bn.trim() !== "") ? q.q_bn : q.q_en;
+  }
 
-  <div class="q-wrap">
-
-    <!-- Question -->
-    <h3 class="q-text">
-      Q${index + 1}. ${qText}
-    </h3>
-
-    <!-- Bookmark -->
-    <div class="bookmark ${isBookmarked ? "active" : ""}"
-         id="bookmarkBtn"
-         title="Save Bookmark">
-
-      ${bookmarkSVG()}
-
+  qBox.innerHTML = `
+    <div>
+      <h3>Q${index + 1}. ${qText}</h3>
     </div>
+    <div class="bookmark ${isBookmarked ? "active" : ""}" id="bookmarkBtn">
+      ${bookmarkSVG()}
+    </div>
+  `;
 
-  </div>
+  document.getElementById("bookmarkBtn").onclick = toggleBookmark;
 
-`;
-
-/* ======================
-BOOKMARK CLICK BIND
-====================== */
-
-const bmBtn =
-  document.getElementById("bookmarkBtn");
-
-if(bmBtn){
-
-  bmBtn.addEventListener(
-    "click",
-    toggleBookmark
-  );
-
-}
-
-  /* 🔘 OPTIONS */
+  /* ======================
+     OPTIONS (STRICT)
+  ====================== */
   q.options_en.forEach((_, i) => {
     const btn = document.createElement("button");
 
     const en = q.options_en[i];
     const bn = q.options_bn?.[i] || "";
 
-    let optText =
-      langMode === "BOTH"
-        ? `${en}<div class="option-bn">${bn}</div>`
-        : langMode === "EN"
-          ? en
-          : (bn || en);
+    let optText = "";
+
+    if (langMode === "BOTH") {
+      optText = en;
+      if (bn && bn.trim() !== "") {
+        optText += `<div class="option-bn">${bn}</div>`;
+      }
+    }
+    else if (langMode === "EN") {
+      optText = en;                 // ✅ ONLY EN
+    }
+    else if (langMode === "BN") {
+      optText = (bn && bn.trim() !== "") ? bn : en; // BN fallback
+    }
 
     const labels = ["A", "B", "C", "D"];
 
@@ -232,94 +274,214 @@ btn.innerHTML = `
     ${optText}
   </div>
 
-  <span class="trap-badge" style="display:none;">TRAP</span>
-  <div class="trap-hint" style="display:none;"></div>
+<span class="trap-badge" style="display:none;">TRAP</span>
+<div class="trap-hint" style="display:none;"></div>
+
+<span class="boost-badge" style="display:none;">BOOST</span>
+<div class="boost-hint" style="display:none;"></div>
 `;
 
     btn.onclick = () => {
+
   if (answered) return;
   answered = true;
 
-  /* 🔒 Disable all options */
-  document.querySelectorAll("#options button")
-    .forEach(b => b.disabled = true);
+  /* 🔒 Disable options */
+  document
+    .querySelectorAll("#options button")
+    .forEach(b => (b.disabled = true));
 
+  const labels = ["A","B","C","D"];
+  const clickedIndex = i;
   const correctIndex = q.ans;
-  const userWrongIndex = i !== correctIndex ? i : null;
+  const userWrongIndex =
+  clickedIndex !== correctIndex
+    ? clickedIndex
+    : null;
 
   /* ======================
-     ✅ / ❌ OPTION COLOR
+     ✅ CORRECT / WRONG
   ====================== */
-  if (i === correctIndex) {
+  if (clickedIndex === correctIndex) {
+
     btn.classList.add("correct");
     showSnack("✅ Correct Answer");
+
   } else {
+
     btn.classList.add("wrong");
-    optBox.children[correctIndex]?.classList.add("correct");
-    showSnack("❌ Wrong Answer");
+
+    optBox.children[correctIndex]
+      ?.classList.add("correct");
+  }
+  /* ======================
+   📊 ANSWER STATUS BAR
+====================== */
+
+const statusBox =
+  document.getElementById("answerStatus");
+
+if (statusBox) {
+
+  statusBox.innerHTML = `
+    <div class="ans ${
+      clickedIndex === correctIndex
+        ? "correct"
+        : "wrong"
+    }">
+      ${
+        clickedIndex === correctIndex
+          ? "✅ Correct Answer"
+          : "❌ Wrong Answer"
+      }
+    </div>
+  `;
+
+  /* Auto focus */
+  setTimeout(() => {
+  statusBox.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}, 200);
+}
+
+  /* ======================
+     🧠 WEAK TRACK CALL
+  ====================== */
+  try {
+
+    trackWeakConcept(
+      q.concept,
+      clickedIndex !== correctIndex
+    );
+
+  } catch(e){
+    console.warn("Weak Track Error:", e);
   }
 
   /* ======================
-     🔥 TRAP HIGHLIGHT (ALL OPTIONS)
+     🔥 TRAP HIGHLIGHT
   ====================== */
-  document.querySelectorAll("#options button")
+  document
+    .querySelectorAll("#options button")
     .forEach((b, idx) => {
+
       const traps = detectTraps(
-        q.options_en[idx] + " " + (q.options_bn?.[idx] || ""),
+        (q.options_en[idx] || "") +
+        " " +
+        (q.options_bn?.[idx] || ""),
         q.subject
       );
 
       if (traps.length) {
+
         b.classList.add("trap-active");
-        b.querySelector(".trap-badge").style.display = "inline-block";
-        b.querySelector(".trap-hint").innerHTML =
-          `⚠️ Trap words: ${traps.join(", ")}`;
-        b.querySelector(".trap-hint").style.display = "block";
+
+        const badge =
+          b.querySelector(".trap-badge");
+
+        const hint =
+          b.querySelector(".trap-hint");
+
+        if (badge)
+          badge.style.display="inline-block";
+
+        if (hint) {
+
+          hint.innerHTML =
+            `⚠️ Trap words: ${traps.join(", ")}`;
+
+          hint.style.display="block";
+        }
       }
     });
+    
+    /* ======================
+   🚀 BOOST HIGHLIGHT
+====================== */
+document
+  .querySelectorAll("#options button")
+  .forEach((b, idx) => {
+
+    const boosts = detectBoosts(
+      (q.options_en[idx] || "") +
+      " " +
+      (q.options_bn?.[idx] || ""),
+      q.subject
+    );
+
+    if (boosts.length) {
+
+      const badge =
+        b.querySelector(".boost-badge");
+
+      const hint =
+        b.querySelector(".boost-hint");
+
+      if (badge)
+        badge.style.display = "inline-block";
+
+      if (hint) {
+
+        hint.innerHTML =
+          `🚀 Boost words: ${boosts.join(", ")}`;
+
+        hint.style.display = "block";
+      }
+    }
+  });
 
   /* ======================
      📘 STATIC EXPLANATION
   ====================== */
-  if (!correctBox) return;
+  explainBox.style.display="block";
 
-  correctBox.style.display = "block";
+  explainBox.innerHTML = `
+    <h4>📘 Question Explanation</h4>
 
-  /* 🔹 Option-wise explanation block */
-  const optionExplainHTML = q.options_en.map((opt, idx) => {
-    let cls = "neutral";
-    if (idx === correctIndex) cls = "correct";
-    else if (idx === userWrongIndex) cls = "wrong";
+    <div style="margin-bottom:10px;">
+      <b>Question:</b><br>
+      ${q.q_en}
+      ${q.q_bn
+        ? `<div class="q-bn">${q.q_bn}</div>`
+        : ""}
+    </div>
 
-    return `
-      <div class="ex-opt ${cls}">
-        <b>Option ${String.fromCharCode(65 + idx)}:</b>
-        ${opt}
-        ${
-          q.options_bn?.[idx]
-            ? `<div class="option-bn">${q.options_bn[idx]}</div>`
-            : ""
-        }
-      </div>
-    `;
-  }).join("");
+    <hr>
 
-  correctBox.innerHTML = `
-    <div class="correct-title">✔ Correct Answer</div>
+    <div style="margin-bottom:10px;">
+      <b>✔ Correct Answer:</b><br>
+      <span class="kw">
+        ${q.options_en[correctIndex]}
+      </span>
 
-    <b>${q.options_en[correctIndex]}</b>
-    <div>${q.options_bn?.[correctIndex] || ""}</div>
+      ${
+        q.options_bn?.[correctIndex]
+        ? `<div class="option-bn">
+            ${q.options_bn[correctIndex]}
+           </div>`
+        : ""
+      }
+    </div>
 
     ${
       q.ans_reason_en || q.ans_reason_bn
-        ? `
-        <hr>
-        <b>Why correct?</b><br>
-        ${q.ans_reason_en || ""}
-        ${q.ans_reason_bn ? `<div class="q-bn">${q.ans_reason_bn}</div>` : ""}
-        `
+      ? `
+      <hr>
+      <b>Why correct?</b><br>
+      ${q.ans_reason_en || ""}
+      ${
+        q.ans_reason_bn
+        ? `<div class="q-bn">
+            ${q.ans_reason_bn}
+           </div>`
         : ""
+      }
+      `
+      : ""
     }
+
 ${
   q.elimination_en?.length ||
   q.elimination_bn?.length ||
@@ -333,12 +495,8 @@ ${
     ${
       (
         langMode === "BN"
-          ? (q.elimination_bn?.length
-              ? q.elimination_bn
-              : q.elimination)
-          : (q.elimination_en?.length
-              ? q.elimination_en
-              : q.elimination)
+          ? (q.elimination_bn || q.elimination)
+          : (q.elimination_en || q.elimination)
       )
       ?.map((e, i) => {
 
@@ -356,10 +514,13 @@ ${
 
         return `
           <li class="${cls}">
+
             <b>${icon} Option ${
               String.fromCharCode(65 + i)
             }:</b>
+
             ${e}
+
           </li>
         `;
       })
@@ -370,119 +531,332 @@ ${
   `
   : ""
 }
+${
+      (() => {
+
+        const fullText =
+          q.q_en +
+          " " +
+          (q.options_en?.join(" ") || "");
+
+        const boostSignals =
+          detectBoosts(fullText, q.subject);
+
+        if (!boostSignals.length) return "";
+
+        return `
+          <hr>
+          <div class="boost-box">
+            🚀 <b>Exam Booster Signals:</b><br>
+            ${boostSignals
+              .map(b =>
+                `<span class="boost-green">${b}</span>`
+              )
+              .join(", ")}
+          </div>
+        `;
+
+      })()
+    }
     <hr>
-    <b>🧠 Option-wise Explanation:</b>
-    ${optionExplainHTML}
-  `;
 
-  /* ======================
-     🤖 AI TEACHER EXPLANATION
-  ====================== */
-  /* ======================
-   🤖 AI TEACHER EXPLANATION
-====================== */
-const ai = offlineAIExplain(q, i, langMode) || {
-  concept: "",
-  elimination: [],
-  classroom: "",
-  ncert: "",
-  personal: ""
-};
+    <div style="font-size:13px;color:#374151;">
 
-/* option-wise AI explanation with divider */
-const aiOptionHTML =
-  (ai.elimination || []).map((text, idx) => {
-  let cls = "neutral";
+      📌 <b>Concept:</b>
 
-  if (idx === q.ans) cls = "correct";
-  else if (idx === i) cls = "wrong";
+      <span class="concept-link"
+            data-concept="${q.concept || ""}">
+        ${q.concept || "—"}
+      </span>
 
-  return `
-    <div class="ex-opt ${cls}">
-      <b>Option ${String.fromCharCode(65 + idx)}:</b>
-      <div>${text}</div>
+      ${
+        isWeakConcept(q.concept)
+        ? `
+        <div class="weak-tag">
+          ⚠️ Weak Concept Detected
+        </div>
+        `
+        : ""
+      }
+
+      <br>
+
+      📝 <b>Exam:</b>
+      ${q.exam || "—"}
+      ${q.year ? `(${q.year})` : ""}<br>
+
+      ⚡ <b>Difficulty:</b>
+      ${q.difficulty || "—"}
+
     </div>
   `;
-}).join("");
 
-correctBox.innerHTML += `
+  /* ======================
+     🧠 PEDAGOGY PROFILE
+  ====================== */
+  let pedagogy = {};
+
+  try {
+
+    pedagogy =
+      getPedagogyProfile({
+        concept: q.concept,
+        subject: q.subject
+      }) || {};
+
+  } catch(e){
+    console.warn("Pedagogy Error:", e);
+  }
+
+  /* ======================
+     🤖 AI SAFE LOAD
+  ====================== */
+  let ai = {};
+
+  try {
+
+    ai =
+      offlineAIExplain(
+        q,
+        clickedIndex,
+        langMode
+      ) || {};
+
+  } catch(e){
+
+    console.warn("AI Error:", e);
+
+    ai = {
+      concept:"",
+      elimination:[],
+      classroom:"",
+      ncert:"",
+      personal:"",
+      intent:"",
+      prediction:"",
+      micro:""
+    };
+  }
+
+  /* ======================
+     🤖 AI PANEL
+  ====================== */
+  explainBox.innerHTML += `
   <hr>
 
-  <h4>🤖 AI Teacher Explanation</h4>
-
-  <!-- 🧠 Concept -->
-  <div class="ai-block">
-    ${ai.concept}
+  <div class="ai-toggle"
+       onclick="toggleAIExplain(this)">
+    🤖 AI Teacher Explanation
+    <span class="ai-arrow">▲</span>
   </div>
 
-${
-  (ai.elimination || []).length
-    ? `
+  <div class="ai-content"
+       style="display:block;">
+
+    <!-- 🧠 CONCEPT -->
+    <div class="ai-block">
+      <h4>🧠 Concept Intelligence</h4>
+      ${highlightTraps(
+        ai.concept || "",
+        q.subject,
+        "ai"
+      )}
+    </div>
+
+    ${
+      (ai.elimination || []).length
+      ? `
+      <hr>
+      <h4>❓ Why Options (Deep AI View)</h4>
+
+      <div class="ai-options">
+
+        ${(ai.elimination || [])
+          .map((text,idx)=>{
+
+            let state="";
+            let tag="";
+
+            if(idx===correctIndex){
+              state="correct";
+              tag="✔ Correct";
+            }
+            else if(idx===clickedIndex){
+              state="wrong";
+              tag="❌ Your Choice";
+            }
+
+            return `
+              <div class="ai-option ${state}">
+
+                <div class="ai-option-title">
+                  ${labels[idx]}. ${tag}
+                </div>
+
+                <div class="ai-option-text">
+                  ${highlightTraps(
+                    text || "",
+                    q.subject,
+                    "ai"
+                  )}
+                </div>
+
+              </div>
+            `;
+        }).join("")}
+
+      </div>
+      `
+      : ""
+    }
+
     <hr>
-    <b>🧠 Why options (AI view):</b>
-    ${aiOptionHTML}
-    `
-    : ""
-}
+    <div class="classroom">
+      🏫 <b>Classroom Example:</b><br>
+      ${highlightTraps(
+        ai.classroom || "",
+        q.subject,
+        "ai"
+      )}
+    </div>
 
-  ${
-    ai.classroom
-      ? `
-      <hr>
-      <div class="classroom">
-        🏫 <b>Real-life Classroom Example:</b><br>
-        ${ai.classroom}
+    <hr>
+    <div class="ncert">
+      📘 <b>NCERT Reference:</b><br>
+      ${highlightTraps(
+        ai.ncert || "",
+        q.subject,
+        "ai"
+      )}
+    </div>
+
+    <!-- 🧠 PEDAGOGY -->
+    <hr>
+    <h4>🧠 Pedagogy Intelligence</h4>
+
+    <div class="ai-pedagogy">
+
+      <div class="ped-card concept-link"
+           data-concept="${q.concept}">
+        🧠 Bloom’s Level<br>
+        ${pedagogy.bloom || "—"}
       </div>
-      `
-      : ""
-  }
 
-  ${
-    ai.ncert
-      ? `
-      <hr>
-      <div class="ncert">
-        📘 <b>NCERT Reference:</b><br>
-        ${ai.ncert}
+      <div class="ped-card concept-link"
+           data-concept="${q.concept}">
+        👶 Piaget Stage<br>
+        ${pedagogy.piaget || "—"}
       </div>
-      `
-      : ""
-  }
 
-  ${
-    ai.personal
+      <div class="ped-card concept-link"
+           data-concept="${q.concept}">
+        👥 Vygotsky Link<br>
+        ${pedagogy.vygotsky || "—"}
+      </div>
+
+      <div class="ped-card concept-link"
+           data-concept="${q.concept}">
+        🧱 Constructivism<br>
+        ${pedagogy.constructivism || "—"}
+      </div>
+
+    </div>
+
+    ${
+      isWeakConcept(q.concept)
       ? `
       <hr>
       <div class="personal">
-        🎯 <b>Personal Tip for You:</b><br>
-        ${ai.personal}
+        🎯 You are weak in
+        <b>${q.concept}</b>.
+        Revise again.
       </div>
       `
       : ""
-  }
-`;
+    }
+
+  </div>
+  `;
 };
 
     optBox.appendChild(btn);
   });
+}
 
-  progressBar.style.width =
-    ((index + 1) / mockQuestion.length) * 100 + "%";
+
 /* ======================
-DATA READY → HIDE SPINNER
+   🔥 TRAP WORD HIGHLIGHT
+   mode = "static" | "ai"
 ====================== */
+function highlightTraps(
+  text = "",
+  subject = "",
+  mode = "static"   // default blue
+) {
 
-  hintBox.style.display = "none";
+  if (!text) return "";
+
+  /* detect trap words */
+  const traps = detectTraps(text, subject);
+
+  let highlighted = text;
+
+  traps.forEach(word => {
+
+    const reg =
+      new RegExp(`\\b(${word})\\b`, "gi");
+
+    highlighted = highlighted.replace(
+      reg,
+
+      mode === "ai"
+        /* 🔴 AI EXPLANATION */
+        ? `<span class="trap-red">$1</span>`
+
+        /* 🔵 STATIC / NORMAL */
+        : `<span class="kw">$1</span>`
+    );
+
+  });
+
+  return highlighted;
+}
+
+function highlightBoosts(
+  text = "",
+  subject = ""
+) {
+
+  if (!text) return "";
+
+  const boosts = detectBoosts(text, subject);
+
+  let highlighted = text;
+
+  boosts.forEach(word => {
+
+    const reg =
+      new RegExp(`\\b(${word})\\b`, "gi");
+
+    highlighted = highlighted.replace(
+      reg,
+      `<span class="boost-green">$1</span>`
+    );
+
+  });
+
+  return highlighted;
 }
 
 /* ======================
-   BOOKMARK TOGGLE
+   ⭐ BOOKMARK TOGGLE
 ====================== */
-window.toggleBookmark = () => {
+function toggleBookmark() {
   const q = mockQuestion[questionOrder[index]];
   let b = getBookmarks();
 
   const pos = b.findIndex(x => x.type === "MOCK" && x.id === q.id);
+
   if (pos > -1) {
     b.splice(pos, 1);
     showSnack("❌ Bookmark removed");
@@ -493,10 +867,20 @@ window.toggleBookmark = () => {
 
   saveBookmarks(b);
   loadQ();
-};
+}
 
+window.toggleAIExplain = function (el) {
+
+  const content = el.nextElementSibling;
+  const arrow = el.querySelector(".ai-arrow");
+
+  const open = content.style.display === "block";
+
+  content.style.display = open ? "none" : "block";
+  arrow.innerText = open ? "▼" : "▲";
+};
 /* ======================
-   NAV
+   NAVIGATION
 ====================== */
 window.nextQ = () => {
   if (index < mockQuestion.length - 1) {
@@ -510,6 +894,68 @@ window.prevQ = () => {
     loadQ();
   }
 };
+/* ======================
+   🧠 WEAK PAGE NAV
+====================== */
+
+window.goWeakPage = () => {
+
+  location.href =
+    "weak.html";
+
+};
+
+/* ======================
+   🧠 CONCEPT → PEDAGOGY POPUP
+====================== */
+window.showConceptPedagogy = function (concept) {
+
+  const pedagogy = getPedagogyProfile({
+    concept: concept
+  }) || {};
+
+  const box = document.createElement("div");
+  box.className = "concept-popup";
+
+  box.innerHTML = `
+    <div class="concept-card">
+
+      <h3>🧠 Pedagogy Intelligence</h3>
+
+      <div class="ped-grid">
+
+        <div class="ped-card">
+          🧠 Bloom’s Level<br>
+          ${pedagogy.bloom || "—"}
+        </div>
+
+        <div class="ped-card">
+          👶 Piaget Stage<br>
+          ${pedagogy.piaget || "—"}
+        </div>
+
+        <div class="ped-card">
+          👥 Vygotsky Link<br>
+          ${pedagogy.vygotsky || "—"}
+        </div>
+
+        <div class="ped-card">
+          🧱 Constructivism<br>
+          ${pedagogy.constructivism || "—"}
+        </div>
+
+      </div>
+
+      <button onclick="this.closest('.concept-popup').remove()">
+        Close
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(box);
+};
+
 window.goBack = function(){
 
   if(history.length > 1){
@@ -525,20 +971,113 @@ window.goBack = function(){
 };
 
 /* ======================
-   TIMER (RESUME SAFE)
+   🧠 TRACK WEAK CONCEPT
 ====================== */
-setInterval(() => {
-  if (time <= 0) return;
-  time--;
-  localStorage.setItem("mock_time_left", time);
-  timerBox.innerText =
-    `Time Left: ${Math.floor(time / 60)}:${(time % 60)
-      .toString()
-      .padStart(2, "0")}`;
-}, 1000);
+
+function trackWeakConcept(concept, isWrong){
+
+  // Concept na thakle skip
+  if(!concept) return;
+
+  // Local data load
+  let data =
+    JSON.parse(
+      localStorage.getItem("weakConcepts")
+    ) || {};
+
+  // First time concept
+  if(!data[concept]){
+    data[concept] = {
+      total: 0,
+      wrong: 0
+    };
+  }
+
+  // Attempt count
+  data[concept].total++;
+
+  // Wrong hole increase
+  if(isWrong){
+    data[concept].wrong++;
+  }
+
+  // Save
+  localStorage.setItem(
+    "weakConcepts",
+    JSON.stringify(data)
+  );
+}
+
+/* ======================
+   🧠 CHECK WEAK CONCEPT
+====================== */
+
+function isWeakConcept(concept){
+
+  let data =
+    JSON.parse(
+      localStorage.getItem("weakConcepts")
+    ) || {};
+
+  // Data nai → weak na
+  if(!data[concept]) return false;
+
+  const total =
+    data[concept].total;
+
+  const wrong =
+    data[concept].wrong;
+
+  // Accuracy %
+  const accuracy =
+    ((total - wrong) / total) * 100;
+
+  return accuracy < 60; // Threshold
+}
+
+
+/* CONCEPT CLICK GLOBAL */
+document.addEventListener("click", e => {
+
+  const link =
+    e.target.closest(".concept-link");
+
+  if (!link) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const concept =
+    link.dataset.concept;
+
+  if (concept) {
+    showConceptPedagogy(concept);
+  }
+
+});
 
 /* ======================
    INIT
 ====================== */
-checkResumeTest();
-loadQ();
+window.addEventListener("DOMContentLoaded", () => {
+
+  try {
+
+    // Resume check
+    checkResumePractice();
+
+    // Small delay → ensure module data ready
+    setTimeout(() => {
+      loadQ();
+    }, 50);
+
+  } catch (e) {
+
+    console.error("MCQ Init Error:", e);
+
+    // Retry fallback
+    setTimeout(loadQ, 200);
+
+  }
+
+});
