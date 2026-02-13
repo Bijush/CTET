@@ -291,15 +291,13 @@ FEATURE CARDS
 /* ======================
 BOTTOM NAV
 ====================== */
-
 .bottom-tabs{
   position: fixed;
 
-  /* 🔥 Safe mobile support */
-  bottom: max(18px, env(safe-area-inset-bottom));
+  bottom: max(8px, env(safe-area-inset-bottom));
 
   left: 50%;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%);
 
   width: 92%;
   max-width: 520px;
@@ -309,7 +307,7 @@ BOTTOM NAV
 
   padding: 10px;
 
-  border-radius: 25px;
+  border-radius: 22px;
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -320,8 +318,6 @@ BOTTOM NAV
   box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 
   z-index: 999;
-
-  transition: transform .35s ease, opacity .35s ease;
 }
 
 .btab{

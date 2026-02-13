@@ -492,3 +492,30 @@ ELIMINATION COLOR SYSTEM
   border-left:4px solid #f97316;
   color:#7c2d12;
 }
+
+.subject-dropdown{
+  width: 92%;
+  max-width: 520px;
+  margin: 10px auto;
+  display: block;
+
+  padding: 10px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.25);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 14px;
+  color: #111827;
+
+  outline: none;
+}
+.no-question{
+  text-align:center;
+  padding:30px;
+  font-size:15px;
+  color:#dc2626;
+}
