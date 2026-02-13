@@ -8,18 +8,31 @@ import { detectBoosts } from "../utils/boost_detector.js";
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
-let index = parseInt(localStorage.getItem("mcq_q_index")) || 0;
+
+// 🔥 Subject first
+let selectedSubject =
+  localStorage.getItem("mcq_subject") || "ALL";
+
+// 🔥 Dynamic index key
+function getIndexKey(){
+  return `mcq_q_index_${selectedSubject}`;
+}
+
+function getOrderKey(){
+  return `mcq_q_order_${selectedSubject}`;
+}
+
+// 🔥 Load subject-wise index
+let index =
+  parseInt(localStorage.getItem(getIndexKey())) || 0;
+
 let answered = false;
-let langMode = localStorage.getItem("mcq_lang") || "BOTH"; // BOTH | EN | BN
+let langMode =
+  localStorage.getItem("mcq_lang") || "BOTH";
 
-/* ======================
-   RANDOM QUESTION ORDER (PERSISTENT)
-====================== */
-let questionOrder =
-  JSON.parse(localStorage.getItem("mcq_q_order")) ||
-  mcqQuestion.map((_, i) => i).sort(() => Math.random() - 0.5);
+let questionOrder = [];
+let filteredQuestions = [];
 
-localStorage.setItem("mcq_q_order", JSON.stringify(questionOrder));
 
 /* ======================
    DOM ELEMENTS
@@ -33,7 +46,7 @@ let lastScroll = 0;
 
 const bottomNav =
   document.querySelector(".bottom-tabs");
-
+/*
 window.addEventListener("scroll", () => {
 
   const currentScroll = window.scrollY;
@@ -62,28 +75,156 @@ window.addEventListener("scroll", () => {
 
 });
 
-/* ======================
-   🔔 RESUME ALERT
-====================== */
+*/
+function shuffleArray(arr){
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+
 function checkResumePractice() {
-  if (index > 0) {
-    const resume = confirm(
-      "You have an unfinished practice session.\nDo you want to continue?"
-    );
 
-    if (!resume) {
-      localStorage.removeItem("mcq_q_index");
-      localStorage.removeItem("mcq_q_order");
-      index = 0;
+  let savedIndex = 0;
+  let savedOrder = null;
 
-      questionOrder = mcqQuestion
-        .map((_, i) => i)
-        .sort(() => Math.random() - 0.5);
+  try {
+    savedIndex =
+      parseInt(localStorage.getItem(getIndexKey())) || 0;
 
-      localStorage.setItem("mcq_q_order", JSON.stringify(questionOrder));
-    }
+    savedOrder =
+      JSON.parse(localStorage.getItem(getOrderKey()));
+  } catch (e) {
+    console.warn("Resume data corrupted. Resetting...");
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+    index = 0;
+    return;
+  }
+
+  /* ❌ No previous session */
+  if (!savedOrder || !Array.isArray(savedOrder) || savedOrder.length === 0) {
+    index = 0;
+    return;
+  }
+
+  /* ❌ Invalid index (safety guard) */
+  if (savedIndex < 0 || savedIndex >= savedOrder.length) {
+
+    console.warn("Invalid resume index. Resetting session...");
+
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+
+    index = 0;
+    return;
+  }
+
+  /* ❌ First question → no need to ask resume */
+  if (savedIndex === 0) {
+    index = 0;
+    return;
+  }
+
+  /* 🔔 Show resume alert only if user actually progressed */
+  const resume = confirm(
+    `Resume ${selectedSubject} mock test?\n\n` +
+    `You were at Question ${savedIndex + 1} of ${savedOrder.length}.`
+  );
+
+  if (resume) {
+
+    /* ✅ Continue from saved position */
+    index = savedIndex;
+
+  } else {
+
+    /* 🔄 Start fresh test */
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+
+    index = 0;
+
+    // regenerate fresh random set
+    prepareQuestions();
   }
 }
+
+
+function prepareQuestions(){
+
+  /* 🔎 Filter by subject */
+  if(selectedSubject === "ALL"){
+    filteredQuestions = [...mcqQuestion];
+  } else {
+    filteredQuestions =
+      mcqQuestion.filter(
+        q => q.subject === selectedSubject
+      );
+  }
+
+  /* 🚫 If no question found */
+  if(filteredQuestions.length === 0){
+
+    qBox.innerHTML = `
+      <div class="no-question">
+        🚫 No questions available for
+        <b>${selectedSubject}</b>.
+        <br><br>
+        Please select another subject.
+      </div>
+    `;
+
+    optBox.innerHTML = "";
+    explainBox.style.display = "none";
+    progressBar.style.width = "0%";
+
+    document
+      .querySelectorAll(".btab")
+      .forEach(btn => btn.disabled = true);
+
+    return;
+  }
+
+  /* ===================================
+     🔥 Resume-Safe Smart Order System
+  =================================== */
+
+  const savedOrder =
+    JSON.parse(localStorage.getItem(getOrderKey()));
+
+  if (
+    savedOrder &&
+    savedOrder.length &&
+    savedOrder.length <= filteredQuestions.length
+  ){
+
+    // ✅ Resume existing order
+    questionOrder = savedOrder;
+
+    // Important: Only keep required number of questions
+    filteredQuestions =
+      filteredQuestions.slice(0, savedOrder.length);
+
+  } else {
+
+    // 🔀 Create new random (max 30 or available count)
+    const totalToTake =
+      Math.min(30, filteredQuestions.length);
+
+    filteredQuestions =
+      shuffleArray(filteredQuestions)
+        .slice(0, totalToTake);
+
+    questionOrder =
+      filteredQuestions.map((_, i) => i);
+
+    localStorage.setItem(
+      getOrderKey(),
+      JSON.stringify(questionOrder)
+    );
+  }
+}
+/* ======================
+  
 
 /* ======================
    🌐 LANGUAGE SWITCH (STRICT)
@@ -168,9 +309,12 @@ function showSnack(msg) {
    ❓ LOAD QUESTION (FULL REBUILD)
 ====================== */
 function loadQ() {
-  
+  // 🔥 Re-enable nav buttons
+  document
+    .querySelectorAll(".btab")
+    .forEach(btn => btn.disabled = false);
   // Data not loaded yet
-  if (!mcqQuestion || !mcqQuestion.length) {
+if (!filteredQuestions || !filteredQuestions.length) {
 
     console.warn("MCQ data not ready → retrying");
 
@@ -179,10 +323,10 @@ function loadQ() {
   }
   
   const currentQIndex = questionOrder[index];
-  const q = mcqQuestion[currentQIndex];
+  const q = filteredQuestions[currentQIndex];
   if (!q) return;
 
-  localStorage.setItem("mcq_q_index", index);
+  localStorage.setItem(getIndexKey(), index);
 
   answered = false;
   optBox.innerHTML = "";
@@ -207,7 +351,7 @@ if (statusBox) {
 
   /* 📊 progress */
   progressBar.style.width =
-    ((index + 1) / mcqQuestion.length) * 100 + "%";
+((index + 1) / filteredQuestions.length) * 100 + "%";
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
@@ -852,7 +996,11 @@ function highlightBoosts(
    ⭐ BOOKMARK TOGGLE
 ====================== */
 function toggleBookmark() {
-  const q = mcqQuestion[questionOrder[index]];
+
+ 
+ const currentQIndex = questionOrder[index];
+const q = filteredQuestions[currentQIndex];
+
   let b = getBookmarks();
 
   const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
@@ -883,7 +1031,7 @@ window.toggleAIExplain = function (el) {
    NAVIGATION
 ====================== */
 window.nextQ = () => {
-  if (index < mcqQuestion.length - 1) {
+  if (index < filteredQuestions.length - 1) {
     index++;
     loadQ();
   }
@@ -1056,16 +1204,38 @@ document.addEventListener("click", e => {
 
 });
 
+document
+  .getElementById("subjectSelect")
+  .addEventListener("change", function(){
+
+    selectedSubject = this.value;
+
+    localStorage.setItem(
+      "mcq_subject",
+      selectedSubject
+    );
+
+    // 🔥 Reset previous subject resume
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+
+    index = 0;
+
+    prepareQuestions();
+    loadQ();
+});
 /* ======================
    INIT
 ====================== */
 window.addEventListener("DOMContentLoaded", () => {
 
   try {
+    // 🔥 Prepare subject-wise 30 random questions
+    prepareQuestions();
 
     // Resume check
     checkResumePractice();
-
+    
     // Small delay → ensure module data ready
     setTimeout(() => {
       loadQ();
