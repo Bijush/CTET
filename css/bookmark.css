@@ -1,0 +1,158 @@
+/* ===== PREMIUM BOOKMARK PAGE ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #fff;
+  padding: 20px;
+}
+
+/* ===== Page Title ===== */
+h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s ease;
+  color: #fff;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+
+/* ===== Bookmark List Container ===== */
+#list {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* ===== Bookmark Card ===== */
+.bookmark-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  transition: all 0.3s ease;
+}
+
+.bookmark-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+}
+
+/* ===== Bookmark Title ===== */
+.bookmark-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* ===== Bookmark Description ===== */
+.bookmark-desc {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+/* ===== Action Buttons ===== */
+.bookmark-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookmark-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.bookmark-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  margin-top: 50px;
+  opacity: 0.8;
+}
+
+.empty-state img {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .bookmark-card {
+    padding: 15px;
+  }
+}
+.filter-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#filterType {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+.filter-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter-box select {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+}

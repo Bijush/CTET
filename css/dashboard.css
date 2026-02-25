@@ -482,6 +482,22 @@ RIPPLE CLICK EFFECT
   transform:scale(1.08);
 }
 
+.close-install{
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  padding:4px 6px;
+  margin-left:4px;
+  opacity:.8;
+  transition:.2s;
+}
+
+.close-install:hover{
+  opacity:1;
+  transform:scale(1.2);
+}
 /* Show animation */
 
 @keyframes installFade{
@@ -625,4 +641,116 @@ RIPPLE CLICK EFFECT
 
   font-weight:600;
   cursor:pointer;
+}
+
+/* ======================
+ANALOG CLOCK
+====================== */
+
+/* ======================
+🍎 APPLE STYLE CLOCK
+====================== */
+/* ======================
+🍎 APPLE STYLE CLOCK
+====================== */
+
+/* ======================
+🍎 APPLE PERFECT CLOCK
+====================== */
+
+.clock{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#1c1c1e,#2c2c2e);
+  box-shadow:
+    inset 0 3px 8px rgba(255,255,255,0.05),
+    inset 0 -6px 14px rgba(0,0,0,0.8),
+    0 8px 20px rgba(0,0,0,0.5);
+}
+
+.clock-face{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  position:relative;
+  background:radial-gradient(circle,#2c2c2e 65%, #1c1c1e 100%);
+  overflow:hidden; /* keeps numbers inside circle */
+}
+
+/* ======================
+PERFECT EQUAL NUMBERS
+====================== */
+/* ======================
+PERFECT EQUAL NUMBERS FIXED
+====================== */
+
+.number{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:flex-start;   /* IMPORTANT */
+  justify-content:center;
+  transform:rotate(calc(30deg * var(--i)));
+  pointer-events:none;
+  z-index:2; /* keep above ticks */
+}
+
+.number span{
+  margin-top:8px;   /* adjust circle distance */
+  transform:rotate(calc(-30deg * var(--i)));
+  font-size:14px;
+  font-weight:500;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  color:#f2f2f7;
+}
+
+/* ======================
+HANDS
+====================== */
+
+.hand{
+  position:absolute;
+  bottom:50%;
+  left:50%;
+  transform-origin:bottom;
+  transform:translateX(-50%) rotate(0deg);
+  border-radius:6px;
+}
+
+.hour{
+  width:5px;
+  height:35px;
+  background:#f2f2f7;
+}
+
+.minute{
+  width:3px;
+  height:50px;
+  background:#e5e5ea;
+}
+
+.second{
+  width:2px;
+  height:55px;
+  background:#ff3b30;
+}
+
+/* ======================
+CENTER DOT
+====================== */
+
+.center-dot{
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:#ff3b30;
+  border-radius:50%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }

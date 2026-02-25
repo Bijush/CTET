@@ -1,6 +1,10 @@
 /* ===============================
    🌐 GLOBAL RESET
 ================================ */
+html,body{
+  background:#e0e7ff;
+  overflow-x: hidden;
+}
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +12,45 @@
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
-body {
-  background: #f5f7fb;
-  color: #111827;
-  padding: 14px;
-  padding-bottom: 120px;   /* 🔥 Bottom nav space */
+/* ===============================
+   🌐 GLOBAL BACKGROUND (SAFE)
+================================ */
+
+body{
+  margin:0;
+  padding:0;
+  padding-bottom:120px;
+  min-height:100vh;
+
+  font-family:"Segoe UI", system-ui, -apple-system, sans-serif;
+
+  background-color:#e0e7ff;
+
+  background-image: linear-gradient(
+    135deg,
+    #e0e7ff 0%,
+    #fdf4ff 25%,
+    #ecfeff 50%,
+    #fef9c3 75%,
+    #e0f2fe 100%
+  );
+
+  background-size:300% 300%;
+  animation:bgMove 20s ease infinite;
+}
+
+/* Smooth Background Animation */
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* (Duplicate kept as you said — untouched) */
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* ===============================
@@ -31,22 +69,6 @@ body {
   color: #1e3a8a;
   text-decoration: none;
   font-weight: 500;
-}
-
-/* ===============================
-   🧱 CARD
-================================ */
-.card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 14px;
-  margin-bottom: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.06);
-  transition: transform .2s ease;
-}
-
-.card:active {
-  transform: scale(.98);
 }
 
 /* ===============================
@@ -96,7 +118,10 @@ h2 {
 small {
   color: #6b7280;
 }
-/* 🔙 Floating Back Button (CTET Style) */
+
+/* ===============================
+   🔙 BACK BUTTON
+================================ */
 .back-btn {
   position: fixed;
   top: 14px;
@@ -105,271 +130,697 @@ small {
   height: 44px;
   border-radius: 50%;
   border: none;
-  background: #2563eb;       /* CTET blue */
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
+  background: #2563eb;
+  color: #ffffff;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.back-btn:active {
-  transform: scale(0.9);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-/* 🔙 Floating Back Button (SVG • CTET Style) */
-.back-btn {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: #2563eb;      /* CTET blue */
-  color: #ffffff;          /* SVG stroke color */
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  z-index: 9999;
-
   display: grid;
   place-items: center;
-
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
-.back-btn:hover {
-  background: #1d4ed8;
-}
-
+.back-btn:hover { background: #1d4ed8; }
 .back-btn:active {
   transform: scale(0.9);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* SVG smoothness */
-.back-btn svg {
-  display: block;
+/* ===============================
+   🌈 NAVBAR (UNCHANGED)
+===================================== */
+
+/* ==========================================
+   🚀 ULTRA PRO MAX GRADIENT NAVBAR
+========================================== */
+
+.top-navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 18px 12px;
+
+  /* 🔥 Multi-Layer Gradient */
+  background:
+    linear-gradient(
+      120deg,
+      #6366f1,
+      #8b5cf6,
+      #ec4899,
+      #f43f5e,
+      #f59e0b,
+      #10b981,
+      #3b82f6
+    );
+
+  background-size: 400% 400%;
+  animation: ultraGradientMove 14s ease infinite;
+
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+
+  /* 💎 Depth Shadow */
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.35),
+    inset 0 0 30px rgba(255,255,255,0.15);
+
+  overflow: hidden;
 }
-/* ❌ CTET Trap Option */
-.option-trap {
-  border: 2px solid #dc2626 !important;
-  background: #fee2e2;
+@keyframes ultraGradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+/* Shine Sweep */
+.top-navbar::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:50%;
+  height:100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.45),
+    transparent
+  );
+
+  transform: skewX(-25deg);
+  animation: shineSweep 5s infinite;
 }
 
-.trap-badge {
-  display: inline-block;
-  background: #dc2626;
-  color: #fff;
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 6px;
-  margin-left: 6px;
+@keyframes shineSweep{
+  0%{left:-60%;}
+  100%{left:140%;}
 }
-
-.trap-hint {
-  font-size: 12px;
-  color: #991b1b;
-  margin-top: 4px;
-}
-/* ======================
-   CONCEPT LINK
-====================== */
-.concept-link{
-  color:#2563eb;
-  font-weight:600;
-  cursor:pointer;
-  text-decoration:underline dotted;
-}
-
-/* ======================
-   POPUP OVERLAY
-====================== */
-.concept-popup{
-  position:fixed;
+.top-navbar::after{
+  content:"";
+  position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
+
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-row{
   display:flex;
   align-items:center;
+}
+
+.nav-row-1{
   justify-content:center;
-  z-index:9999;
+  margin-bottom:4px;
 }
 
-/* ======================
-   CARD
-====================== */
-.concept-card{
-  background:#fff;
-  padding:20px;
-  border-radius:16px;
-  width:90%;
-  max-width:420px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
+.nav-row-2{
+  display:flex;
+  flex-wrap:wrap;        /* 🔥 important */
+  gap:4px;
+  align-items:center;
+  justify-content:space-between;
+}
+#questionLimit{
+  padding:8px 14px;
+  border-radius:20px;
+  border:none;
+  font-weight:600;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(10px);
+}
+.page-title{
+  position: relative;
+  z-index: 2;
+
+  font-size: 23px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 0.8px;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.9),
+    0 0 25px rgba(255,255,255,0.7),
+    0 0 45px rgba(255,255,255,0.5);
 }
 
-/* GRID */
-.ped-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+.lang-switch,
+.subject-dropdown,
+.weak-btn{
+
+  position: relative;
+  z-index: 2;
+
+  flex:1;
+  padding: 10px;
+
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  color: #111827;   /* 🔥 dark text */
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,0.25),
+    inset 0 0 8px rgba(255,255,255,0.6);
+
+  transition: all .35s ease;
+}
+
+/* Hover Lift */
+.lang-switch:hover,
+.subject-dropdown:hover,
+.weak-btn:hover{
+  transform: translateY(-3px) scale(1.05);
+}
+.subject-dropdown option{
+  color:#111827;
+}
+
+/* ===============================
+   🔻 BOTTOM NAV
+================================ */
+.bottom-tabs{
+  position: fixed;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 520px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 22px;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  z-index: 999;
+}
+/* Floating glow aura */
+.top-navbar{
+  isolation: isolate;
+}
+
+.top-navbar::after{
+  box-shadow:
+    inset 0 0 60px rgba(255,255,255,0.12),
+    inset 0 0 120px rgba(255,255,255,0.08);
+}
+
+/* Prevent random opacity loss */
+.top-navbar *{
+  opacity:1 !important;
+}
+/* ==========================================
+   🚀 ULTRA STYLISH SNACKBAR
+========================================== */
+
+#snackbar{
+
+  position: fixed;
+  left: 50%;
+  bottom: 110px;
+  transform: translateX(-50%) scale(.9);
+
+  min-width: 220px;
+  max-width: 90%;
+
+  padding: 14px 18px;
+  border-radius: 18px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+
+  backdrop-filter: blur(18px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(99,102,241,.9),
+    rgba(236,72,153,.9),
+    rgba(16,185,129,.9)
+  );
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    inset 0 0 15px rgba(255,255,255,.25);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all .45s ease;
+
+  z-index: 9999;
+}
+#snackbar.show{
+
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateX(-50%) scale(1);
+
+  animation: snackPop .45s ease;
+}
+
+@keyframes snackPop{
+
+  0%{
+    transform: translateX(-50%) scale(.6);
+    opacity:0;
+  }
+
+  60%{
+    transform: translateX(-50%) scale(1.08);
+  }
+
+  100%{
+    transform: translateX(-50%) scale(1);
+    opacity:1;
+  }
+}
+/* SUCCESS */
+.snack-success{
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #22c55e
+  );
+}
+
+/* ERROR */
+.snack-error{
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #f97316
+  );
+}
+
+/* INFO */
+.snack-info{
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+}
+#snackbar{
+  position: fixed !important;
+  z-index: 99999;
+}
+/* ==========================================
+   🎯 ANSWER STATUS SMALL PILL
+========================================== */
+
+#answerStatus{
+  display:flex;
+  justify-content:center;
   margin-top:12px;
 }
 
-/* PED CARD */
-.ped-card{
-  background:#f9fafb;
-  padding:12px;
-  border-radius:12px;
-  font-size:14px;
-  border:1px solid #e5e7eb;
-}
+/* COMMON */
 
-/* BUTTON */
-.concept-card button{
-  margin-top:14px;
-  padding:8px 14px;
-  border:none;
-  background:#2563eb;
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
-}
-/* ======================
-GLASSMORPHISM BASE
-====================== */
+.ans{
 
-.glass{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
 
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+  padding:6px 12px;
 
-  background:rgba(255,255,255,0.18);
-
-  border:1px solid
-         rgba(255,255,255,0.35);
-
-  box-shadow:
-    0 8px 32px
-    rgba(0,0,0,0.15);
-
-  border-radius:18px;
-}
-/* ======================
-   WHY CORRECT CARD
-====================== */
-
-.why-card{
-  background:#f0f9ff;
-  border:1px solid #bae6fd;
-  border-left:4px solid #2563eb;
-  border-radius:10px;
-  padding:12px;
-  margin-top:10px;
-}
-
-.why-title{
+  font-size:12.5px;
   font-weight:700;
-  color:#1d4ed8;
-  margin-bottom:6px;
+  color:#fff;
+
+  border-radius:999px;
+
+  width:auto;
+  max-width:fit-content;
+
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+
+  animation:ansPop .3s ease;
 }
 
-.why-body{
-  font-size:14px;
-  line-height:1.6;
-  color:#374151;
-}
-/* Positive signal – Correct option */
-.boost-correct{
-  border:2px solid #3b82f6;
-  background:#eff6ff;
+/* CORRECT */
+
+.ans.correct{
+  background:linear-gradient(
+    135deg,
+    #10b981,
+    #22c55e
+  );
 }
 
-/* Positive signal – Wrong option */
-.boost-wrong{
-  border:2px solid #ef4444;
-  background:#fef2f2;
+/* WRONG */
+
+.ans.wrong{
+  background:linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
 }
-.boost-word{
-  color:#2563eb;
-  font-weight:600;
+
+/* POP */
+
+@keyframes ansPop{
+  from{
+    transform:scale(.7);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
 }
-/* ===== Trap ===== */
-.trap-badge{
-  background:#fee2e2;
-  color:#b91c1c;
-  padding:2px 6px;
-  border-radius:6px;
-  font-size:10px;
-  margin-left:6px;
-}
+/* TRAP HINT TEXT */
 
 .trap-hint{
-  color:#b91c1c;
+  color:#7c2d12 !important;   /* dark orange text */
   font-size:12px;
+  font-weight:600;
   margin-top:4px;
 }
 
-/* ===== Boost ===== */
-.boost-badge{
-  background:#dbeafe;
-  color:#1d4ed8;
+/* TRAP BADGE */
+
+.trap-badge{
+  background:#facc15;
+  color:#7c2d12;
+  font-size:10px;
   padding:2px 6px;
   border-radius:6px;
-  font-size:10px;
   margin-left:6px;
 }
 
+
+/* ===============================
+   📝 QUESTION PREMIUM GLASS CARD
+================================ */
+
+#qBox{
+
+  position: relative;
+
+  padding:18px 16px;
+
+  border-radius:22px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.92),
+    rgba(255,255,255,.75)
+  );
+
+  backdrop-filter: blur(14px);
+
+  border:1px solid rgba(255,255,255,.45);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.18),
+    inset 0 0 16px rgba(255,255,255,.35);
+
+  margin-bottom:14px;
+
+  color:#111827;
+}
+/* ===============================
+   🎯 OPTIONS PREMIUM STYLE
+================================ */
+
+#options button{
+
+  width:100%;
+  text-align:left;
+
+  padding:14px 16px;
+
+  margin-bottom:12px;
+
+  border-radius:18px;
+
+  background: linear-gradient(
+    135deg,
+    #f8fafc,
+    #eef2ff
+  );
+
+  border:1px solid #e5e7eb;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+
+  color:#1f2937;
+
+  transition:.25s;
+}
+
+/* Hover lift */
+
+#options button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
+
+  background: linear-gradient(
+    135deg,
+    #e0e7ff,
+    #fdf4ff
+  );
+}
+/* CORRECT */
+
+#options button.correct{
+
+  background: linear-gradient(
+    135deg,
+    #bbf7d0,
+    #86efac
+  );
+
+  border:1px solid #22c55e;
+}
+
+/* WRONG */
+
+#options button.wrong{
+
+  background: linear-gradient(
+    135deg,
+    #fecaca,
+    #fca5a5
+  );
+
+  border:1px solid #ef4444;
+}
+/* OPTION FLEX LAYOUT */
+
+#options button{
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+
+  gap:6px;
+}
+/* COMMON BADGE */
+
+.trap-badge,
+.boost-badge{
+
+  font-size:10px;
+  font-weight:700;
+
+  padding:3px 7px;
+
+  border-radius:6px;
+
+  display:inline-block;
+
+  max-width:100%;
+  white-space:nowrap;
+}
+
+/* TRAP */
+
+.trap-badge{
+  background:#facc15;
+  color:#7c2d12;
+}
+
+/* BOOST */
+
+.boost-badge{
+  background:#4ade80;
+  color:#064e3b;
+}
+/* COMMON HINT */
+
+.trap-hint,
 .boost-hint{
-  color:#1d4ed8;
+
   font-size:12px;
-  margin-top:4px;
-}
-
-/* ===== Option Color ===== */
-.boost-correct{
-  border:2px solid #3b82f6;
-  background:#eff6ff;
-}
-
-.boost-wrong{
-  border:2px solid #ef4444;
-  background:#fef2f2;
-}
-.predicted-correct{
-  border:2px solid #00cec9;
-  background:#e0f9f8;
-  font-weight:bold;
-}
-.trap-red{
-  background:#fee2e2;
-  color:#dc2626;
   font-weight:600;
+
+  line-height:1.4;
+
+  word-wrap:break-word;
+  white-space:normal;
+
+  max-width:100%;
+
+  padding:4px 6px;
+
+  border-radius:8px;
 }
 
-.boost-word{
-  background:#dbeafe;
-  color:#2563eb;
-  font-weight:600;
-}
-#snackbar {
-  visibility: hidden;
-  min-width: 140px;
-  color: #fff;
-  text-align: center;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 13px;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity .25s ease, transform .25s ease;
+/* TRAP HINT */
+
+.trap-hint{
+  background:#fff3cd;
+  color:#7c2d12;
 }
 
-#snackbar.show {
-  visibility: visible;
-  opacity: 1;
+/* BOOST HINT */
+
+.boost-hint{
+  background:#dcfce7;
+  color:#065f46;
+}
+button.wrong .trap-hint,
+button.wrong .boost-hint{
+
+  background:rgba(255,255,255,.15);
+  color:#fff;
+}
+@media (max-width:480px){
+
+  .trap-hint,
+  .boost-hint{
+    font-size:11px;
+  }
+
+  .trap-badge,
+  .boost-badge{
+    font-size:9px;
+    padding:2px 6px;
+  }
+}
+/* ======================
+PEDAGOGY POPUP MODAL
+====================== */
+
+.concept-popup{
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,.55);
+
+  backdrop-filter: blur(6px);
+
+  z-index: 99999;
+  padding: 12px;
+}
+
+.concept-card{
+  background: #ffffff;
+
+  width: 92%;
+  max-width: 380px;
+
+  border-radius: 18px;
+  padding: 20px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+
+  animation: modalPop .25s ease;
+
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+@keyframes modalPop{
+  from{
+    transform: scale(.8);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.concept-card h3{
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.concept-card button{
+  margin-top: 14px;
+  width: 100%;
+  background: linear-gradient(135deg,#2563eb,#7c3aed);
+  border-radius: 12px;
+}
+
+/* ======================
+STEP FORMAT PREMIUM
+====================== */
+
+.step-container{
+  margin-top:8px;
+}
+
+.step-box{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+
+  background:linear-gradient(
+    135deg,
+    #f0fdf4,
+    #dcfce7
+  );
+
+  padding:10px;
+  border-radius:12px;
+  margin-bottom:8px;
+
+  border-left:4px solid #22c55e;
+}
+
+.step-badge{
+  background:#22c55e;
+  color:white;
+  font-size:11px;
+  font-weight:700;
+
+  padding:4px 8px;
+  border-radius:8px;
+
+  white-space:nowrap;
+}
+
+.step-text{
+  font-size:14px;
+  line-height:1.6;
+  color:#111827;
+}
+.opt-en {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.opt-bn {
+  opacity: 0.9;
 }
