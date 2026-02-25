@@ -9,9 +9,9 @@ export const mcqQuestion = [
     type: "MCQ",
     subject: "CDP",
     q_en:
-      "While participating in a sports competition in class, Tanuj says that he will do javelin throw and his sister should do jump rope because she is a girl. This depicts:",
+      "While participating in a sports competition in class, Tanuj says that he will do javelin throw and his sister should do jump rope because she is a girl.\n This depicts:",
     q_bn:
-      "শ্রেণিতে ক্রীড়া প্রতিযোগিতার সময় তনুজ বলে যে সে জ্যাভলিন নিক্ষেপ করবে আর তার বোন দড়ি লাফ দেবে কারণ সে মেয়ে। এটি কোনটি নির্দেশ করে?",
+      "শ্রেণিতে ক্রীড়া প্রতিযোগিতার সময় তনুজ বলে যে সে জ্যাভলিন নিক্ষেপ করবে আর তার বোন দড়ি লাফ দেবে কারণ সে মেয়ে । এটি কোনটি নির্দেশ করে?",
     options_en: [
       "Gender constancy",
       "Gender equality",
@@ -46,9 +46,9 @@ export const mcqQuestion = [
     type: "MCQ",
     subject: "CDP",
     q_en:
-      "While divergent thinking __________ convergent thinking __________.",
+      "While divergent thinking __________ \n convergent thinking __________.",
     q_bn:
-      "বিস্তারমূলক চিন্তন __________ আর অভিসারী চিন্তন __________।",
+      "বিস্তারমূলক চিন্তন __________ \n আর অভিসারী চিন্তন __________।",
     options_en: [
       "encourages multiple answers; is fixed on one correct solution",
       "is fixed on one correct solution; encourages multiple answers",
@@ -120,9 +120,9 @@ export const mcqQuestion = [
     type: "MCQ",
     subject: "CDP",
     q_en:
-      "Assertion (A): Learners construct their own knowledge.\nReason (R): Linking prior knowledge leads to meaningful learning.",
+      "Assertion (A): Learners construct their own knowledge.\n Reason (R): Linking prior knowledge leads to meaningful learning.",
     q_bn:
-      "উক্তি (A): শিক্ষার্থীরা নিজে জ্ঞান গঠন করে।\nকারণ (R): পূর্বজ্ঞান যুক্ত করলে অর্থপূর্ণ শেখা হয়।",
+      "উক্তি (A): শিক্ষার্থীরা নিজে জ্ঞান গঠন করে। \nকারণ (R): পূর্বজ্ঞান যুক্ত করলে অর্থপূর্ণ শেখা হয়।",
     options_en: [
       "Both A and R are true and R explains A",
       "Both true but R does not explain A",

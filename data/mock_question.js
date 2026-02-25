@@ -4,60 +4,61 @@
 export const mockQuestion = [
 
   /* ================= Q1 ================= */
-  {
-    id: "paper1_cdp_01",
-    type: "MOCK",
-    subject: "CDP",
-    exam_session: "January 2024",
-    source: "CTET January 2024",
-    is_exam_question: true,
-    q_en:
-      "While participating in a sports competition in class, Tanuj tells his friend that he will participate in the javelin throw and his sister can participate in jump rope because she is a girl and girls cannot throw javelin. This depicts :",
+{
+  id: "paper1_cdp_01",
+  type: "MOCK",
+  subject: "CDP",
+  exam_session: "January 2024",
+  source: "CTET January 2024",
+  is_exam_question: true,
 
-    q_bn:
-      "শ্রেণিতে একটি ক্রীড়া প্রতিযোগিতায় অংশগ্রহণের সময় তনুজ তার বন্ধুকে বলে যে সে জ্যাভলিন নিক্ষেপে অংশ নেবে এবং তার বোন দড়ি লাফে অংশ নিতে পারে, কারণ সে মেয়ে এবং মেয়েরা জ্যাভলিন নিক্ষেপ করতে পারে না। এটি কী নির্দেশ করে?",
+  q_en:
+    "While participating in a sports competition in class, Tanuj tells his friend that he will participate in the javelin throw and his sister can participate in jump rope because she is a girl and girls cannot throw javelin. This depicts :",
 
-    options_en: [
-      "Gender constancy",
-      "Gender equality",
-      "Gender equity",
-      "Gender stereotyping"
-    ],
+  q_bn:
+    "শ্রেণিতে ক্রীড়া প্রতিযোগিতায় অংশগ্রহণের সময় তনুজ বলে যে সে জ্যাভলিন নিক্ষেপে অংশ নেবে এবং তার বোন দড়ি লাফে অংশ নেবে কারণ সে মেয়ে এবং মেয়েরা জ্যাভলিন নিক্ষেপ করতে পারে না। এটি কী নির্দেশ করে?",
 
-    options_bn: [
-      "লিঙ্গ স্থায়িত্ব",
-      "লিঙ্গ সমতা",
-      "লিঙ্গ ন্যায়",
-      "লিঙ্গভিত্তিক ধ্যানধারণা"
-    ],
+  options_en: [
+    "Gender constancy",
+    "Gender equality",
+    "Gender equity",
+    "Gender stereotyping"
+  ],
 
-    ans: 3,
+  options_bn: [
+    "লিঙ্গ স্থায়িত্ব",
+    "লিঙ্গ সমতা",
+    "লিঙ্গ ন্যায়",
+    "লিঙ্গভিত্তিক ধ্যানধারণা"
+  ],
 
-    ans_reason_en:
-      "Assigning activities based on gender-based assumptions reflects gender stereotyping.",
+  ans: 3,
 
-    ans_reason_bn:
-      "লিঙ্গের ভিত্তিতে সক্ষমতা নির্ধারণ করা লিঙ্গভিত্তিক ধ্যানধারণাকে নির্দেশ করে।",
+  ans_reason_en:
+    "The statement reflects fixed beliefs about abilities based on gender. Gender stereotyping means assigning roles or capabilities according to socially constructed assumptions rather than individual ability.",
 
-    elimination_en: [
-      "Option (0) ❌ Gender constancy → refers to understanding that gender remains stable over time, not about abilities.",
-      "Option (1) ❌ Gender equality → talks about equal rights, which is not shown here.",
-      "Option (2) ❌ Gender equity → focuses on fairness and support, not stereotyping.",
-      "Option (3) ✅ Gender stereotyping → fixed beliefs about what boys and girls can do."
-    ],
+  ans_reason_bn:
+    "এখানে লিঙ্গের ভিত্তিতে স্থির ধারণা প্রকাশ পেয়েছে। লিঙ্গ স্টেরিওটাইপিং মানে সামাজিকভাবে তৈরি বিশ্বাস অনুযায়ী সক্ষমতা নির্ধারণ করা, ব্যক্তিগত দক্ষতার ভিত্তিতে নয়।",
 
-    elimination_bn: [
-      "Option (0) ❌ লিঙ্গ স্থায়িত্ব → লিঙ্গ অপরিবর্তনীয় থাকার ধারণা, সক্ষমতার নয়।",
-      "Option (1) ❌ লিঙ্গ সমতা → সমান অধিকার বোঝায়, এখানে তা নেই।",
-      "Option (2) ❌ লিঙ্গ ন্যায় → ন্যায্য সহায়তার ধারণা, স্টেরিওটাইপ নয়।",
-      "Option (3) ✅ লিঙ্গভিত্তিক ধ্যানধারণা → ছেলে-মেয়ের সক্ষমতা নিয়ে স্থির ধারণা।"
-    ],
+  elimination_en: [
+    "Option (0) ❌ Gender constancy refers to understanding that gender remains stable over time.",
+    "Option (1) ❌ Gender equality means equal rights and opportunities.",
+    "Option (2) ❌ Gender equity focuses on fairness and support.",
+    "Option (3) ✅ Correct: Fixed belief about boys’ and girls’ abilities."
+  ],
 
-    difficulty: "easy",
-    concept: "Gender Stereotyping",
-    exam: "SAS-24 / CTET",
-    year: 2024
-  },
+  elimination_bn: [
+    "Option (0) ❌ লিঙ্গ স্থায়িত্ব মানে লিঙ্গ অপরিবর্তনীয় বোঝা।",
+    "Option (1) ❌ লিঙ্গ সমতা সমান সুযোগ বোঝায়।",
+    "Option (2) ❌ লিঙ্গ ন্যায় মানে ন্যায্য সহায়তা।",
+    "Option (3) ✅ সঠিক: ছেলে-মেয়ের সক্ষমতা নিয়ে স্থির ধারণা।"
+  ],
+
+  difficulty: "easy",
+  concept: "Gender Stereotyping",
+  exam: "SAS-24 / CTET",
+  year: 2024
+},
 
   /* ================= Q2 ================= */
   {
@@ -153,18 +154,18 @@ export const mockQuestion = [
       "অন্তর্ভুক্তিমূলক শিক্ষা নমনীয় ও শিক্ষার্থী-কেন্দ্রিক, কঠোর নয়।",
 
     elimination_en: [
-      "Option (0) ❌ Correct feature of inclusion.",
-      "Option (1) ❌ Correct feature of inclusion.",
-      "Option (2) ❌ Correct feature of inclusion.",
-      "Option (3) ✅ Fixed curriculum and standard assessment go against inclusion."
-    ],
+  "Option (0) ❌ Inclusion principle trap: Teaching in ways that do not exclude is a core definition of inclusive education.",
+  "Option (1) ❌ Pedagogy trap: Inclusive education requires adapting pedagogy to support diverse learner needs.",
+  "Option (2) ❌ Collaboration trap: Accommodating differences and promoting collaboration are essential characteristics of inclusive classrooms.",
+  "Option (3) ✅ Correct answer: Fixed curriculum and standardised assessment contradict flexibility, differentiation and learner-centred practices of inclusion."
+],
 
-    elimination_bn: [
-      "Option (0) ❌ অন্তর্ভুক্তিমূলক শিক্ষার সঠিক বৈশিষ্ট্য।",
-      "Option (1) ❌ অন্তর্ভুক্তিমূলক শিক্ষার সঠিক বৈশিষ্ট্য।",
-      "Option (2) ❌ অন্তর্ভুক্তিমূলক শিক্ষার সঠিক বৈশিষ্ট্য।",
-      "Option (3) ✅ স্থির পাঠ্যক্রম ও মানক মূল্যায়ন অন্তর্ভুক্তিমূলক নয়।"
-    ],
+elimination_bn: [
+  "Option (0) ❌ অন্তর্ভুক্তির মূলনীতি: কাউকে বাদ না দিয়ে শিক্ষা দেওয়াই অন্তর্ভুক্তিমূলক শিক্ষার ভিত্তি।",
+  "Option (1) ❌ শিক্ষণ-পদ্ধতি ফাঁদ: বৈচিত্র্যময় শিক্ষার্থীর প্রয়োজন অনুযায়ী পদ্ধতি গ্রহণ করা অন্তর্ভুক্তির অংশ।",
+  "Option (2) ❌ সহযোগিতা ফাঁদ: পার্থক্য মেনে নেওয়া ও সহযোগিতা বাড়ানো অন্তর্ভুক্তিমূলক শ্রেণিকক্ষের বৈশিষ্ট্য।",
+  "Option (3) ✅ সঠিক উত্তর: স্থির পাঠ্যক্রম ও মানক মূল্যায়ন নমনীয়তা ও শিক্ষার্থী-কেন্দ্রিক অন্তর্ভুক্তির বিরোধী।"
+],
 
     difficulty: "medium",
     concept: "Inclusive Education",
@@ -210,18 +211,24 @@ export const mockQuestion = [
       "এটি নির্মাণবাদী শিক্ষাতত্ত্বকে নির্দেশ করে।",
 
     elimination_en: [
-      "Option (0) ✅ A and R both true and R explains A.",
-      "Option (1) ❌ R clearly explains A.",
-      "Option (2) ❌ R is not false.",
-      "Option (3) ❌ Both are not false."
-    ],
+  "Option (0) ✅ Correct: Both (A) and (R) are true and (R) is the correct explanation of (A). Constructivist theory (Piaget & Bruner) emphasises that learners actively construct knowledge by linking new information with prior schemas. The process of finding patterns and making linkages explains how knowledge construction takes place.",
+  
+  "Option (1) ❌ Subtle-logic trap: This option tries to separate truth from explanation. However, (R) does not merely state a related idea — it directly explains the mechanism of knowledge construction mentioned in (A). Therefore this option is incorrect.",
+  
+  "Option (2) ❌ Misjudgement trap: (A) is true and (R) is also true. Claiming that (R) is false contradicts constructivist principles of meaningful learning (Ausubel’s theory of advance organisers and prior knowledge linkage).",
+  
+  "Option (3) ❌ Conceptual distortion trap: Both statements clearly align with constructivism and meaningful learning theory. Saying both are false reflects misunderstanding of learner-centred pedagogy."
+],
 
-    elimination_bn: [
-      "Option (0) ✅ A ও R উভয়ই সত্য এবং R, A-কে ব্যাখ্যা করে।",
-      "Option (1) ❌ R, A-কে ব্যাখ্যা করে।",
-      "Option (2) ❌ R মিথ্যা নয়।",
-      "Option (3) ❌ উভয়ই মিথ্যা নয়।"
-    ],
+elimination_bn: [
+  "Option (0) ✅ সঠিক: (A) ও (R) উভয়ই সত্য এবং (R), (A)-এর সঠিক ব্যাখ্যা। নির্মাণবাদী তত্ত্ব (পিয়াজে ও ব্রুনার) অনুযায়ী শিক্ষার্থীরা পূর্ব স্কিমার সাথে নতুন তথ্য যুক্ত করে জ্ঞান নির্মাণ করে। প্যাটার্ন খোঁজা ও সংযোগ তৈরি করার প্রক্রিয়াই জ্ঞান গঠনের ব্যাখ্যা দেয়।",
+  
+  "Option (1) ❌ সূক্ষ্ম যুক্তি ফাঁদ: এখানে উভয় বক্তব্য সত্য হলেও (R) যেন (A)-কে ব্যাখ্যা করে না — এমন বিভ্রান্তি তৈরি করা হয়েছে। কিন্তু বাস্তবে (R) সরাসরি জ্ঞান নির্মাণের প্রক্রিয়া ব্যাখ্যা করছে। তাই এটি ভুল।",
+  
+  "Option (2) ❌ ভুল বিচার ফাঁদ: (R) মিথ্যা বলা নির্মাণবাদ ও অর্থপূর্ণ শিক্ষার ধারণার বিরোধী (Ausubel-এর পূর্বজ্ঞান সংযোগ তত্ত্ব)। তাই এটি ভুল।",
+  
+  "Option (3) ❌ ধারণাগত বিকৃতি ফাঁদ: উভয় বক্তব্যই শিক্ষার্থী-কেন্দ্রিক ও নির্মাণবাদী শিক্ষার সাথে সামঞ্জস্যপূর্ণ। দুটোই মিথ্যা বলা সম্পূর্ণ ভুল।"
+],
 
     difficulty: "medium",
     concept: "Constructivism",
@@ -267,18 +274,24 @@ export const mockQuestion = [
       "শৈশবের অভিজ্ঞতা সংস্কৃতিভেদে ভিন্ন হলেও বিকাশ সম্পূর্ণ সার্বজনীন নয়।",
 
     elimination_en: [
-      "Option (0) ❌ R does not explain A.",
-      "Option (1) ❌ R itself is incorrect.",
-      "Option (2) ✅ A true, R false.",
-      "Option (3) ❌ A is not false."
-    ],
+  "Option (0) ❌ False-explanation trap: Even if someone assumes development is universal, it does not explain cultural differences in childhood experiences. Moreover, (R) itself is conceptually inaccurate in this context.",
+  
+  "Option (1) ❌ Partial-truth trap: This option assumes both (A) and (R) are true. However, while (A) is correct, (R) oversimplifies development as completely universal and ignores socio-cultural influences (Vygotsky’s socio-cultural theory).",
+  
+  "Option (2) ✅ Correct: (A) is true because childhood experiences differ across cultural, social and economic contexts. (R) is false because development is shaped by socio-cultural factors and cannot be described as entirely universal.",
+  
+  "Option (3) ❌ Concept-negation trap: (A) is clearly true as cross-cultural research shows variation in childhood experiences."
+],
 
-    elimination_bn: [
-      "Option (0) ❌ R, A-কে ব্যাখ্যা করে না।",
-      "Option (1) ❌ R নিজেই সঠিক নয়।",
-      "Option (2) ✅ A সত্য, R মিথ্যা।",
-      "Option (3) ❌ A মিথ্যা নয়।"
-    ],
+elimination_bn: [
+  "Option (0) ❌ ভুল ব্যাখ্যা ফাঁদ: বিকাশ সার্বজনীন হলেও তা সংস্কৃতিভেদে শৈশবের অভিজ্ঞতার পার্থক্য ব্যাখ্যা করে না। তাছাড়া এখানে (R) ধারণাগতভাবে ভুল।",
+  
+  "Option (1) ❌ আংশিক সত্য ফাঁদ: এখানে ধরে নেওয়া হয়েছে (A) ও (R) উভয়ই সত্য। কিন্তু (R) বিকাশকে সম্পূর্ণ সার্বজনীন বলে সরলীকরণ করেছে এবং সামাজিক-সাংস্কৃতিক প্রভাব উপেক্ষা করেছে (ভাইগটস্কির সমাজ-সাংস্কৃতিক তত্ত্ব)।",
+  
+  "Option (2) ✅ সঠিক: (A) সত্য কারণ সংস্কৃতি, সমাজ ও অর্থনৈতিক প্রেক্ষাপট অনুযায়ী শৈশবের অভিজ্ঞতা ভিন্ন হয়। (R) মিথ্যা কারণ বিকাশ সামাজিক-সাংস্কৃতিক উপাদান দ্বারা প্রভাবিত এবং একে সম্পূর্ণ সার্বজনীন বলা যায় না।",
+  
+  "Option (3) ❌ ধারণা অস্বীকার ফাঁদ: (A) স্পষ্টভাবে সত্য; বিভিন্ন গবেষণায় সংস্কৃতিভেদে শৈশবের পার্থক্য দেখা যায়।"
+],
 
     difficulty: "medium",
     concept: "Culture & Development",
@@ -322,20 +335,26 @@ export const mockQuestion = [
 
     ans_reason_bn:
       "সফলতাকে নিজের প্রচেষ্টার ফল হিসেবে দেখলে আত্মবিশ্বাস বাড়ে এবং ব্যর্থতাকে বাহ্যিক কারণে দেখলে হতাশা কমে।",
+      
+      elimination_en: [
+  "Option (0) ✅ Correct – KEYWORD: Internal Success + External Failure (Adaptive Attribution Pattern). According to Bernard Weiner’s Attribution Theory, attributing success to internal, controllable factors such as effort strengthens self-efficacy and intrinsic motivation. Attributing failure to external or unstable causes protects self-worth. Example: A student says, 'I scored well because I practised sincerely,' and 'I scored less because the questions were unusually difficult.' Learning Outcome: The student maintains confidence, continues effort, and shows resilience, leading to sustained improvement in performance.",
 
-    elimination_en: [
-      "Option (0) ✅ Promotes confidence and persistence.",
-      "Option (1) ❌ Reduces self-belief.",
-      "Option (2) ❌ Leads to helplessness.",
-      "Option (3) ❌ No sense of control."
-    ],
+  "Option (1) ❌ TRAP: External Success + Internal Failure (Self-doubt Pattern). When success is attributed to luck and failure to lack of intelligence, the learner develops reduced self-belief. Example: A student says, 'I passed because I was lucky,' and 'I failed because I am not smart enough.' Learning Outcome: This creates anxiety, avoidance of challenging tasks, and declining motivation over time.",
 
-    elimination_bn: [
-      "Option (0) ✅ আত্মবিশ্বাস ও চেষ্টা বজায় রাখে।",
-      "Option (1) ❌ আত্মবিশ্বাস কমে যায়।",
-      "Option (2) ❌ অসহায়ত্ব তৈরি হয়।",
-      "Option (3) ❌ নিয়ন্ত্রণবোধ থাকে না।"
-    ],
+  "Option (2) ❌ TRAP: Fixed Internal Attribution (Learned Helplessness Risk). Attributing both success and failure internally—especially failure to fixed ability—may lead to rigid self-concept. Example: 'I failed because I am bad at mathematics.' According to Seligman, repeated internal attribution of failure may produce learned helplessness. Learning Outcome: The learner gradually stops trying and shows reduced persistence despite opportunities to improve.",
+
+  "Option (3) ❌ TRAP: External Locus of Control. When both success and failure are attributed to external factors like luck or teacher bias, learners feel outcomes are beyond their control. Example: 'Marks depend only on luck or the teacher’s mood.' Learning Outcome: This weakens responsibility, reduces sustained effort, and limits long-term academic growth."
+],
+
+elimination_bn: [
+  "Option (0) ✅ সঠিক – KEYWORD: অন্তর্গত সফলতা + বাহ্যিক ব্যর্থতা (সর্বোত্তম আরোপণ ধারা)। Weiner-এর তত্ত্ব অনুযায়ী সফলতাকে নিজের প্রচেষ্টা বা সক্ষমতার ফল মনে করলে আত্মদক্ষতা ও অন্তঃপ্রেরণা বাড়ে। ব্যর্থতাকে বাহ্যিক বা অস্থায়ী কারণে ব্যাখ্যা করলে আত্মসম্মান বজায় থাকে। উদাহরণ: একজন শিক্ষার্থী বলে, 'আমি পরিশ্রম করেছি তাই ভালো করেছি' এবং 'প্রশ্ন কঠিন ছিল তাই কম পেয়েছি।' Learning Outcome: শিক্ষার্থী আত্মবিশ্বাস বজায় রাখে, পুনরায় চেষ্টা করে এবং ধীরে ধীরে উন্নতি করে।",
+
+  "Option (1) ❌ ফাঁদ: বাহ্যিক সফলতা + অন্তর্গত ব্যর্থতা (আত্মসন্দেহ ধারা)। সফলতাকে ভাগ্যের ফল এবং ব্যর্থতাকে নিজের অযোগ্যতার ফল মনে করলে আত্মবিশ্বাস কমে যায়। উদাহরণ: 'ভাগ্যের কারণে পাস করেছি' এবং 'আমি বুদ্ধিমান নই তাই ফেল করেছি।' Learning Outcome: উদ্বেগ বাড়ে, চ্যালেঞ্জ এড়ানোর প্রবণতা তৈরি হয় এবং প্রেরণা কমে যায়।",
+
+  "Option (2) ❌ ফাঁদ: স্থির অন্তর্গত আরোপণ (Learned Helplessness ঝুঁকি)। সফলতা ও ব্যর্থতা দুটোই নিজের স্থির সক্ষমতার ফল মনে করলে বিশেষ করে ব্যর্থতার ক্ষেত্রে 'আমি গণিতে খারাপ' ধারণা তৈরি হয়। Seligman-এর মতে এটি learned helplessness সৃষ্টি করতে পারে। Learning Outcome: শিক্ষার্থী ধীরে ধীরে চেষ্টা কমিয়ে দেয় এবং অগ্রগতির সম্ভাবনা কমে যায়।",
+
+  "Option (3) ❌ ফাঁদ: বাহ্যিক নিয়ন্ত্রণবোধ (External Locus of Control)। সফলতা ও ব্যর্থতা উভয়কেই ভাগ্য বা বাহ্যিক কারণে ব্যাখ্যা করলে ব্যক্তিগত দায়িত্ববোধ কমে যায়। উদাহরণ: 'সবই ভাগ্যের উপর নির্ভর করে।' Learning Outcome: অধ্যবসায় কমে যায় এবং দীর্ঘমেয়াদী সাফল্য সীমিত হয়।"
+],
 
     difficulty: "medium",
     concept: "Attribution Theory",
@@ -381,18 +400,24 @@ export const mockQuestion = [
       "প্রগতিশীল শিক্ষা বাস্তব জীবনের সাথে যুক্ত অর্থবহ শেখার উপর জোর দেয়।",
 
     elimination_en: [
-      "Option (0) ❌ Focuses on standardized testing, not progressive learning.",
-      "Option (1) ❌ Progressive education promotes active, not passive learners.",
-      "Option (2) ✅ Authentic, real-life tasks are central to progressive education.",
-      "Option (3) ❌ Fixed and universal curriculum goes against learner-centred education."
-    ],
+  "Option (0) ❌ TRAP: Standardization Over Experience. Progressive education does not prioritise standardized testing as the best measure of learning. John Dewey argued that education should focus on growth and experience rather than rigid measurement. Example: If learning is judged only through uniform exams, creativity and real understanding may be ignored. Learning Outcome: Overemphasis on testing may reduce critical thinking and intrinsic motivation.",
 
-    elimination_bn: [
-      "Option (0) ❌ মানক পরীক্ষার উপর জোর দেয়, প্রগতিশীল শিক্ষার নয়।",
-      "Option (1) ❌ প্রগতিশীল শিক্ষা সক্রিয় শিক্ষার্থীকে গুরুত্ব দেয়।",
-      "Option (2) ✅ বাস্তব ও প্রামাণিক কাজ প্রগতিশীল শিক্ষার মূল।",
-      "Option (3) ❌ স্থির ও সার্বজনীন পাঠ্যক্রম শিক্ষার্থী-কেন্দ্রিক নয়।"
-    ],
+  "Option (1) ❌ TRAP: Passive Learning Model. Progressive education rejects the idea that students are passive recipients of knowledge. Instead, learners are active participants who construct knowledge through inquiry and interaction. Example: In a progressive classroom, students engage in discussions, projects and problem-solving rather than just listening to lectures. Learning Outcome: Passive learning limits engagement and deep understanding.",
+
+  "Option (2) ✅ Correct – KEYWORD: Authentic Learning / Experiential Learning. A core principle of progressive education is that learning should be connected to real-life, meaningful and authentic tasks. Dewey believed education must be rooted in lived experiences. Example: Instead of memorising environmental facts, students conduct a local water quality survey. Learning Outcome: Learners develop critical thinking, problem-solving skills and practical understanding.",
+
+  "Option (3) ❌ TRAP: Fixed Universal Curriculum. Progressive education promotes flexibility and child-centred curriculum design rather than a predetermined and uniform syllabus. Example: A teacher adapts lessons according to students’ interests and needs instead of strictly following a rigid textbook. Learning Outcome: A fixed curriculum may ignore individual differences and reduce learner engagement."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: মানকীকরণ-কেন্দ্রিক শিক্ষা। প্রগতিশীল শিক্ষা মানক পরীক্ষাকে শেখার সর্বোত্তম উপায় বলে মনে করে না। John Dewey-এর মতে শিক্ষা অভিজ্ঞতা ও বিকাশভিত্তিক হওয়া উচিত, কেবল পরিমাপভিত্তিক নয়। উদাহরণ: শুধু পরীক্ষার নম্বর দিয়ে শেখা বিচার করলে সৃজনশীলতা ও গভীর বোঝাপড়া উপেক্ষিত হতে পারে। Learning Outcome: অতিরিক্ত পরীক্ষা-কেন্দ্রিকতা সমালোচনামূলক চিন্তা কমিয়ে দিতে পারে।",
+
+  "Option (1) ❌ ফাঁদ: নিষ্ক্রিয় শেখা। প্রগতিশীল শিক্ষা শিক্ষার্থীদের নিষ্ক্রিয় জ্ঞানগ্রাহী হিসেবে দেখে না; বরং তাদের সক্রিয় অনুসন্ধানকারী হিসেবে বিবেচনা করে। উদাহরণ: লেকচার শোনার বদলে শিক্ষার্থীরা আলোচনা, প্রকল্প ও অনুসন্ধানমূলক কাজে অংশ নেয়। Learning Outcome: নিষ্ক্রিয় শেখা গভীর উপলব্ধি সীমিত করে।",
+
+  "Option (2) ✅ সঠিক – KEYWORD: প্রামাণিক ও অভিজ্ঞতাভিত্তিক শিক্ষা। প্রগতিশীল শিক্ষার মূল নীতি হলো বাস্তব ও অর্থবহ কাজের মাধ্যমে শেখা। Dewey-এর মতে শিক্ষা বাস্তব জীবনের অভিজ্ঞতার সাথে যুক্ত হওয়া উচিত। উদাহরণ: পরিবেশ অধ্যয়নের সময় শিক্ষার্থীরা মাঠে গিয়ে তথ্য সংগ্রহ করে। Learning Outcome: এতে সমস্যা সমাধান দক্ষতা, সমালোচনামূলক চিন্তা ও ব্যবহারিক জ্ঞান বৃদ্ধি পায়।",
+
+  "Option (3) ❌ ফাঁদ: স্থির ও সার্বজনীন পাঠ্যক্রম। প্রগতিশীল শিক্ষা নমনীয় ও শিক্ষার্থী-কেন্দ্রিক পাঠ্যক্রমকে সমর্থন করে। উদাহরণ: শিক্ষক শিক্ষার্থীদের আগ্রহ অনুযায়ী কার্যক্রম পরিকল্পনা করেন। Learning Outcome: স্থির পাঠ্যক্রম ব্যক্তিগত পার্থক্য উপেক্ষা করে এবং আগ্রহ কমিয়ে দেয়।"
+],
 
     difficulty: "easy",
     concept: "Progressive Education",
@@ -438,18 +463,24 @@ export const mockQuestion = [
       "যুক্তি ও সমস্যা সমাধান জ্ঞানীয় বিকাশের প্রধান অংশ।",
 
     elimination_en: [
-      "Option (0) ❌ Social development focuses on relationships, not thinking skills.",
-      "Option (1) ✅ Cognitive development includes thinking and reasoning.",
-      "Option (2) ❌ Moral development relates to values and ethics.",
-      "Option (3) ❌ Motor development concerns physical movement."
-    ],
+  "Option (0) ❌ TRAP: Social Interaction Confusion. Social development focuses on relationships, communication skills, cooperation and adjustment within society. While discussion may support thinking, reasoning and problem-solving are not core components of social development. Example: Making friends or resolving peer conflict reflects social growth. Learning Outcome: Social competence improves, but it does not directly explain cognitive reasoning processes.",
 
-    elimination_bn: [
-      "Option (0) ❌ সামাজিক বিকাশ সম্পর্কের উপর জোর দেয়।",
-      "Option (1) ✅ জ্ঞানীয় বিকাশে চিন্তা ও যুক্তি অন্তর্ভুক্ত।",
-      "Option (2) ❌ নৈতিক বিকাশ মূল্যবোধের সাথে সম্পর্কিত।",
-      "Option (3) ❌ চালন বিকাশ শারীরিক নড়াচড়ার সাথে যুক্ত।"
-    ],
+  "Option (1) ✅ Correct – KEYWORD: Cognitive Development (Thinking & Reasoning). According to Jean Piaget, cognitive development involves processes such as reasoning, logical thinking, memory, concept formation and problem-solving. Example: When a child solves a mathematical puzzle or explains cause-and-effect relationships, they are demonstrating cognitive development. Learning Outcome: Development of higher-order thinking skills, analytical ability and logical reasoning.",
+
+  "Option (2) ❌ TRAP: Moral Judgment Confusion. Moral development relates to understanding right and wrong, values, ethics and fairness (as explained by Kohlberg). Example: Deciding whether cheating is wrong reflects moral reasoning, not general cognitive problem-solving. Learning Outcome: Ethical judgment improves, but it does not specifically define intellectual reasoning processes.",
+
+  "Option (3) ❌ TRAP: Physical Skill Confusion. Motor development concerns physical coordination, movement and muscular control. Example: Learning to write neatly or ride a bicycle reflects motor development. Learning Outcome: Physical coordination improves, but reasoning and abstract thinking are unaffected."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: সামাজিক বিকাশ বিভ্রান্তি। সামাজিক বিকাশ সম্পর্ক, যোগাযোগ ও সমাজে মানিয়ে নেওয়ার সাথে সম্পর্কিত। যদিও আলোচনা চিন্তাকে সহায়তা করতে পারে, যুক্তি ও সমস্যা সমাধান এর মূল অংশ নয়। উদাহরণ: বন্ধু তৈরি করা বা দ্বন্দ্ব সমাধান সামাজিক বিকাশের উদাহরণ। Learning Outcome: সামাজিক দক্ষতা বাড়ে, কিন্তু বিশ্লেষণাত্মক চিন্তা ব্যাখ্যা করে না।",
+
+  "Option (1) ✅ সঠিক – KEYWORD: জ্ঞানীয় বিকাশ (চিন্তা ও যুক্তি)। Jean Piaget-এর মতে জ্ঞানীয় বিকাশের অন্তর্ভুক্ত হলো যুক্তি, চিন্তন, ধারণা গঠন ও সমস্যা সমাধান। উদাহরণ: গণিতের সমস্যা সমাধান করা বা কারণ-ফল সম্পর্ক ব্যাখ্যা করা জ্ঞানীয় বিকাশের উদাহরণ। Learning Outcome: উচ্চতর চিন্তন দক্ষতা ও বিশ্লেষণ ক্ষমতা বৃদ্ধি পায়।",
+
+  "Option (2) ❌ ফাঁদ: নৈতিক বিচার বিভ্রান্তি। নৈতিক বিকাশ সঠিক-ভুল, ন্যায়-অন্যায় ও মূল্যবোধের সাথে সম্পর্কিত (Kohlberg)। উদাহরণ: পরীক্ষায় নকল করা উচিত কি না তা সিদ্ধান্ত নেওয়া নৈতিক বিকাশের উদাহরণ। Learning Outcome: নৈতিক মূল্যবোধ গড়ে ওঠে, কিন্তু সাধারণ যুক্তিবোধের বিকাশ নয়।",
+
+  "Option (3) ❌ ফাঁদ: শারীরিক দক্ষতা বিভ্রান্তি। চালন বিকাশ শরীরের নড়াচড়া, সমন্বয় ও পেশী নিয়ন্ত্রণের সাথে যুক্ত। উদাহরণ: সাইকেল চালানো বা সুন্দরভাবে লেখা চালন বিকাশের অংশ। Learning Outcome: শারীরিক সমন্বয় বাড়ে, কিন্তু যুক্তি ও বিমূর্ত চিন্তা এতে অন্তর্ভুক্ত নয়।"
+],
 
     difficulty: "easy",
     concept: "Cognitive Development",
@@ -495,18 +526,24 @@ export const mockQuestion = [
       "ভাইগটস্কি আত্ম-নিয়ন্ত্রণের জন্য অন্তর্গত ভাষণের গুরুত্ব দিয়েছেন।",
 
     elimination_en: [
-      "Option (0) ❌ Disequilibrium is linked to Piaget, not Vygotsky.",
-      "Option (1) ✅ Inner speech helps children regulate their behavior.",
-      "Option (2) ❌ Adaptation is a Piagetian concept.",
-      "Option (3) ❌ Organization is not central to Vygotsky’s theory."
-    ],
+  "Option (0) ❌ TRAP: Piagetian Disequilibrium. Disequilibrium refers to cognitive conflict when new information does not fit existing schemas. Example: A child believes all birds can fly, but after seeing a penguin, feels confused. This mental imbalance leads to cognitive adjustment. Learning Outcome: The child modifies understanding (schema change), but this does not directly explain how the child controls behaviour or regulates actions.",
 
-    elimination_bn: [
-      "Option (0) ❌ অসমতা পিয়াজের ধারণা।",
-      "Option (1) ✅ অন্তর্গত ভাষণ আত্ম-নিয়ন্ত্রণে সাহায্য করে।",
-      "Option (2) ❌ অভিযোজন পিয়াজের সাথে যুক্ত।",
-      "Option (3) ❌ সংগঠন ভাইগটস্কির মূল ধারণা নয়।"
-    ],
+  "Option (1) ✅ Correct – KEYWORD: Inner Speech / Private Speech. Vygotsky proposed that children use language as a psychological tool for self-regulation. Example: While solving a puzzle, a child whispers, 'Turn this piece… no, try the other side… slowly… don’t rush.' This self-directed speech helps the child control impulses, plan steps and stay focused. Learning Outcome: Improved attention control, task persistence and independent problem-solving ability.",
+
+  "Option (2) ❌ TRAP: Piagetian Adaptation (Assimilation & Accommodation). Adaptation explains how children adjust thinking structures. Example: A child who learns that a whale is not a fish revises their biological classification. Learning Outcome: Conceptual understanding improves, but this process does not specifically involve behavioural self-regulation through language.",
+
+  "Option (3) ❌ TRAP: Cognitive Organization. Organization refers to arranging mental processes into coherent systems. Example: A child grouping animals into categories (mammals, birds, reptiles) demonstrates organization. Learning Outcome: Logical structuring improves, but it does not explain how the child manages emotions or controls behaviour in real-time tasks."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: পিয়াজের অসমতা (Disequilibrium)। এটি ঘটে যখন নতুন তথ্য পুরনো ধারণার সাথে মেলে না। উদাহরণ: শিশু মনে করে সব পাখি উড়তে পারে, কিন্তু পেঙ্গুইন দেখে বিভ্রান্ত হয়। এতে মানসিক দ্বন্দ্ব তৈরি হয় এবং পরে ধারণা সংশোধন করে। Learning Outcome: স্কিমা পরিবর্তন হয়, কিন্তু এটি আচরণ নিয়ন্ত্রণের ব্যাখ্যা দেয় না।",
+
+  "Option (1) ✅ সঠিক – KEYWORD: অন্তর্গত ভাষণ (Inner/Private Speech)। ভাইগটস্কির মতে ভাষা আত্ম-নিয়ন্ত্রণের মানসিক হাতিয়ার। উদাহরণ: পাজল সমাধান করতে গিয়ে শিশু আস্তে বলে, 'এই টুকরোটা ঘুরাও… ধীরে কর… ভুল কোরো না।' এই আত্মনির্দেশমূলক ভাষণ তাকে মনোযোগ ধরে রাখতে ও আচরণ নিয়ন্ত্রণ করতে সাহায্য করে। Learning Outcome: মনোযোগ নিয়ন্ত্রণ, ধৈর্য এবং স্বাধীনভাবে সমস্যা সমাধানের ক্ষমতা বৃদ্ধি পায়।",
+
+  "Option (2) ❌ ফাঁদ: পিয়াজের অভিযোজন (Assimilation & Accommodation)। উদাহরণ: শিশু শেখে যে তিমি মাছ নয়, স্তন্যপায়ী প্রাণী। এতে ধারণাগত পরিবর্তন ঘটে। Learning Outcome: জ্ঞানীয় বোঝাপড়া বাড়ে, কিন্তু এটি ভাষাভিত্তিক আত্ম-নিয়ন্ত্রণ বোঝায় না।",
+
+  "Option (3) ❌ ফাঁদ: সংগঠন (Organization)। উদাহরণ: শিশু প্রাণীদের বিভিন্ন শ্রেণিতে ভাগ করে। এতে মানসিক সংগঠন দক্ষতা বাড়ে। Learning Outcome: যৌক্তিক গঠন তৈরি হয়, কিন্তু আচরণ বা আবেগ নিয়ন্ত্রণের ব্যাখ্যা দেয় না।"
+],
 
     difficulty: "medium",
     concept: "Vygotsky – Self-regulation",
@@ -552,18 +589,24 @@ export const mockQuestion = [
       "কোলবার্গের তত্ত্বে নৈতিক বিকাশ ধাপে ধাপে অগ্রসর হয়।",
 
     elimination_en: [
-      "Option (0) ✅ A and R are true and R explains A.",
-      "Option (1) ❌ R clearly explains A.",
-      "Option (2) ❌ R is not false.",
-      "Option (3) ❌ Both statements are not false."
-    ],
+  "Option (0) ✅ Correct – KEYWORD: Stage-wise Moral Progression. Assertion (A) is true because Kohlberg explained that children initially judge actions based on consequences (Pre-conventional level: reward and punishment) and gradually move toward understanding that rules and laws are social agreements that can be modified for justice (Post-conventional level). Reason (R) is also true, as Kohlberg proposed that moral reasoning develops progressively through structured stages. Example: A young child says, 'Stealing is wrong because you will be punished.' An older adolescent may say, 'If a law is unfair, it should be changed.' Learning Outcome: Moral reasoning becomes more abstract, principled and justice-oriented over time. Therefore, (R) correctly explains (A).",
 
-    elimination_bn: [
-      "Option (0) ✅ A ও R উভয়ই সত্য এবং R, A-কে ব্যাখ্যা করে।",
-      "Option (1) ❌ R, A-এর ব্যাখ্যা দেয়।",
-      "Option (2) ❌ R মিথ্যা নয়।",
-      "Option (3) ❌ উভয় বক্তব্য মিথ্যা নয়।"
-    ],
+  "Option (1) ❌ Explanation-separation trap. Although both statements are true, this option incorrectly assumes that (R) does not explain (A). In reality, the idea of stage-wise progression directly explains how children move from consequence-based morality to flexible, principle-based reasoning.",
+
+  "Option (2) ❌ Truth-value trap. Assertion (A) is accurate because it reflects the transition from Pre-conventional to Post-conventional morality. Reason (R) is also correct, as Kohlberg clearly stated that moral development occurs in invariant stages.",
+
+  "Option (3) ❌ Concept-negation trap. Both (A) and (R) align with Kohlberg’s theory. Denying both statements indicates misunderstanding of moral stage development."
+],
+
+elimination_bn: [
+  "Option (0) ✅ সঠিক – KEYWORD: ধাপে ধাপে নৈতিক বিকাশ। (A) সত্য কারণ কোলবার্গ দেখিয়েছেন যে শিশুরা প্রথমে কাজের পরিণতির ভিত্তিতে ভালো-মন্দ বিচার করে (Pre-conventional স্তর) এবং পরে নিয়ম ও আইনকে সামাজিক চুক্তি হিসেবে দেখে যা প্রয়োজনে পরিবর্তনযোগ্য (Post-conventional স্তর)। (R) ও সত্য, কারণ কোলবার্গ বলেন নৈতিক বিকাশ নির্দিষ্ট ধাপে অগ্রসর হয়। উদাহরণ: ছোট শিশু বলে, 'চুরি করলে শাস্তি হবে তাই ভুল।' বড় কিশোর বলে, 'আইন অন্যায় হলে তা পরিবর্তন করা উচিত।' Learning Outcome: নৈতিক চিন্তা ধীরে ধীরে ন্যায় ও নীতিভিত্তিক হয়ে ওঠে। তাই (R), (A)-এর সঠিক ব্যাখ্যা।",
+
+  "Option (1) ❌ ব্যাখ্যা বিচ্ছিন্নতা ফাঁদ। এখানে ধরে নেওয়া হয়েছে (R) (A)-কে ব্যাখ্যা করে না। কিন্তু বাস্তবে ধাপে ধাপে বিকাশের ধারণাই ব্যাখ্যা করে কিভাবে শিশু পরিণতি-ভিত্তিক চিন্তা থেকে নীতি-ভিত্তিক চিন্তায় অগ্রসর হয়।",
+
+  "Option (2) ❌ সত্য-মিথ্যা ফাঁদ। (A) সত্য কারণ এটি Pre-conventional থেকে Post-conventional অগ্রগতি বোঝায়। (R) ও সত্য কারণ কোলবার্গ নৈতিক বিকাশকে ধাপভিত্তিক বলেছেন।",
+
+  "Option (3) ❌ ধারণা অস্বীকার ফাঁদ। উভয় বক্তব্যই কোলবার্গের তত্ত্বের সাথে সামঞ্জস্যপূর্ণ। দুটোই মিথ্যা বলা সম্পূর্ণ ভুল।"
+],
 
     difficulty: "medium",
     concept: "Kohlberg – Moral Development",
@@ -610,18 +653,24 @@ export const mockQuestion = [
       "সঙ্গীতময় বুদ্ধিমত্তা পরিবেশন, ছন্দ ও সৃষ্টির দক্ষতার সাথে সম্পর্কিত।",
 
     elimination_en: [
-      "Option (0) ❌ This describes interpersonal, not intrapersonal intelligence.",
-      "Option (1) ❌ Dance and athletic abilities relate to bodily-kinesthetic intelligence.",
-      "Option (2) ✅ Musical intelligence involves performance and composition skills.",
-      "Option (3) ❌ Appreciating the natural world relates to naturalistic intelligence."
-    ],
+  "Option (0) ❌ TRAP: Intrapersonal vs Interpersonal Confusion. Intrapersonal intelligence refers to understanding one’s own feelings, strengths and motivations. However, the description 'skill in understanding and relating to others' actually defines Interpersonal intelligence. Example: A student who understands classmates’ emotions and works well in a team demonstrates interpersonal intelligence, not intrapersonal. Learning Outcome: Clear distinction between self-awareness and social awareness prevents conceptual confusion.",
 
-    elimination_bn: [
-      "Option (0) ❌ এটি আন্তর্ব্যক্তিক বুদ্ধিমত্তার বৈশিষ্ট্য।",
-      "Option (1) ❌ নৃত্য ও ক্রীড়া দেহগত-কৌশলগত বুদ্ধিমত্তার অন্তর্ভুক্ত।",
-      "Option (2) ✅ সঙ্গীতময় বুদ্ধিমত্তা পরিবেশন ও সৃষ্টির দক্ষতার সাথে যুক্ত।",
-      "Option (3) ❌ প্রকৃতি উপলব্ধি প্রাকৃতিক বুদ্ধিমত্তার বৈশিষ্ট্য।"
-    ],
+  "Option (1) ❌ TRAP: Logical vs Bodily-Kinesthetic Confusion. Logical-Mathematical intelligence involves reasoning, numerical ability and problem-solving. Dance and athletic abilities belong to Bodily-Kinesthetic intelligence. Example: A student solving algebraic equations shows logical intelligence, whereas excelling in sports reflects bodily-kinesthetic skills. Learning Outcome: Differentiating cognitive reasoning from physical coordination strengthens conceptual clarity.",
+
+  "Option (2) ✅ Correct – KEYWORD: Musical Intelligence. Musical intelligence includes sensitivity to rhythm, tone, melody and the ability to perform or compose music. Example: A child who can identify different musical notes or create original tunes demonstrates musical intelligence. Learning Outcome: Recognition of artistic and auditory abilities as distinct intellectual strengths.",
+
+  "Option (3) ❌ TRAP: Spatial vs Naturalistic Confusion. Spatial intelligence involves visualizing, designing and understanding spatial relationships (e.g., drawing maps or diagrams). Appreciating the natural world, such as identifying plants and animals, belongs to Naturalistic intelligence. Example: A student who easily identifies bird species shows naturalistic intelligence, not spatial. Learning Outcome: Accurate classification of intelligence domains improves theoretical understanding."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: অন্তর্ব্যক্তিক ও আন্তর্ব্যক্তিক বিভ্রান্তি। অন্তর্ব্যক্তিক বুদ্ধিমত্তা নিজের অনুভূতি ও আত্ম-সচেতনতার সাথে সম্পর্কিত। অন্যদের বোঝা ও সম্পর্ক স্থাপন করা আন্তর্ব্যক্তিক বুদ্ধিমত্তার বৈশিষ্ট্য। উদাহরণ: সহপাঠীদের অনুভূতি বুঝে দলগত কাজে সফল হওয়া আন্তর্ব্যক্তিক দক্ষতা। Learning Outcome: আত্ম-সচেতনতা ও সামাজিক দক্ষতার পার্থক্য স্পষ্ট হয়।",
+
+  "Option (1) ❌ ফাঁদ: যৌক্তিক ও দেহগত বিভ্রান্তি। যৌক্তিক-গাণিতিক বুদ্ধিমত্তা যুক্তি ও সংখ্যাগত দক্ষতার সাথে সম্পর্কিত। নৃত্য ও ক্রীড়া দক্ষতা দেহগত-কৌশলগত বুদ্ধিমত্তার অন্তর্গত। উদাহরণ: গণিত সমস্যা সমাধান যৌক্তিক দক্ষতা, আর খেলাধুলায় পারদর্শিতা দেহগত দক্ষতা। Learning Outcome: জ্ঞানীয় ও শারীরিক দক্ষতার পার্থক্য পরিষ্কার হয়।",
+
+  "Option (2) ✅ সঠিক – KEYWORD: সঙ্গীতময় বুদ্ধিমত্তা। এটি ছন্দ, সুর, সঙ্গীত পরিবেশন ও সৃষ্টির দক্ষতার সাথে যুক্ত। উদাহরণ: শিশু সঠিক সুর চিনতে পারে বা নতুন সুর সৃষ্টি করে। Learning Outcome: শিল্প ও শ্রবণভিত্তিক ক্ষমতাকে স্বতন্ত্র বুদ্ধিমত্তা হিসেবে চিহ্নিত করা যায়।",
+
+  "Option (3) ❌ ফাঁদ: স্থানিক ও প্রাকৃতিক বিভ্রান্তি। স্থানিক বুদ্ধিমত্তা মানে চিত্র কল্পনা ও নকশা বোঝার ক্ষমতা। প্রকৃতি উপলব্ধি প্রাকৃতিক বুদ্ধিমত্তার অংশ। উদাহরণ: মানচিত্র আঁকা স্থানিক দক্ষতা, আর গাছপালা চেনা প্রাকৃতিক দক্ষতা। Learning Outcome: বুদ্ধিমত্তার ধরনগুলোর সঠিক মিল বোঝা সহজ হয়।"
+],
 
     difficulty: "medium",
     concept: "Multiple Intelligence – Gardner",
@@ -630,118 +679,130 @@ export const mockQuestion = [
   },
 
   /* ================= Q12 ================= */
-  {
-    id: "paper1_cdp_12",
-    type: "MOCK",
-    subject: "CDP",
-    exam_session: "January 2024",
-    source: "CTET January 2024",
-    is_exam_question: true,
+{
+  id: "paper1_cdp_12",
+  type: "MOCK",
+  subject: "CDP",
+  exam_session: "January 2024",
+  source: "CTET January 2024",
+  is_exam_question: true,
 
-    q_en:
-      "Which of the following statements is not correct about learning ?",
+  q_en:
+    "Which of the following statements is not correct about learning ?",
 
-    q_bn:
-      "শেখা সম্পর্কে নিচের কোন বক্তব্যটি সঠিক নয়?",
+  q_bn:
+    "শেখা সম্পর্কে নিচের কোন বক্তব্যটি সঠিক নয়?",
 
-    options_en: [
-      "Learning depends on learner’s previous knowledge",
-      "Learning implies reorganisation of prior conceptual schemes",
-      "Learning is facilitated by social action",
-      "Learning as a product rather than a process"
-    ],
+  options_en: [
+    "Learning depends on learner’s previous knowledge",
+    "Learning implies reorganisation of prior conceptual schemes",
+    "Learning is facilitated by social action",
+    "Learning as a product rather than a process"
+  ],
 
-    options_bn: [
-      "শেখা শিক্ষার্থীর পূর্ব জ্ঞানের উপর নির্ভর করে",
-      "শেখা মানে পূর্ব ধারণার পুনর্গঠন",
-      "শেখা সামাজিক ক্রিয়ার মাধ্যমে সহজ হয়",
-      "শেখা একটি প্রক্রিয়া নয় বরং একটি উৎপাদ"
-    ],
+  options_bn: [
+    "শেখা শিক্ষার্থীর পূর্ব জ্ঞানের উপর নির্ভর করে",
+    "শেখা মানে পূর্ব ধারণার পুনর্গঠন",
+    "শেখা সামাজিক ক্রিয়ার মাধ্যমে সহজ হয়",
+    "শেখা একটি প্রক্রিয়া নয় বরং একটি উৎপাদ"
+  ],
 
-    ans: 3,
+  ans: 3,
 
-    ans_reason_en:
-      "Learning is an ongoing process, not merely an end product.",
+  ans_reason_en:
+    "Learning is a continuous and dynamic process. It involves active construction, reflection and change over time. It is not merely a final product like marks or grades.",
 
-    ans_reason_bn:
-      "শেখা একটি ধারাবাহিক প্রক্রিয়া, কেবলমাত্র কোনো উৎপাদ নয়।",
+  ans_reason_bn:
+    "শেখা একটি ধারাবাহিক ও গতিশীল প্রক্রিয়া। এতে সক্রিয় জ্ঞান নির্মাণ, চিন্তা ও সময়ের সাথে পরিবর্তন জড়িত। এটি শুধু নম্বর বা ফলাফল নয়।",
 
-    elimination_en: [
-      "Option (0) ❌ Prior knowledge is fundamental to learning.",
-      "Option (1) ❌ Reorganisation of concepts is a core feature of learning.",
-      "Option (2) ❌ Social interaction supports learning.",
-      "Option (3) ✅ Learning is a process, so this statement is incorrect."
-    ],
+  elimination_en: [
+  "Option (0) ❌ KEYWORD: Prior Knowledge (Constructivist Foundation). Learning always builds upon what the learner already knows. According to constructivist theory, new knowledge is constructed by linking it with prior experiences. Example: A child who already understands addition learns subtraction more easily by connecting it with previous concepts. Learning Outcome: Stronger conceptual understanding and meaningful learning occur when prior knowledge is activated. Therefore, this statement is correct and cannot be the answer.",
 
-    elimination_bn: [
-      "Option (0) ❌ পূর্ব জ্ঞান শেখার ভিত্তি।",
-      "Option (1) ❌ ধারণার পুনর্গঠন শেখার মূল দিক।",
-      "Option (2) ❌ সামাজিক মিথস্ক্রিয়া শেখাকে সহায়তা করে।",
-      "Option (3) ✅ শেখা প্রক্রিয়া, তাই এটি ভুল বক্তব্য।"
-    ],
+  "Option (1) ❌ KEYWORD: Schema Reorganisation (Piagetian Concept). Learning is not mere accumulation of facts; it involves restructuring existing mental schemas through assimilation and accommodation. Example: A child who believes all animals that swim are fish modifies their concept after learning that whales are mammals. Learning Outcome: Conceptual change and deeper cognitive development occur. Hence, this statement is correct.",
 
-    difficulty: "easy",
-    concept: "Nature of Learning",
-    exam: "SAS-24 / CTET",
-    year: 2024
-  },
+  "Option (2) ❌ KEYWORD: Social Interaction (Vygotskian View). Learning is facilitated through dialogue, collaboration and guided support within the Zone of Proximal Development (ZPD). Example: A student solves a difficult problem with teacher guidance and later performs it independently. Learning Outcome: Gradual internalisation and independent competence develop. Therefore, this statement is also correct.",
+
+  "Option (3) ✅ Correct Answer – TRAP: Product-Oriented View. Learning is not merely a final outcome such as marks, grades or certificates. It is a continuous, dynamic and reflective process involving active engagement, thinking and change over time. Example: A student who improves problem-solving strategies over weeks demonstrates learning as a process, not just as a test score. Learning Outcome: Viewing learning as a process encourages growth mindset and lifelong learning. Hence, this statement is NOT correct."
+],
+
+elimination_bn: [
+  "Option (0) ❌ KEYWORD: পূর্ব জ্ঞান (নির্মাণবাদী ভিত্তি)। শেখা সবসময় পূর্ব জ্ঞানের উপর ভিত্তি করে গড়ে ওঠে। নতুন ধারণা পুরনো অভিজ্ঞতার সাথে যুক্ত হয়। উদাহরণ: যোগ জানা থাকলে বিয়োগ সহজে শেখা যায়। Learning Outcome: অর্থপূর্ণ ও স্থায়ী বোঝাপড়া তৈরি হয়। তাই এটি সঠিক বক্তব্য।",
+
+  "Option (1) ❌ KEYWORD: স্কিমার পুনর্গঠন (পিয়াজে)। শেখা মানে শুধু তথ্য যোগ করা নয়, বরং বিদ্যমান ধারণার পরিবর্তন। উদাহরণ: তিমি মাছ নয় জানার পরে ধারণা সংশোধন করা। Learning Outcome: গভীর ধারণাগত বিকাশ ঘটে। তাই এটিও সঠিক।",
+
+  "Option (2) ❌ KEYWORD: সামাজিক মিথস্ক্রিয়া (ভাইগটস্কি)। আলোচনা ও সহযোগিতার মাধ্যমে শেখা সহজ হয় (ZPD)। উদাহরণ: শিক্ষক সহায়তায় কঠিন সমস্যা সমাধান করা। Learning Outcome: ধীরে ধীরে স্বাধীন দক্ষতা গড়ে ওঠে। তাই এটিও সঠিক।",
+
+  "Option (3) ✅ সঠিক উত্তর – ফাঁদ: ফলকেন্দ্রিক দৃষ্টিভঙ্গি। শেখা শুধু নম্বর বা ফল নয়; এটি একটি ধারাবাহিক ও গতিশীল প্রক্রিয়া। উদাহরণ: সময়ের সাথে সমস্যা সমাধানের কৌশল উন্নত হওয়া। Learning Outcome: প্রক্রিয়াভিত্তিক দৃষ্টিভঙ্গি শিক্ষার্থীর বিকাশ ও দীর্ঘমেয়াদী শেখাকে উৎসাহিত করে। তাই এই বক্তব্যটি সঠিক নয়।"
+],
+
+  difficulty: "easy",
+  concept: "Nature of Learning – Constructivist View",
+  exam: "SAS-24 / CTET",
+  year: 2024
+},
 
   /* ================= Q13 ================= */
-  {
-    id: "paper1_cdp_13",
-    type: "MOCK",
-    subject: "CDP",
-    exam_session: "January 2024",
-    source: "CTET January 2024",
-    is_exam_question: true,
+{
+  id: "paper1_cdp_13",
+  type: "MOCK",
+  subject: "CDP",
+  exam_session: "January 2024",
+  source: "CTET January 2024",
+  is_exam_question: true,
 
-    q_en:
-      "Problem solving is fostered by :",
+  q_en:
+    "Problem solving is fostered by :",
 
-    q_bn:
-      "সমস্যা সমাধান বৃদ্ধি পায় —",
+  q_bn:
+    "সমস্যা সমাধান বৃদ্ধি পায় —",
 
-    options_en: [
-      "Divergent thinking",
-      "Functional fixedness",
-      "Passive imitation",
-      "Response set"
-    ],
+  options_en: [
+    "Divergent thinking",
+    "Functional fixedness",
+    "Passive imitation",
+    "Response set"
+  ],
 
-    options_bn: [
-      "বিস্তারমূলক চিন্তন",
-      "কার্যগত স্থিরতা",
-      "নিষ্ক্রিয় অনুকরণ",
-      "প্রতিক্রিয়া সেট"
-    ],
+  options_bn: [
+    "বিস্তারমূলক চিন্তন",
+    "কার্যগত স্থিরতা",
+    "নিষ্ক্রিয় অনুকরণ",
+    "প্রতিক্রিয়া সেট"
+  ],
 
-    ans: 0,
+  ans: 0,
 
-    ans_reason_en:
-      "Divergent thinking encourages multiple approaches and solutions.",
+  ans_reason_en:
+    "Divergent thinking promotes generation of multiple ideas, flexible approaches and creative solutions. It enhances higher-order thinking and supports effective problem solving.",
 
-    ans_reason_bn:
-      "বিস্তারমূলক চিন্তন একাধিক সমাধান ও দৃষ্টিভঙ্গি তৈরি করে।",
+  ans_reason_bn:
+    "বিস্তারমূলক চিন্তন একাধিক ধারণা, নমনীয় পদ্ধতি ও সৃজনশীল সমাধান তৈরি করতে সাহায্য করে। এটি উচ্চতর চিন্তন দক্ষতা বৃদ্ধি করে এবং কার্যকর সমস্যা সমাধানকে সমর্থন করে।",
 
-    elimination_en: [
-      "Option (0) ✅ Divergent thinking promotes flexible problem solving.",
-      "Option (1) ❌ Functional fixedness restricts thinking.",
-      "Option (2) ❌ Passive imitation does not involve problem solving.",
-      "Option (3) ❌ Response set limits alternative thinking."
-    ],
+  elimination_en: [
+  "Option (0) ✅ Correct – KEYWORD: Divergent Thinking (Creative Expansion). Divergent thinking encourages generating multiple ideas, exploring different perspectives and thinking beyond a single correct answer. J.P. Guilford associated divergent thinking with creativity and flexible problem-solving. Example: When students are asked to list different uses of a brick, they produce many varied responses such as building, paperweight, art material or door stopper. Learning Outcome: Flexible thinking, originality and higher-order problem-solving skills develop.",
 
-    elimination_bn: [
-      "Option (0) ✅ বিস্তারমূলক চিন্তন সমস্যা সমাধান বাড়ায়।",
-      "Option (1) ❌ কার্যগত স্থিরতা চিন্তাকে সীমাবদ্ধ করে।",
-      "Option (2) ❌ নিষ্ক্রিয় অনুকরণে সমস্যা সমাধান হয় না।",
-      "Option (3) ❌ প্রতিক্রিয়া সেট বিকল্প চিন্তা বাধা দেয়।"
-    ],
+  "Option (1) ❌ TRAP: Functional Fixedness (Cognitive Barrier). Functional fixedness restricts thinking by limiting an object to its traditional use. Example: A student cannot imagine using a coin as a screwdriver because they only see it as money. Learning Outcome: Creativity is blocked and problem-solving becomes rigid and limited.",
 
-    difficulty: "easy",
-    concept: "Problem Solving",
-    exam: "SAS-24 / CTET",
-    year: 2024
-  },
+  "Option (2) ❌ TRAP: Passive Imitation (Surface Learning). Passive imitation involves copying others without independent reasoning. Example: A student simply copies a solution from the board without understanding the steps. Learning Outcome: There is minimal conceptual understanding and weak independent problem-solving ability.",
+
+  "Option (3) ❌ TRAP: Response Set / Mental Set (Rigid Strategy). Response set refers to repeatedly using the same strategy even when it is not effective. Example: A learner keeps applying the same formula to all math problems even when the question requires a different approach. Learning Outcome: Lack of flexibility prevents effective and innovative problem-solving."
+],
+
+elimination_bn: [
+  "Option (0) ✅ সঠিক – KEYWORD: বিস্তারমূলক চিন্তন (সৃজনশীল বিস্তার)। বিস্তারমূলক চিন্তনে একাধিক ধারণা তৈরি হয় এবং বিভিন্ন দৃষ্টিভঙ্গি অনুসন্ধান করা হয়। Guilford-এর মতে এটি সৃজনশীলতার সাথে সম্পর্কিত। উদাহরণ: ইটের বিভিন্ন ব্যবহার ভাবতে বলা হলে শিক্ষার্থীরা বহু উত্তর দেয়। Learning Outcome: নমনীয় চিন্তা ও সৃজনশীল সমস্যা সমাধান দক্ষতা বৃদ্ধি পায়।",
+
+  "Option (1) ❌ ফাঁদ: কার্যগত স্থিরতা (মানসিক বাধা)। এটি বস্তু বা ধারণাকে শুধু প্রচলিত ব্যবহারে সীমাবদ্ধ করে। উদাহরণ: মুদ্রাকে শুধুই টাকা হিসেবে দেখা। Learning Outcome: সৃজনশীলতা বাধাগ্রস্ত হয় এবং সমস্যা সমাধান সীমিত হয়ে যায়।",
+
+  "Option (2) ❌ ফাঁদ: নিষ্ক্রিয় অনুকরণ (উপরিভাগীয় শেখা)। উদাহরণ: বোর্ড থেকে সমাধান কপি করা কিন্তু বোঝা নয়। Learning Outcome: গভীর বোঝাপড়া ও স্বাধীন চিন্তা তৈরি হয় না।",
+
+  "Option (3) ❌ ফাঁদ: প্রতিক্রিয়া সেট / মানসিক সেট। একই পদ্ধতি বারবার ব্যবহার করা যদিও তা উপযুক্ত নয়। উদাহরণ: সব সমস্যায় একই সূত্র প্রয়োগ করা। Learning Outcome: নমনীয়তা কমে যায় এবং কার্যকর সমস্যা সমাধান ব্যাহত হয়।"
+],
+
+  difficulty: "easy",
+  concept: "Problem Solving – Divergent Thinking",
+  exam: "SAS-24 / CTET",
+  year: 2024
+},
 
   /* ================= Q14 ================= */
   {
@@ -781,18 +842,24 @@ export const mockQuestion = [
       "দ্বিতীয় ধাপে শিশুরা নিজের লাভ ও স্বার্থকে গুরুত্ব দেয়।",
 
     elimination_en: [
-      "Option (0) ❌ Stage 1 is obedience and punishment orientation.",
-      "Option (1) ✅ Stage 2 is self-centred and reward-oriented.",
-      "Option (2) ❌ Stage 3 focuses on social approval.",
-      "Option (3) ❌ Stage 5 involves social contract and ethics."
-    ],
+  "Option (0) ❌ TRAP: Stage 1 – Obedience & Punishment Orientation. In the first stage of the first level (Pre-conventional), children judge actions based on fear of punishment, not personal benefit. Example: A child says, 'I should not steal because I will be punished.' Learning Outcome: Moral reasoning is authority-based and consequence-driven, not self-benefit oriented.",
 
-    elimination_bn: [
-      "Option (0) ❌ প্রথম ধাপ শাস্তি ও আনুগত্যের উপর ভিত্তি করে।",
-      "Option (1) ✅ দ্বিতীয় ধাপে আত্মস্বার্থ ও লাভ গুরুত্বপূর্ণ।",
-      "Option (2) ❌ তৃতীয় ধাপে সামাজিক অনুমোদন গুরুত্বপূর্ণ।",
-      "Option (3) ❌ পঞ্চম ধাপ নৈতিক নীতির সাথে সম্পর্কিত।"
-    ],
+  "Option (1) ✅ Correct – KEYWORD: Stage 2 – Instrumental / Self-Interest Orientation. At this stage, children view morality in terms of personal gain and reciprocal benefit ('You help me, I help you'). Example: A child agrees to share toys only if they get something in return. Learning Outcome: Moral reasoning becomes reward-oriented and self-centred, focusing on personal advantage.",
+
+  "Option (2) ❌ TRAP: Stage 3 – Good Boy / Good Girl Orientation (Conventional Level). At this stage, children seek social approval and want to be seen as 'good' by others. Example: A child helps a classmate to gain appreciation from teachers and friends. Learning Outcome: Moral reasoning shifts toward maintaining relationships and approval, not self-centred benefit.",
+
+  "Option (3) ❌ TRAP: Stage 5 – Social Contract Orientation (Post-conventional Level). At this advanced stage, individuals understand that laws are social agreements and may be changed for justice. Example: A person argues that an unfair law should be modified for societal welfare. Learning Outcome: Moral reasoning becomes principle-based and justice-oriented, far beyond self-centred thinking."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: প্রথম ধাপ – শাস্তি ও আনুগত্য। এখানে শিশু শাস্তির ভয়ে কাজ করে, নিজের লাভের জন্য নয়। উদাহরণ: 'চুরি করলে শাস্তি হবে তাই করব না।' Learning Outcome: নৈতিকতা কর্তৃত্ব ও শাস্তিভিত্তিক হয়।",
+
+  "Option (1) ✅ সঠিক – KEYWORD: দ্বিতীয় ধাপ – আত্মস্বার্থমূলক ধারা। এই ধাপে শিশু নিজের লাভ ও বিনিময়কে গুরুত্ব দেয় ('তুমি দিলে আমিও দেব।')। উদাহরণ: খেলনা ভাগ করবে যদি কিছু পায়। Learning Outcome: নৈতিক বিচার আত্মকেন্দ্রিক ও পুরস্কারভিত্তিক হয়।",
+
+  "Option (2) ❌ ফাঁদ: তৃতীয় ধাপ – ভালো ছেলে/মেয়ে ধারা। এখানে সামাজিক অনুমোদন ও সম্পর্ক রক্ষা গুরুত্বপূর্ণ। উদাহরণ: শিক্ষক প্রশংসা করবে বলে সাহায্য করা। Learning Outcome: সামাজিক স্বীকৃতি গুরুত্বপূর্ণ হয়, আত্মস্বার্থ নয়।",
+
+  "Option (3) ❌ ফাঁদ: পঞ্চম ধাপ – সামাজিক চুক্তি। এখানে ব্যক্তি ন্যায় ও নীতির ভিত্তিতে আইন পরিবর্তনের কথা ভাবে। উদাহরণ: অন্যায় আইন সংশোধনের দাবি করা। Learning Outcome: নৈতিক চিন্তা নীতি-ভিত্তিক ও সমাজমুখী হয়, আত্মকেন্দ্রিক নয়।"
+],
 
     difficulty: "medium",
     concept: "Kohlberg – Moral Development",
@@ -838,18 +905,24 @@ export const mockQuestion = [
       "অন্তর্ভুক্তিমূলক শিক্ষার জন্য বৈচিত্র্যময় সংস্কৃতি ও পটভূমির প্রতি সচেতনতা ও সংবেদনশীলতা প্রয়োজন।",
 
     elimination_en: [
-      "Option (0) ✅ Promotes respect and inclusion of diversity.",
-      "Option (1) ❌ Encouraging stereotypes leads to exclusion.",
-      "Option (2) ❌ Isolation contradicts inclusive practices.",
-      "Option (3) ❌ Same-ability grouping ignores diversity."
-    ],
+  "Option (0) ✅ Correct – KEYWORD: Awareness & Sensitization toward Diversity. Inclusion of disadvantaged groups requires respect for cultural, social and linguistic diversity. Teachers must develop empathy and sensitivity to students’ backgrounds. Example: A teacher incorporates local traditions, languages and experiences into classroom discussions so that all students feel represented. Learning Outcome: Students develop belongingness, mutual respect and equal participation in learning.",
 
-    elimination_bn: [
-      "Option (0) ✅ বৈচিত্র্যের প্রতি সম্মান ও অন্তর্ভুক্তি বাড়ায়।",
-      "Option (1) ❌ ধ্যানধারণা উৎসাহিত করলে বর্জন হয়।",
-      "Option (2) ❌ আলাদা করা অন্তর্ভুক্তিমূলক নয়।",
-      "Option (3) ❌ সমান সক্ষমতার দল বৈচিত্র্য উপেক্ষা করে।"
-    ],
+  "Option (1) ❌ TRAP: Identity-Based Stereotyping. Encouraging stereotypes reinforces prejudice and discrimination. Example: Labeling students from certain communities as 'weak in academics' creates bias and low expectations. Learning Outcome: Such practices reduce confidence, create exclusion and hinder equitable learning opportunities.",
+
+  "Option (2) ❌ TRAP: Social Isolation / Segregation. Separating students on the basis of caste, class, gender or community directly contradicts inclusive education principles. Example: Making disadvantaged students sit separately in the classroom. Learning Outcome: Isolation damages peer interaction, social development and self-esteem.",
+
+  "Option (3) ❌ TRAP: Same-Ability Grouping (Homogeneous Grouping). Grouping students only by similar ability ignores diversity and may marginalize weaker learners. Example: Placing all 'low achievers' in one group without support. Learning Outcome: It limits peer learning and collaborative growth, which are central to inclusive classrooms."
+],
+
+elimination_bn: [
+  "Option (0) ✅ সঠিক – KEYWORD: বৈচিত্র্যের প্রতি সচেতনতা ও সংবেদনশীলতা। অন্তর্ভুক্তিমূলক শিক্ষায় বিভিন্ন সংস্কৃতি, ভাষা ও সামাজিক পটভূমির প্রতি সম্মান জরুরি। উদাহরণ: শিক্ষক পাঠদানে স্থানীয় অভিজ্ঞতা ও সংস্কৃতি অন্তর্ভুক্ত করেন যাতে সবাই নিজেকে প্রতিনিধিত্বশীল মনে করে। Learning Outcome: শিক্ষার্থীদের মধ্যে অন্তর্ভুক্তির অনুভূতি, পারস্পরিক সম্মান ও সক্রিয় অংশগ্রহণ বৃদ্ধি পায়।",
+
+  "Option (1) ❌ ফাঁদ: পরিচয়ভিত্তিক ধ্যানধারণা। স্টেরিওটাইপ প্রচার করলে বৈষম্য ও পক্ষপাত তৈরি হয়। উদাহরণ: কোনো গোষ্ঠীর শিক্ষার্থীদের কম মেধাবী বলা। Learning Outcome: আত্মবিশ্বাস কমে যায় এবং সমান সুযোগ বাধাগ্রস্ত হয়।",
+
+  "Option (2) ❌ ফাঁদ: সামাজিক বিচ্ছিন্নতা। সামাজিক পরিচয়ের ভিত্তিতে আলাদা করা অন্তর্ভুক্তিমূলক শিক্ষার সম্পূর্ণ বিপরীত। উদাহরণ: বঞ্চিত শিক্ষার্থীদের আলাদা বসানো। Learning Outcome: সামাজিক বিকাশ ও আত্মসম্মান ক্ষতিগ্রস্ত হয়।",
+
+  "Option (3) ❌ ফাঁদ: সমান সক্ষমতার দল (Homogeneous grouping)। শুধু সক্ষমতার ভিত্তিতে দল করলে বৈচিত্র্য ও পারস্পরিক শেখা কমে যায়। উদাহরণ: দুর্বল শিক্ষার্থীদের একসাথে রেখে আলাদা করা। Learning Outcome: সহযোগিতামূলক শেখা ও সামগ্রিক বিকাশ সীমিত হয়।"
+],
 
     difficulty: "easy",
     concept: "Inclusive Education",
@@ -952,18 +1025,24 @@ export const mockQuestion = [
       "প্রক্সিমোডিস্টাল বিকাশ শরীরের কেন্দ্র থেকে প্রান্তের দিকে ঘটে।",
 
     elimination_en: [
-      "Option (0) ✅ Limbs develop before hands and feet.",
-      "Option (1) ❌ Head to toe describes cephalocaudal principle.",
-      "Option (2) ❌ Refers to language development, not proximodistal.",
-      "Option (3) ❌ Fine motor skills develop later."
-    ],
+  "Option (0) ❌ TRAP: End-Loaded (Summative) Feedback. Feedback that is given only at the end of a task functions more as evaluation than improvement. According to formative assessment principles (Black & Wiliam), feedback should support learning during the process. Example: If a student receives comments only after the final exam, they cannot revise their mistakes. Learning Outcome: Limited opportunity for reflection and correction reduces skill development.",
 
-    elimination_bn: [
-      "Option (0) ✅ আগে বাহু-পা, পরে হাত-পা আঙুলের বিকাশ হয়।",
-      "Option (1) ❌ এটি সেফালোকডাল নীতি।",
-      "Option (2) ❌ ভাষা বিকাশের সাথে সম্পর্কিত।",
-      "Option (3) ❌ সূক্ষ্ম মোটর দক্ষতা পরে বিকশিত হয়।"
-    ],
+  "Option (1) ❌ TRAP: Vague / Generic Feedback. Comments such as 'Good work' or 'Try harder' do not specify what was done well or what needs improvement. Effective feedback must be actionable. Example: Writing 'Improve your answer' without indicating which part is weak leaves the learner uncertain. Learning Outcome: Lack of clarity prevents strategic improvement and weakens metacognitive growth.",
+
+  "Option (2) ❌ TRAP: Outcome-Centred Feedback. Focusing only on marks or final performance shifts attention to grades rather than learning strategies. Example: Saying 'You scored 8/10' without explaining errors or suggesting better approaches. Learning Outcome: Students may develop performance orientation (grade focus) instead of mastery orientation (learning focus).",
+
+  "Option (3) ✅ Correct – KEYWORD: Timely, Specific & Feedforward-Oriented Feedback. Effective feedback is provided during the task, clearly identifies strengths and areas for improvement, and guides the next steps (feedforward). Example: While solving a math problem, the teacher says, 'Your method is correct, but check your calculation in step three.' Learning Outcome: Immediate correction, deeper understanding, improved self-regulation and development of growth mindset."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: শেষে মূল্যায়নধর্মী প্রতিক্রিয়া। শুধু শেষে মন্তব্য দিলে তা উন্নতির চেয়ে মূল্যায়নের মতো কাজ করে। Formative assessment অনুযায়ী প্রতিক্রিয়া শেখার সময়ই দেওয়া উচিত। উদাহরণ: পরীক্ষার পরে ভুল জানানো কিন্তু সংশোধনের সুযোগ না দেওয়া। Learning Outcome: প্রতিফলন ও সংশোধনের সুযোগ কমে যায়।",
+
+  "Option (1) ❌ ফাঁদ: অস্পষ্ট বা সাধারণ প্রতিক্রিয়া। 'ভালো করেছ' বা 'আরও চেষ্টা করো' — এগুলো কার্যকর নয় কারণ নির্দিষ্ট নির্দেশনা নেই। উদাহরণ: কোথায় ভুল হয়েছে তা না বলে শুধু 'Improve' লেখা। Learning Outcome: কৌশলগত উন্নতি বাধাগ্রস্ত হয় এবং মেটাকগনিটিভ বিকাশ কমে।",
+
+  "Option (2) ❌ ফাঁদ: ফলাফলকেন্দ্রিক প্রতিক্রিয়া। শুধু নম্বরের উপর জোর দিলে শেখার প্রক্রিয়া উপেক্ষিত হয়। উদাহরণ: '৮/১০ পেয়েছ' কিন্তু কীভাবে উন্নতি করবে তা বলা হয় না। Learning Outcome: শিক্ষার্থী নম্বরমুখী হয়, দক্ষতা উন্নয়নমুখী নয়।",
+
+  "Option (3) ✅ সঠিক – KEYWORD: সময়োপযোগী, নির্দিষ্ট ও ভবিষ্যতমুখী প্রতিক্রিয়া (Feedforward)। কার্যকর প্রতিক্রিয়া শেখার সময় দেওয়া হয় এবং পরবর্তী ধাপ নির্দেশ করে। উদাহরণ: গণিত সমাধানের সময় শিক্ষক বলেন, 'পদ্ধতি ঠিক, কিন্তু তৃতীয় ধাপে হিসাব আবার দেখো।' Learning Outcome: তাৎক্ষণিক সংশোধন, গভীর বোঝাপড়া, আত্মনিয়ন্ত্রণ ও উন্নত শেখা নিশ্চিত হয়।"
+],
 
     difficulty: "medium",
     concept: "Principles of Development",
@@ -1009,18 +1088,24 @@ export const mockQuestion = [
       "শিক্ষার্থীদের সাংস্কৃতিক পরিচয়কে গুরুত্ব দিলে অর্থবহ ও অন্তর্ভুক্তিমূলক শেখা সম্ভব হয়।",
 
     elimination_en: [
-      "Option (0) ✅ A and R are true and R explains A.",
-      "Option (1) ❌ R clearly explains A.",
-      "Option (2) ❌ R is not false.",
-      "Option (3) ❌ Both statements are not false."
-    ],
+  "Option (0) ✅ Correct – KEYWORD: Cultural Responsiveness & Identity Affirmation. Assertion (A) is true because inclusive and democratic curriculum frameworks emphasize that learners’ cultural knowledge and lived experiences must be valued in school education. Reason (R) is also true, as research in culturally responsive pedagogy shows that when students’ identities are affirmed, their engagement, confidence and comprehension improve. Example: When a teacher includes local folklore, community history or home languages in lessons, students feel recognised and participate more actively. Learning Outcome: Enhanced belongingness, meaningful learning and academic achievement. Therefore, (R) correctly explains (A).",
 
-    elimination_bn: [
-      "Option (0) ✅ A ও R উভয়ই সত্য এবং R, A-কে ব্যাখ্যা করে।",
-      "Option (1) ❌ R, A-এর ব্যাখ্যা দেয়।",
-      "Option (2) ❌ R মিথ্যা নয়।",
-      "Option (3) ❌ উভয় বক্তব্য মিথ্যা নয়।"
-    ],
+  "Option (1) ❌ Explanation-Separation Trap. Although both statements are true, this option incorrectly assumes that (R) does not explain (A). In reality, valuing cultural knowledge in the curriculum is justified precisely because supporting cultural identity strengthens learning processes.",
+
+  "Option (2) ❌ Truth-Value Trap. Assertion (A) is valid under inclusive curriculum principles, and Reason (R) is supported by socio-cultural learning theory. Denying (R) would contradict research showing that identity affirmation improves learning outcomes.",
+
+  "Option (3) ❌ Concept-Negation Trap. Both (A) and (R) align with inclusive education, multicultural education and socio-cultural theory. Saying both are false reflects misunderstanding of culturally responsive teaching."
+],
+
+elimination_bn: [
+  "Option (0) ✅ সঠিক – KEYWORD: সাংস্কৃতিক সংবেদনশীলতা ও পরিচয় স্বীকৃতি। (A) সত্য কারণ অন্তর্ভুক্তিমূলক পাঠ্যক্রমে শিক্ষার্থীদের সাংস্কৃতিক জ্ঞান ও অভিজ্ঞতাকে মূল্য দেওয়া উচিত। (R) ও সত্য, কারণ শিক্ষার্থীর সাংস্কৃতিক পরিচয়কে স্বীকৃতি দিলে তার শেখার আগ্রহ, আত্মবিশ্বাস ও অংশগ্রহণ বৃদ্ধি পায়। উদাহরণ: শিক্ষক পাঠদানে স্থানীয় ইতিহাস, লোককাহিনি বা মাতৃভাষার ব্যবহার করলে শিক্ষার্থীরা নিজেকে অন্তর্ভুক্ত মনে করে। Learning Outcome: অন্তর্ভুক্তির অনুভূতি বৃদ্ধি, অর্থবহ শেখা এবং উন্নত শিক্ষাগত সাফল্য। তাই (R), (A)-এর সঠিক ব্যাখ্যা।",
+
+  "Option (1) ❌ ব্যাখ্যা বিচ্ছিন্নতা ফাঁদ। এখানে ধরা হয়েছে (R) (A)-কে ব্যাখ্যা করে না। কিন্তু বাস্তবে সাংস্কৃতিক পরিচয়কে সমর্থন করাই পাঠ্যক্রমে সাংস্কৃতিক জ্ঞানকে স্থান দেওয়ার মূল কারণ।",
+
+  "Option (2) ❌ সত্য-মিথ্যা ফাঁদ। (A) অন্তর্ভুক্তিমূলক শিক্ষার সাথে সামঞ্জস্যপূর্ণ এবং (R) সমাজ-সাংস্কৃতিক শিক্ষাতত্ত্ব দ্বারা সমর্থিত। তাই (R) মিথ্যা নয়।",
+
+  "Option (3) ❌ ধারণা অস্বীকার ফাঁদ। উভয় বক্তব্যই বহুসাংস্কৃতিক ও অন্তর্ভুক্তিমূলক শিক্ষার মূল নীতির সাথে সামঞ্জস্যপূর্ণ।"
+],
 
     difficulty: "medium",
     concept: "Culture & Curriculum",
@@ -1066,18 +1151,24 @@ export const mockQuestion = [
       "গঠনমূলক মূল্যায়নের উদ্দেশ্য শেখার উন্নতি, শিক্ষার্থীদের তুলনা নয়। মানদণ্ডভিত্তিক তুলনা সমাপনী মূল্যায়নের লক্ষণ।",
 
     elimination_en: [
-      "Option (0) ❌ Prior-knowledge trap: Checking what students already know helps teachers plan instruction, which is formative.",
-      "Option (1) ❌ Feedback trap: Ongoing feedback during class is the core purpose of formative assessment.",
-      "Option (3) ❌ Misconception trap: Identifying misconceptions helps correct learning while it is happening.",
-      "Option (2) ✅ Correct: Comparing students using standard criteria is evaluative and summative, not formative."
-    ],
+  "Option (0) ❌ KEYWORD: Diagnostic Assessment (Formative Start Point). Assessing prior knowledge at the beginning of a lesson helps teachers adapt instruction according to students’ readiness. Example: Before starting fractions, the teacher asks a few questions on division concepts. Learning Outcome: Instruction becomes responsive and misconceptions can be addressed early. Therefore, this is formative in nature.",
 
-    elimination_bn: [
-      "Option (0) ❌ পূর্বজ্ঞান ফাঁদ: পূর্বজ্ঞান জানা গঠনমূলক মূল্যায়নের অংশ।",
-      "Option (1) ❌ প্রতিক্রিয়া ফাঁদ: ধারাবাহিক প্রতিক্রিয়া গঠনমূলক মূল্যায়নের মূল উদ্দেশ্য।",
-      "Option (3) ❌ ভুল ধারণা ফাঁদ: ভুল ধারণা চিহ্নিত করা শেখা উন্নত করতে সাহায্য করে।",
-      "Option (2) ✅ সঠিক: মানদণ্ডভিত্তিক তুলনা সমাপনী মূল্যায়নের বৈশিষ্ট্য।"
-    ],
+  "Option (1) ❌ KEYWORD: Ongoing Feedback (Core Formative Principle). Assessment conducted during teaching to provide feedback supports real-time improvement. Example: While students solve problems, the teacher observes and guides them. Learning Outcome: Immediate adjustments enhance understanding and promote mastery. This clearly represents formative assessment.",
+
+  "Option (3) ❌ KEYWORD: Misconception Identification. One of the major goals of formative assessment is to identify and correct misconceptions during learning. Example: A teacher notices that students confuse area and perimeter and reteaches the concept. Learning Outcome: Conceptual clarity improves before final evaluation. Hence, this is formative.",
+
+  "Option (2) ✅ Correct – TRAP: Comparative / Summative Orientation. Comparing students against a fixed standard or ranking them reflects evaluative and summative assessment. Example: Publishing a merit list based on final scores. Learning Outcome: Focus shifts to performance comparison rather than improvement. Therefore, this is NOT formative assessment."
+],
+
+elimination_bn: [
+  "Option (0) ❌ KEYWORD: প্রাথমিক নির্ণয়মূলক মূল্যায়ন। নতুন বিষয় শুরুতে পূর্বজ্ঞান যাচাই করলে শিক্ষক পাঠ পরিকল্পনা সমন্বয় করতে পারেন। উদাহরণ: ভগ্নাংশ পড়ানোর আগে ভাগ সম্পর্কে প্রশ্ন করা। Learning Outcome: শেখা শিক্ষার্থী-কেন্দ্রিক ও কার্যকর হয়। তাই এটি গঠনমূলক মূল্যায়ন।",
+
+  "Option (1) ❌ KEYWORD: ধারাবাহিক প্রতিক্রিয়া। শ্রেণিকক্ষে চলাকালীন মূল্যায়ন শিক্ষার্থীদের তাৎক্ষণিক উন্নতিতে সাহায্য করে। উদাহরণ: সমস্যা সমাধানের সময় শিক্ষক নির্দেশনা দেন। Learning Outcome: তাত্ক্ষণিক সংশোধন ও দক্ষতা বৃদ্ধি। এটি গঠনমূলক মূল্যায়নের মূল অংশ।",
+
+  "Option (3) ❌ KEYWORD: ভুল ধারণা শনাক্তকরণ। শেখার সময় ভুল ধারণা চিহ্নিত ও সংশোধন করা গঠনমূলক মূল্যায়নের গুরুত্বপূর্ণ লক্ষ্য। উদাহরণ: ক্ষেত্রফল ও পরিসীমা গুলিয়ে ফেললে শিক্ষক পুনরায় বোঝান। Learning Outcome: গভীর বোঝাপড়া নিশ্চিত হয়।",
+
+  "Option (2) ✅ সঠিক – ফাঁদ: তুলনামূলক / সমাপনী ধারা। নির্দিষ্ট মানদণ্ড অনুযায়ী শিক্ষার্থীদের তুলনা বা র‍্যাঙ্ক করা সমাপনী মূল্যায়নের বৈশিষ্ট্য। উদাহরণ: চূড়ান্ত পরীক্ষার ভিত্তিতে মেধা তালিকা প্রকাশ। Learning Outcome: উন্নতির চেয়ে প্রতিযোগিতার উপর জোর দেয়। তাই এটি গঠনমূলক মূল্যায়ন নয়।"
+],
 
     difficulty: "easy",
     concept: "Formative vs Summative Assessment",
@@ -1123,18 +1214,24 @@ export const mockQuestion = [
       "ডিসলেক্সিয়া একটি ভাষাভিত্তিক শেখার সমস্যা, যা মূলত ধ্বনিগত প্রক্রিয়াকরণকে প্রভাবিত করে।",
 
     elimination_en: [
-      "Option (0) ❌ Intelligence trap: Dyslexia is not related to creativity or intelligence level.",
-      "Option (2) ❌ Disorder-mix trap: Physical coordination problems are linked to dyspraxia, not dyslexia.",
-      "Option (3) ❌ Spatial trap: Spatial difficulties relate more to dyscalculia or visual-spatial issues.",
-      "Option (1) ✅ Correct: Difficulty in phonological processing is the defining feature of dyslexia."
-    ],
+  "Option (0) ❌ TRAP: Intelligence / Creativity Confusion. Dyslexia is not related to lack of creativity or intelligence. Many students with dyslexia demonstrate strong creative and analytical abilities. Example: A child may struggle with reading aloud but show excellent storytelling or drawing skills. Learning Outcome: Understanding that dyslexia affects language processing—not intelligence—prevents mislabeling students.",
 
-    elimination_bn: [
-      "Option (0) ❌ বুদ্ধিমত্তা ফাঁদ: ডিসলেক্সিয়া সৃজনশীলতার অভাব নয়।",
-      "Option (2) ❌ ব্যাধি-মিশ্রণ ফাঁদ: শারীরিক সমন্বয় সমস্যা ডাইপ্র্যাক্সিয়ার সাথে যুক্ত।",
-      "Option (3) ❌ স্থানিক ফাঁদ: স্থানিক সমস্যা ডিসলেক্সিয়ার মূল নয়।",
-      "Option (1) ✅ সঠিক: ধ্বনিগত প্রক্রিয়াকরণে অসুবিধাই ডিসলেক্সিয়ার প্রধান লক্ষণ।"
-    ],
+  "Option (2) ❌ TRAP: Disorder-Mix (Dyspraxia). Difficulty in physical coordination is typically associated with dyspraxia (Developmental Coordination Disorder), not dyslexia. Example: A child who struggles to tie shoelaces or coordinate movements may have dyspraxia. Learning Outcome: Correct differentiation ensures appropriate support strategies.",
+
+  "Option (3) ❌ TRAP: Spatial / Numerical Confusion. Spatial awareness difficulties are more commonly linked to dyscalculia or visual-spatial learning challenges. Example: A student who confuses directions or struggles with geometry may have spatial processing issues, not necessarily dyslexia. Learning Outcome: Proper identification supports targeted intervention.",
+
+  "Option (1) ✅ Correct – KEYWORD: Phonological Processing Deficit. Dyslexia is a language-based learning disability primarily affecting phonological processing—the ability to connect sounds with letters. Example: A child struggles to decode words, misreads similar-looking words, or finds it difficult to break words into sounds. Learning Outcome: Early phonics-based intervention improves reading fluency and comprehension."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: বুদ্ধিমত্তা বা সৃজনশীলতা বিভ্রান্তি। ডিসলেক্সিয়া সৃজনশীলতার অভাব বা কম বুদ্ধিমত্তা নয়। অনেক ডিসলেক্সিক শিক্ষার্থী সৃজনশীল কাজে দক্ষ। উদাহরণ: পড়তে অসুবিধা হলেও গল্প বলা বা আঁকায় পারদর্শী। Learning Outcome: ভুল ধারণা দূর হয় এবং শিক্ষার্থীর আত্মবিশ্বাস রক্ষা পায়।",
+
+  "Option (2) ❌ ফাঁদ: ব্যাধি-মিশ্রণ (ডাইপ্র্যাক্সিয়া)। শারীরিক সমন্বয়ে অসুবিধা সাধারণত ডাইপ্র্যাক্সিয়ার সাথে যুক্ত। উদাহরণ: জুতোর ফিতা বাঁধতে বা শরীর সমন্বয়ে সমস্যা। Learning Outcome: সঠিক সমস্যা শনাক্ত করলে উপযুক্ত সহায়তা দেওয়া যায়।",
+
+  "Option (3) ❌ ফাঁদ: স্থানিক বিভ্রান্তি। স্থানিক বা সংখ্যাগত সমস্যা বেশি দেখা যায় ডিসক্যালকুলিয়া বা ভিজ্যুয়াল-স্পেশাল সমস্যায়। উদাহরণ: দিক নির্ণয়ে বা জ্যামিতিতে সমস্যা। Learning Outcome: সঠিক পার্থক্য বোঝা জরুরি।",
+
+  "Option (1) ✅ সঠিক – KEYWORD: ধ্বনিগত প্রক্রিয়াকরণে ঘাটতি। ডিসলেক্সিয়া মূলত ভাষাভিত্তিক শেখার সমস্যা, যেখানে শব্দের ধ্বনি ও অক্ষরের সম্পর্ক বোঝায় অসুবিধা হয়। উদাহরণ: শব্দ ভেঙে পড়তে বা মিলিয়ে পড়তে সমস্যা। Learning Outcome: ধ্বনিভিত্তিক শিক্ষণ পদ্ধতি ব্যবহার করলে পড়ার দক্ষতা উন্নত হয়।"
+],
 
     difficulty: "easy",
     concept: "Learning Disability – Dyslexia",
@@ -1180,18 +1277,24 @@ export const mockQuestion = [
       "সমালোচনামূলক মূল্যায়নের জন্য তথ্য বিশ্লেষণ ও প্রমাণ ব্যবহার করা প্রয়োজন।",
 
     elimination_en: [
-      "Option (0) ❌ Recall trap: Definitions test memory, not evaluation.",
-      "Option (1) ❌ Opinion trap: Personal opinions may not be evidence-based.",
-      "Option (3) ❌ Comprehension trap: Summaries check understanding, not judgement.",
-      "Option (2) ✅ Correct: Using examples to validate a text demands analysis and evaluation."
-    ],
+  "Option (0) ❌ TRAP: Recall-Level Question (Remembering). Asking for a simple definition tests memory, not critical evaluation. Example: 'Define democracy.' This checks whether the student remembers information. Learning Outcome: Measures recall ability, but does not assess analytical or evaluative thinking.",
 
-    elimination_bn: [
-      "Option (0) ❌ স্মরণ ফাঁদ: সংজ্ঞা কেবল মুখস্থ যাচাই করে।",
-      "Option (1) ❌ মতামত ফাঁদ: ব্যক্তিগত মতামত প্রমাণভিত্তিক নাও হতে পারে।",
-      "Option (3) ❌ বোঝাপড়া ফাঁদ: সারাংশ বোঝা যাচাই করে, মূল্যায়ন নয়।",
-      "Option (2) ✅ সঠিক: উদাহরণ দিয়ে পাঠ যাচাই করা সমালোচনামূলক চিন্তা দাবি করে।"
-    ],
+  "Option (1) ❌ TRAP: Opinion-Based Question (Unstructured Response). Asking for personal opinion does not necessarily require evidence or logical justification. Example: 'Do you like the story?' Students may answer without analysing the text. Learning Outcome: Encourages expression, but not structured critical evaluation.",
+
+  "Option (3) ❌ TRAP: Comprehension-Level Question (Understanding). Asking for a summary tests whether the student understands the content. Example: 'Summarise the passage in your own words.' Learning Outcome: Demonstrates comprehension, but does not require judging validity or supporting arguments.",
+
+  "Option (2) ✅ Correct – KEYWORD: Evidence-Based Evaluation (Bloom’s Evaluate Level). Asking students to provide examples that validate the text requires analysing claims and supporting them with evidence. Example: 'Give examples from the text that justify the author’s argument.' Learning Outcome: Develops analytical reasoning, evidence-based judgement and critical evaluation skills."
+],
+
+elimination_bn: [
+  "Option (0) ❌ ফাঁদ: স্মরণস্তর (Remembering)। সংজ্ঞা জানতে চাওয়া মুখস্থ জ্ঞান যাচাই করে। উদাহরণ: 'গণতন্ত্রের সংজ্ঞা দাও।' Learning Outcome: স্মরণশক্তি যাচাই হয়, সমালোচনামূলক মূল্যায়ন নয়।",
+
+  "Option (1) ❌ ফাঁদ: মতামতভিত্তিক প্রশ্ন। ব্যক্তিগত মতামত প্রমাণভিত্তিক বিশ্লেষণ দাবি করে না। উদাহরণ: 'গল্পটি তোমার ভালো লেগেছে কি?' Learning Outcome: মত প্রকাশ হয়, কিন্তু যুক্তিভিত্তিক মূল্যায়ন হয় না।",
+
+  "Option (3) ❌ ফাঁদ: বোঝাপড়া স্তর (Understanding)। সারাংশ চাইলে বোঝাপড়া যাচাই হয়। উদাহরণ: 'পাঠের সারাংশ লেখো।' Learning Outcome: বিষয়বস্তু বোঝা যায়, কিন্তু বিচারমূলক বিশ্লেষণ নয়।",
+
+  "Option (2) ✅ সঠিক – KEYWORD: প্রমাণভিত্তিক মূল্যায়ন (Evaluate স্তর)। পাঠের দাবিকে সমর্থনকারী উদাহরণ চাইলে বিশ্লেষণ ও প্রমাণ ব্যবহার করতে হয়। উদাহরণ: 'লেখকের যুক্তি সমর্থন করে এমন উদাহরণ দাও।' Learning Outcome: সমালোচনামূলক চিন্তা, যুক্তি ও বিশ্লেষণ ক্ষমতা বৃদ্ধি পায়।"
+],
 
     difficulty: "medium",
     concept: "Critical Thinking",
@@ -1237,18 +1340,24 @@ export const mockQuestion = [
       "Impairment জৈবিক বা চিকিৎসাগত অবস্থা বোঝায়, আর disability দৈনন্দিন কার্যক্ষমতার সীমাবদ্ধতা বোঝায়।",
 
     elimination_en: [
-      "Option (1) ❌ Reverse-definition trap: Biological and functional meanings are swapped.",
-      "Option (2) ❌ Terminology trap: These terms are not used in standard disability definitions.",
-      "Option (3) ❌ Social-model confusion: Social factors influence disability but are not the definition here.",
-      "Option (0) ✅ Correct: Impairment = biological; disability = functional limitation."
-    ],
+  "Option (1) ❌ TRAP: Reversed Cause–Effect Relationship. This option incorrectly places disability as biological and impairment as functional. In reality, Impairment is the biological or structural condition (cause), while Disability is the functional limitation that results from it (effect). Example: Hearing loss (impairment) may lead to difficulty following classroom instructions (disability). Reversing them distorts the basic conceptual sequence.",
 
-    elimination_bn: [
-      "Option (1) ❌ উল্টো সংজ্ঞা ফাঁদ: জৈবিক ও কার্যকরী অর্থ অদলবদল হয়েছে।",
-      "Option (2) ❌ পরিভাষা ফাঁদ: এগুলো প্রামাণ্য সংজ্ঞা নয়।",
-      "Option (3) ❌ সামাজিক-মডেল বিভ্রান্তি: সামাজিক বিষয় প্রভাব ফেলে, কিন্তু সংজ্ঞা নয়।",
-      "Option (0) ✅ সঠিক: impairment জৈবিক, disability কার্যকরী সীমাবদ্ধতা।"
-    ],
+  "Option (2) ❌ TRAP: Non-Standard Terminology. Terms like 'operative' and 'physical' do not reflect accepted definitions in educational or WHO frameworks. They fail to explain the biological cause and functional impact relationship between impairment and disability.",
+
+  "Option (3) ❌ TRAP: Conceptual Misfit. Although social and psychological factors may influence participation, impairment itself is not defined as a social condition. This option does not capture the medical-to-functional progression that defines the distinction.",
+
+  "Option (0) ✅ Correct – KEYWORD: Cause (Biological) → Effect (Functional Limitation). Impairment refers to a biological or structural condition in the body (e.g., partial vision loss, hearing deficit). Disability refers to the limitation in performing daily or academic activities because of that impairment (e.g., difficulty reading the board due to vision loss). Learning Outcome: Teachers can understand that the medical condition (impairment) is different from the participation challenge (disability), which can often be reduced through support or accommodation."
+],
+
+elimination_bn: [
+  "Option (1) ❌ ফাঁদ: কারণ–ফল উল্টো করা। এখানে disability-কে জৈবিক এবং impairment-কে কার্যকরী বলা হয়েছে, যা ভুল। বাস্তবে Impairment হলো জৈবিক কারণ, আর Disability হলো তার ফলস্বরূপ কার্যক্ষমতার সীমাবদ্ধতা। উদাহরণ: শ্রবণশক্তি হ্রাস (impairment) → শ্রেণিকক্ষে নির্দেশনা বুঝতে অসুবিধা (disability)।",
+
+  "Option (2) ❌ ফাঁদ: অপ্রামাণ্য পরিভাষা। 'Operative' বা 'physical' শব্দগুলো শিক্ষাগত বা WHO সংজ্ঞার সাথে সামঞ্জস্যপূর্ণ নয় এবং কারণ–ফল সম্পর্ক ব্যাখ্যা করে না।",
+
+  "Option (3) ❌ ফাঁদ: ধারণাগত অসামঞ্জস্য। সামাজিক পরিবেশ disability-কে প্রভাবিত করতে পারে, কিন্তু impairment নিজে সামাজিক অবস্থা নয়। এই বিকল্পটি সঠিক কারণ–ফল কাঠামো ব্যাখ্যা করে না।",
+
+  "Option (0) ✅ সঠিক – KEYWORD: কারণ (জৈবিক) → ফল (কার্যক্ষমতার সীমাবদ্ধতা)। Impairment হলো শরীরের জৈবিক বা কাঠামোগত সমস্যা (যেমন দৃষ্টিশক্তি কম), আর Disability হলো সেই কারণে দৈনন্দিন বা শিক্ষাগত কাজে অসুবিধা (যেমন বোর্ড পড়তে সমস্যা)। Learning Outcome: শিক্ষক বুঝতে পারেন যে চিকিৎসাগত অবস্থা ও শিক্ষাগত অংশগ্রহণের সমস্যা আলাদা বিষয় এবং সহায়তার মাধ্যমে disability কমানো সম্ভব।"
+],
 
     difficulty: "medium",
     concept: "Impairment & Disability",
@@ -1293,18 +1402,24 @@ export const mockQuestion = [
       "আধুনিক মনোবিজ্ঞান অনুযায়ী শেখা ও আচরণে জ্ঞান ও আবেগ একে অপরকে পারস্পরিকভাবে প্রভাবিত করে।",
 
     elimination_en: [
-      "Option (0) ❌ Examiner trap: Students think thinking and feeling are separate. CTET view rejects independence; learning always involves emotion.",
-      "Option (2) ❌ Half-truth trap: Thinking affects emotion, but emotion also affects thinking; one-way relation is incorrect.",
-      "Option (3) ❌ Emotional learning trap: Emotions do affect thinking, but cognition also regulates emotion.",
-      "Option (1) ✅ Correct: Cognition and emotion continuously influence each other."
-    ],
+  "❌ TRAP: Dual-System Independence Myth. This option assumes cognition (thinking) and emotion (feeling) operate separately. However, modern psychology and neuroscience show they are interconnected processes. Example: Anxiety during an exam affects memory retrieval. Learning Outcome: Understanding that emotion shapes thinking prevents the misconception that learning is purely intellectual.",
 
-    elimination_bn: [
-      "Option (0) ❌ পরীক্ষক ফাঁদ: শিক্ষার্থীরা ভাবে চিন্তা ও আবেগ আলাদা। CTET মতে দুটো আলাদা নয়।",
-      "Option (2) ❌ অর্ধসত্য: চিন্তা আবেগকে প্রভাবিত করে, কিন্তু আবেগও চিন্তাকে প্রভাবিত করে।",
-      "Option (3) ❌ আবেগ-ফাঁদ: আবেগ চিন্তাকে প্রভাবিত করে ঠিকই, কিন্তু চিন্তাও আবেগ নিয়ন্ত্রণ করে।",
-      "Option (1) ✅ সঠিক: জ্ঞান ও আবেগ পরস্পর নির্ভরশীল।"
-    ],
+  "❌ TRAP: One-Way Cognitive Control. While cognition can regulate emotion (e.g., positive self-talk reducing stress), emotions also influence attention, memory and decision-making. Example: A confident student solves problems more effectively. Learning Outcome: Recognising only one-directional influence gives an incomplete understanding of learning processes.",
+
+  "❌ TRAP: One-Way Emotional Influence. It is true that emotions affect cognition, but cognition also shapes emotional responses. Example: Reframing a difficult task as a challenge instead of a threat changes emotional reaction. Learning Outcome: Ignoring cognitive regulation oversimplifies human behaviour.",
+
+  " ✅ Correct – KEYWORD: Mutual Interdependence. Cognition and emotion continuously interact in learning and behaviour. Emotions influence attention, motivation and memory, while cognition interprets and regulates emotions. Example: A student who understands a topic feels confident; confidence further improves performance. Learning Outcome: Integrated emotional–cognitive development supports effective learning and well-being."
+],
+
+elimination_bn: [
+  "❌ ফাঁদ: স্বাধীন ব্যবস্থা ধারণা। জ্ঞান ও আবেগ আলাদা নয়; আধুনিক মনোবিজ্ঞান অনুযায়ী দুটো পরস্পর সংযুক্ত। উদাহরণ: পরীক্ষার ভয় স্মৃতিশক্তি প্রভাবিত করে। Learning Outcome: শেখা শুধু বুদ্ধিবৃত্তিক নয়, আবেগীয়ও।",
+
+  "❌ ফাঁদ: একমুখী জ্ঞান প্রভাব। চিন্তা আবেগ নিয়ন্ত্রণ করতে পারে, কিন্তু আবেগও মনোযোগ ও স্মৃতিকে প্রভাবিত করে। উদাহরণ: আত্মবিশ্বাস থাকলে সমস্যা সমাধান সহজ হয়। Learning Outcome: একমুখী ব্যাখ্যা অসম্পূর্ণ ধারণা দেয়।",
+
+  "❌ ফাঁদ: একমুখী আবেগ প্রভাব। আবেগ চিন্তাকে প্রভাবিত করে ঠিকই, কিন্তু চিন্তাও আবেগ নিয়ন্ত্রণ করে। উদাহরণ: কঠিন কাজকে চ্যালেঞ্জ হিসেবে ভাবলে ভয় কমে যায়। Learning Outcome: কেবল আবেগীয় ব্যাখ্যা আচরণের পূর্ণ চিত্র দেয় না।",
+
+  " ✅ সঠিক – KEYWORD: পারস্পরিক নির্ভরশীলতা। জ্ঞান ও আবেগ শেখা ও আচরণে একে অপরকে প্রভাবিত করে। আবেগ মনোযোগ ও প্রেরণা বাড়ায়, আর জ্ঞান আবেগকে ব্যাখ্যা ও নিয়ন্ত্রণ করে। উদাহরণ: বিষয় বোঝা → আত্মবিশ্বাস বাড়ে → ফল আরও ভালো হয়। Learning Outcome: সমন্বিত জ্ঞান-আবেগ বিকাশ শেখাকে শক্তিশালী করে।"
+],
 
     difficulty: "easy",
     concept: "Cognition & Emotion",
@@ -3197,10 +3312,10 @@ export const mockQuestion = [
   ans: 2,
 
   ans_reason_en:
-    "First 50 g costs ₹15. Remaining 300 g = 6 blocks of 50 g. Additional cost = 6 × ₹7 = ₹42. Total cost = ₹15 + ₹42 = ₹57. But CTET considers 50 g slab inclusive → total charge = ₹55.",
+    "First 50 g costs ₹15.\n Remaining 300 g = 6 blocks of 50 g.\n Additional cost = 6 × ₹7 = ₹42.\n Total cost = ₹15 + ₹42 = ₹57. \n But CTET considers 50 g slab inclusive → total charge = ₹55.",
 
   ans_reason_bn:
-    "প্রথম ৫০ গ্রাম = ₹১৫। বাকি ৩০০ গ্রাম = ৬টি ৫০ গ্রামের ধাপ। অতিরিক্ত খরচ = ৬ × ₹৭ = ₹৪২। মোট = ₹৫৭। তবে CTET অনুযায়ী ধাপ গণনায় মোট খরচ ₹৫৫।",
+ "প্রথম ৫০ গ্রাম = ₹১৫। \n বাকি ৩০০ গ্রাম = ৬টি ৫০ গ্রামের ধাপ। \n অতিরিক্ত খরচ = ৬ × ₹৭ = ₹৪২। \n মোট = ₹৫৭। \n তবে CTET অনুযায়ী ধাপ গণনায় মোট খরচ ₹৫৫।",
 
   elimination_en: [
     "Option (0) ❌ Partial-calculation trap: Only additional charge considered.",
