@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Bookmarks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/bookmark.css">
 </head>
 <body>
 <button class="back-btn" onclick="history.back()" aria-label="Back">
@@ -16,6 +16,28 @@
 </button>
 
 <h2 style="text-align:center;">⭐ Bookmarks</h2>
+<div class="filter-box">
+
+  <!-- Type Filter -->
+  <select id="filterType">
+    <option value="ALL">All Types</option>
+    <option value="MCQ">MCQ</option>
+    <option value="MOCK">MOCK</option>
+    <option value="CONCEPT">CONCEPT</option>
+  </select>
+
+  <!-- Subject Filter -->
+  <select id="filterSubject">
+    <option value="ALL">All Subjects</option>
+  </select>
+
+  <!-- Sort -->
+  <select id="sortBy">
+    <option value="LATEST">Latest First</option>
+    <option value="OLDEST">Oldest First</option>
+  </select>
+
+</div>
 
 <div id="list"></div>
 

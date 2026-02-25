@@ -13,27 +13,52 @@
 </head>
 <body>
 
-<!-- PAGE TITLE -->
-<h2 class="page-title">📝 Mock Practice</h2>
+<div class="top-navbar">
 
-<!-- Language Switch -->
-<div class="lang-switch" onclick="toggleLangView()">
-  🌐 EN+BN
-</div>
-<select id="subjectSelect" class="subject-dropdown">
-  <option value="ALL">All Subjects</option>
-  <option value="CDP">CDP</option>
-  <option value="MATH">Math</option>
-  <option value="EVS">EVS</option>
+  <!-- ROW 1 -->
+  <div class="nav-row nav-row-1">
+    <h2 class="page-title">📝 Mock Practice</h2>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="nav-row nav-row-2">
+
+    <div class="lang-switch" onclick="toggleLangView()">
+      🌐 EN+BN
+    </div>
+
+    <select id="subjectSelect" class="subject-dropdown">
+      <option value="ALL">All Subjects</option>
+      <option value="CDP">CDP</option>
+      <option value="MATH">Math</option>
+      <option value="EVS">EVS</option>
+    </select>
+    
+    <select id="questionLimit" class="subject-dropdown">
+  <option value="10">10 Questions</option>
+  <option value="20">20 Questions</option>
+  <option value="30" selected>30 Questions</option>
+  <option value="50">50 Questions</option>
+  <option value="ALL">All Questions</option>
 </select>
-<div class="weak-btn"
-     onclick="goWeakPage()">
-  🧠 Weak Concepts
-</div>
+
+    <div class="weak-btn" onclick="goWeakPage()">
+      🧠 Weak Concepts
+    </div>
+  </div>
+
+</div>  
 
 <!-- PROGRESS -->
 <div class="progress-wrap">
-  <div id="progressBar"></div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+    <div class="progress-info" id="progressInfo">
+      1 / 30
+    </div>
+  </div>
+
 </div>
 
 <!-- QUESTION -->

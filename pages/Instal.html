@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
+
+<!-- PWA META -->
+<meta name="theme-color"
+content="#2563eb">
+
+<link rel="manifest"
+href="../manifest.json">
+
+<link rel="apple-touch-icon"
+href="../icons/icon-192.png">
+
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:#fff;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* INSTALL BOX */
+
+.install-box{
+
+  position:fixed;
+  top:14px;
+  right:14px;
+
+  display:none;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 16px;
+  border-radius:30px;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #22c55e
+  );
+
+  font-size:13px;
+  font-weight:600;
+
+  z-index:9999;
+}
+
+.install-box button{
+
+  border:none;
+  background:#fff;
+  color:#2563eb;
+
+  padding:6px 12px;
+  border-radius:20px;
+
+  font-weight:600;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🏠 Dashboard</h2>
+
+<!-- INSTALL UI -->
+<div id="installBox"
+class="install-box">
+
+  <span>📲 Install App</span>
+
+  <button id="installBtn">
+    Install
+  </button>
+
+</div>
+
+
+<script>
+
+// ===============================
+// 📲 INSTALL SYSTEM
+// ===============================
+
+let deferredPrompt;
+
+const installBox =
+document.getElementById("installBox");
+
+const installBtn =
+document.getElementById("installBtn");
+
+
+// Detect install availability
+window.addEventListener(
+"beforeinstallprompt",
+e => {
+
+console.log("Install Ready 🔥");
+
+e.preventDefault();
+
+deferredPrompt = e;
+
+installBox.style.display="flex";
+
+}
+);
+
+
+// Install click
+installBtn.addEventListener(
+"click",
+async ()=>{
+
+if(!deferredPrompt) return;
+
+deferredPrompt.prompt();
+
+const { outcome } =
+await deferredPrompt.userChoice;
+
+if(outcome==="accepted"){
+  alert("Installed ✅");
+}
+
+installBox.style.display="none";
+deferredPrompt=null;
+
+}
+);
+
+
+// Hide if already installed
+if(
+window.matchMedia(
+"(display-mode: standalone)"
+).matches
+){
+installBox.style.display="none";
+}
+
+
+// ===============================
+// 🔧 SERVICE WORKER REGISTER
+// ===============================
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker
+.register("../sw.js")
+.then(()=>console.log("SW Ready"));
+
+}
+
+</script>
+
+</body>
+</html>

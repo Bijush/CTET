@@ -58,9 +58,9 @@ class="install-box">
   <button id="installBtn">
     Install
   </button>
-
-</div>
-  <div>
+<button id="closeInstall" class="close-install">✕</button>
+     </div>
+         <div>
 
     <!-- Moving Neon Greeting -->
     <h3 id="greetText"
@@ -71,7 +71,7 @@ class="install-box">
     <p id="userName">
       Bijush Kumar Roy
     </p>
-    <p id="appVersion">v1.0.0</p>
+<p id="currentDate"></p>
 
   </div>
 
@@ -80,31 +80,38 @@ class="install-box">
   PROGRESS RING
   ====================== -->
 
-  <div class="progress-ring">
+<!-- ======================
+ANALOG CLOCK
+====================== -->
 
-    <svg width="70"
-         height="70">
+<div class="clock glass">
 
-      <circle
-        cx="35"
-        cy="35"
-        r="28"
-        class="ring-bg"/>
+<div class="clock-face">
 
-      <circle
-        cx="35"
-        cy="35"
-        r="28"
-        class="ring-fill"
-        id="progressRing"/>
+  <!-- PERFECT EQUAL NUMBERS -->
+  <div class="number" style="--i:1"><span>1</span></div>
+  <div class="number" style="--i:2"><span>2</span></div>
+  <div class="number" style="--i:3"><span>3</span></div>
+  <div class="number" style="--i:4"><span>4</span></div>
+  <div class="number" style="--i:5"><span>5</span></div>
+  <div class="number" style="--i:6"><span>6</span></div>
+  <div class="number" style="--i:7"><span>7</span></div>
+  <div class="number" style="--i:8"><span>8</span></div>
+  <div class="number" style="--i:9"><span>9</span></div>
+  <div class="number" style="--i:10"><span>10</span></div>
+  <div class="number" style="--i:11"><span>11</span></div>
+  <div class="number" style="--i:12"><span>12</span></div>
 
-    </svg>
+  <!-- Hands -->
+  <div class="hand hour" id="hourHand"></div>
+  <div class="hand minute" id="minuteHand"></div>
+  <div class="hand second" id="secondHand"></div>
 
-    <span id="progressText">
-      75%
-    </span>
+  <div class="center-dot"></div>
 
-  </div>
+</div>
+
+</div>
 
 </div>
 

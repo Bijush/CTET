@@ -2,26 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MCQ Practice</title>
+  <title>scert Practice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- CSS  -->
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/mcq.css">
-      <link rel="stylesheet" href="../css/theory.css">
-  
-
-
+    <link rel="stylesheet" href="../css/theory.css">
 
 </head>
 <body>
 
-<!-- 🔥 Animated Gradient Floating Navbar -->
 <div class="top-navbar">
 
   <!-- ROW 1 -->
   <div class="nav-row nav-row-1">
-    <h2 class="page-title">📝 Piaget Mcq Practice</h2>
+    <h2 class="page-title">📝 scert Practice</h2>
   </div>
 
   <!-- ROW 2 -->
@@ -32,19 +28,13 @@
     </div>
 
     <select id="subjectSelect" class="subject-dropdown">
-      <option value="ALL">All Subjects</option>
-      <option value="CDP">CDP</option>
-      <option value="MATH">Math</option>
-      <option value="EVS">EVS</option>
+      <option value="ALL">Full Mock (All Subjects)</option>
+<option value="TeachingAptitude">Teaching Aptitude</option>
+<option value="Reasoning">Reasoning</option>
+<option value="GK">General Knowledge</option>
+<option value="currentAffairs">Current Affairs</option>
+
     </select>
-    
-        <select id="questionLimit" class="subject-dropdown">
-  <option value="10">10 Questions</option>
-  <option value="20">20 Questions</option>
-  <option value="30" selected>30 Questions</option>
-  <option value="50">50 Questions</option>
-  <option value="ALL">All Questions</option>
-</select>
 
     <div class="weak-btn" onclick="goWeakPage()">
       🧠 Weak Concepts
@@ -55,16 +45,8 @@
 
 <!-- PROGRESS -->
 <div class="progress-wrap">
-
-  <div class="progress">
-    <div id="progressBar"></div>
-    <div class="progress-info" id="progressInfo">
-      1 / 30
-    </div>
-  </div>
-
+  <div id="progressBar"></div>
 </div>
-
 
 <!-- QUESTION -->
 <div class="card" id="qBox"></div>
@@ -111,9 +93,10 @@
 <!-- SNACKBAR -->
 <div id="snackbar"></div>
 
+
 <!-- JS -->
 <script type="module"
-        src="../js/piaget-mcq.js">
+        src="../js/scert.js">
 </script>
 
 
