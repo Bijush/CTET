@@ -28,13 +28,20 @@
     </div>
 
     <select id="subjectSelect" class="subject-dropdown">
-      <option value="ALL">All Subjects</option>
+      <option value="ALL">Full Mock (All Subjects)</option>
 <option value="TeachingAptitude">Teaching Aptitude</option>
 <option value="Reasoning">Reasoning</option>
 <option value="GK">General Knowledge</option>
 <option value="currentAffairs">Current Affairs</option>
 
     </select>
+        <select id="questionLimit" class="subject-dropdown">
+  <option value="10">10 Questions</option>
+  <option value="20">20 Questions</option>
+  <option value="30" selected>30 Questions</option>
+  <option value="50">50 Questions</option>
+  <option value="ALL">All Questions</option>
+</select>
 
     <div class="weak-btn" onclick="goWeakPage()">
       🧠 Weak Concepts
@@ -45,7 +52,14 @@
 
 <!-- PROGRESS -->
 <div class="progress-wrap">
-  <div id="progressBar"></div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+    <div class="progress-info" id="progressInfo">
+      1 / 30
+    </div>
+  </div>
+
 </div>
 
 <!-- QUESTION -->
