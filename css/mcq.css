@@ -7,25 +7,7 @@ GLOBAL RESET
   padding:0;
   box-sizing:border-box;
 }
-/*
-body{
-  font-family: system-ui, -apple-system, sans-serif;
-  min-height:100vh;
-  padding-bottom:120px;
 
-  background: linear-gradient(
-    135deg,
-    #e0e7ff 0%,
-    #fdf4ff 25%,
-    #ecfeff 50%,
-    #fef9c3 75%,
-    #e0f2fe 100%
-  );
-
-  background-size: 300% 300%;
-  animation: bgMove 20s ease infinite;
-}
-*/
 @keyframes bgMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
@@ -107,9 +89,9 @@ QUESTION
 ====================== */
 
 .q-text{
-  font-size:18px;
-  font-weight:700;
-  line-height:1.6;
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
   color:#111827;
 }
 
@@ -143,6 +125,15 @@ QUESTION CARD
   margin:0;
   line-height:1.6;
   width:100%;        /* 🔥 full width */
+}
+/* FORCE SMALL QUESTION TEXT */
+
+#qBox h3,
+.q-left h3,
+.q-text{
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.4 !important;
 }
 
 /* ======================
@@ -399,4 +390,130 @@ OPTION TEXT FIX
   margin-top:5px;
   color:#334155;
   font-weight:500;
+}
+
+/* ======================
+📱 MOBILE RESPONSIVE
+====================== */
+
+@media (max-width: 768px){
+
+  /* Card tighter */
+  .card{
+    padding:16px;
+    margin:12px 6px;
+    border-radius:18px;
+  }
+
+  /* Progress smaller */
+  .progress{
+    height:14px;
+  }
+
+  .progress-info{
+    font-size:11px;
+  }
+
+  /* Question text smaller */
+  .q-text{
+    font-size:15px;
+    line-height:1.4;
+  }
+
+  .q-number{
+    font-size:16px;
+  }
+
+  /* Bookmark smaller */
+  .bookmark{
+    width:36px;
+    height:36px;
+    top:-30px;
+    right:6px;
+  }
+
+  /* Options compact */
+  #options{
+    margin:0 6px;
+  }
+
+  #options button{
+    padding:13px;
+    font-size:14px;
+    border-radius:14px;
+  }
+
+  /* Option text */
+  .option-text{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .option-bn{
+    font-size:13px;
+  }
+
+  /* Answer status */
+  .ans{
+    font-size:14px;
+    padding:10px;
+  }
+
+  /* Explanation compact */
+  #explainBox{
+    padding:16px;
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  /* AI Blocks */
+  .ai-option{
+    padding:12px;
+  }
+
+  /* Pedagogy */
+  .ped-card{
+    padding:10px;
+  }
+
+}
+
+
+/* ======================
+📱 EXTRA SMALL DEVICES
+====================== */
+
+@media (max-width: 480px){
+
+  .card{
+    padding:14px;
+  }
+
+  .q-text{
+    font-size:12.5px;
+  }
+
+  #options button{
+    padding:12px;
+    margin-bottom:12px;
+  }
+
+  .option-text{
+    font-size:13px;
+  }
+
+  .option-bn{
+    font-size:12px;
+  }
+
+  .bookmark{
+    width:32px;
+    height:32px;
+    top:-30px;
+  }
+  #qBox h3,
+  .q-left h3{
+    font-size:12px !important;
+  }
+
 }
