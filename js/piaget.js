@@ -5,19 +5,6 @@ LOAD BOX
 
 let box;
 
-
-/* ======================
-TAB SWITCH
-====================== */
-
-/* ======================
-TAB SWITCH WITH ANIMATION
-====================== */
-
-/* ======================
-TAB SWITCH WITH SAFE ANIMATION
-====================== */
-
 window.openTab = function(tab, ev){
 
   /* ----------------------

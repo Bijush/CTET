@@ -7,24 +7,19 @@ from "../data/mcq_question.js";
 
 import { mockQuestion }
 from "../data/mock_question.js";
-
 import { conceptCDP }
 from "../data/concept_cdp.js";
-
 import { conceptMath }
 from "../data/concept_math.js";
-
 import { conceptEVS }
 from "../data/concept_evs.js";
-
 import { piagetMcq }
 from "../data/piaget_mcq_question.js";
-
 import { detectTraps }
 from "../utils/trap_detector.js";
-
 import { offlineAIExplain }
 from "../utils/ai_explainer.js";
+import { TAptitude } from "../data/scert/teaching-aptitude.js";
 
 
 /* ======================
@@ -83,9 +78,10 @@ if(type === "MCQ"){
 else if(type === "MOCK"){
 
   item =
-    mockQuestion.find(
-      q => q.id === id
-    );
+    mockQuestion.find(q => q.id === id)
+    ||
+    TAptitude.find(q => q.id === id);
+
 }
 
 else if(type === "CONCEPT"){

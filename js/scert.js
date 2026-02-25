@@ -1,37 +1,32 @@
-import { piagetMcq } from "../data/piaget_mcq_question.js";
+import { TAptitude } from "../data/scert/teaching-aptitude.js";
+//import { mcqQuestion } from "../data/question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
 import { detectBoosts } from "../utils/boost_detector.js";
 
-
+window.addEventListener("pageshow", e => {
+  if (e.persisted) location.reload();
+});
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
 
 // 🔥 Subject first
 let selectedSubject =
-  localStorage.getItem("piaget_subject") || "ALL";
-  let selectedLimit =
-  localStorage.getItem("piaget_limit") || "30";
+  localStorage.getItem("scert_subject") || "ALL";
 
 // 🔥 Dynamic index key
 function getIndexKey(){
-  return `piaget_q_index_${selectedSubject}`;
+  return `scert_q_index_${selectedSubject}`;
 }
 
 function getOrderKey(){
-  return `piaget_q_order_${selectedSubject}`;
+  return `scert_q_order_${selectedSubject}`;
 }
 function getAttemptKey(){
-  return `piaget_attempt_map_${selectedSubject}`;
+  return `scert_attempt_map_${selectedSubject}`;
 }
-
-// new line function
-function nl2br(text = "") {
-  return text.replace(/\n/g, "<br>");
-}
-
 
 // 🔥 Load subject-wise index
 let index =
@@ -42,13 +37,15 @@ let correctCount = 0;
 let wrongCount = 0;
 let skippedCount = 0; 
 let langMode =
-  localStorage.getItem("piaget_lang") || "BOTH";
+  localStorage.getItem("scert_lang") || "BOTH";
 
 let questionOrder = [];
 let filteredQuestions = [];
 
 let attemptMap =
   JSON.parse(localStorage.getItem(getAttemptKey())) || {};
+  
+  
 
 
 
@@ -116,7 +113,7 @@ localStorage.removeItem(getAttemptKey());
 
   /* 🔔 Show resume alert only if user actually progressed */
   const resume = confirm(
-    `Resume ${selectedSubject} piaget test?\n\n` +
+    `Resume ${selectedSubject} scert test?\n\n` +
     `You were at Question ${savedIndex + 1} of ${savedOrder.length}.`
   );
 
@@ -141,32 +138,20 @@ localStorage.removeItem(getAttemptKey());
 
 
 function prepareQuestions(){
-  
-  // FORCE reset if limit changed
-const savedLimit =
-  localStorage.getItem("piaget_limit_saved");
 
-if (savedLimit !== selectedLimit) {
-  localStorage.removeItem(getIndexKey());
-  localStorage.removeItem(getOrderKey());
-  localStorage.removeItem(getAttemptKey());
+  if (selectedSubject === "ALL") {
+
+  // সব প্রশ্ন দেখাবে
+  filteredQuestions = [...TAptitude];
+
+} else {
+
+  // নির্দিষ্ট subject অনুযায়ী filter করবে
+  filteredQuestions = TAptitude.filter(
+    q => q.subject === selectedSubject
+  );
+
 }
-
-localStorage.setItem(
-  "piaget_limit_saved",
-  selectedLimit
-);
-
-  /* 🔎 Filter by subject */
-  if(selectedSubject === "ALL"){
-    filteredQuestions = [...piagetMcq];
-  } else {
-    filteredQuestions =
-      piagetMcq.filter(
-        q => q.subject === selectedSubject
-      );
-  }
-
   /* 🚫 If no question found */
   if(filteredQuestions.length === 0){
 
@@ -205,16 +190,8 @@ localStorage.setItem(
     savedOrder = null;
   }
 
-  let totalToTake;
-
-if (selectedLimit === "ALL") {
-  totalToTake = filteredQuestions.length;
-} else {
-  totalToTake = Math.min(
-    parseInt(selectedLimit),
-    filteredQuestions.length
-  );
-}
+  const totalToTake =
+    Math.min(30, filteredQuestions.length);
 
   /* ✅ Resume Existing Test */
   if (
@@ -259,7 +236,7 @@ window.toggleLangView = () => {
   else if (langMode === "EN") langMode = "BN";
   else langMode = "BOTH";
 
-  localStorage.setItem("piaget_lang", langMode);
+  localStorage.setItem("scert_lang", langMode);
 
   answered = false;      // reset state
   loadQ();               // full re-render
@@ -286,7 +263,7 @@ function getBookmarks() {
     // Old string format fix
     if (typeof x === "string") {
       return {
-        type: "MCQ",
+        type: "MOCK",
         id: x,
         subject: "General",
         date: Date.now()
@@ -449,17 +426,10 @@ if (statusBox) {
   /* 📊 progress */
   progressBar.style.width =
 ((index + 1) / filteredQuestions.length) * 100 + "%";
-const progressInfo =
-  document.getElementById("progressInfo");
-
-if (progressInfo) {
-  progressInfo.innerText =
-    `${index + 1} / ${filteredQuestions.length}`;
-}
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
-    .some(b => b.type === "MCQ" && b.id === q.id);
+    .some(b => b.type === "MOCK" && b.id === q.id);
 
   /* ======================
      QUESTION TEXT (STRICT)
@@ -467,41 +437,26 @@ if (progressInfo) {
   let qText = "";
 
   if (langMode === "BOTH") {
-
-  qText = nl2br(q.q_en);
-
-  if (q.q_bn && q.q_bn.trim() !== "") {
-    qText += `<div class="q-bn">${nl2br(q.q_bn)}</div>`;
+    qText = q.q_en;
+    if (q.q_bn && q.q_bn.trim() !== "") {
+      qText += `<div class="q-bn">(${q.q_bn})</div>`;
+    }
+  }
+  else if (langMode === "EN") {
+    qText = q.q_en;
+  }
+  else if (langMode === "BN") {
+    qText = (q.q_bn && q.q_bn.trim() !== "") ? q.q_bn : q.q_en;
   }
 
-}
-else if (langMode === "EN") {
-
-  qText = nl2br(q.q_en);
-
-}
-else if (langMode === "BN") {
-
-  qText = (q.q_bn && q.q_bn.trim() !== "")
-    ? nl2br(q.q_bn)
-    : nl2br(q.q_en);
-
-}
-
   qBox.innerHTML = `
-  <div class="q-title-row">
-
-    <div class="q-left">
-      <span class="q-number">Q${index + 1}.</span>
-      <h3>${qText}</h3>
+    <div>
+      <h3>Q${index + 1}. ${qText}</h3>
     </div>
-
     <div class="bookmark ${isBookmarked ? "active" : ""}" id="bookmarkBtn">
       ${bookmarkSVG()}
     </div>
-
-  </div>
-`;
+  `;
 
   document.getElementById("bookmarkBtn").onclick = toggleBookmark;
 
@@ -529,7 +484,17 @@ else if (langMode === "BN") {
       optText = (bn && bn.trim() !== "") ? bn : en; // BN fallback
     }
 
-    const labels = ["A", "B", "C", "D"];
+    let labels;
+
+if (langMode === "BN") {
+  labels = ["ক", "খ", "গ", "ঘ"];
+}
+else if (langMode === "BOTH") {
+  labels = ["A (ক)", "B (খ)", "C (গ)", "D (ঘ)"];
+}
+else {
+  labels = ["A", "B", "C", "D"];
+}
 
 let engLabels = ["A", "B", "C", "D"];
 let bnLabels  = ["ক", "খ", "গ", "ঘ"];
@@ -775,11 +740,11 @@ document
       ? `
       <hr>
       <b>Why correct?</b><br>
-      ${nl2br(q.ans_reason_en || "")}
+    ${formatSteps(q.ans_reason_en)}
       ${
         q.ans_reason_bn
         ? `<div class="q-bn">
-            ${nl2br(q.ans_reason_bn || "")}
+            ${formatSteps(q.ans_reason_bn)}
            </div>`
         : ""
       }
@@ -1162,7 +1127,7 @@ function toggleBookmark() {
   const q = filteredQuestions[currentQIndex];
 
   let b = getBookmarks();
-  const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
+  const pos = b.findIndex(x => x.type === "MOCK" && x.id === q.id);
 
   const btn = document.getElementById("bookmarkBtn");
 
@@ -1185,8 +1150,8 @@ function toggleBookmark() {
   } else {
 
     // ⭐ ADD BOOKMARK
-    b.push({
-  type: "MCQ",
+b.push({
+  type: "MOCK",
   id: q.id,
   subject: q.subject || "General",
   date: Date.now()   // 🔥 IMPORTANT for Latest Sort
@@ -1344,18 +1309,18 @@ function saveResultAndGo(){
 
   /* 🔥 Save latest result */
   localStorage.setItem(
-    "last_piaget_result",
+    "last_scert_result",
     JSON.stringify(resultData)
   );
 
   /* 🔥 Push to history */
   let history =
-    JSON.parse(localStorage.getItem("piaget_test_history")) || [];
+    JSON.parse(localStorage.getItem("scert_test_history")) || [];
 
   history.unshift(resultData);
 
   localStorage.setItem(
-    "piaget_test_history",
+    "scert_test_history",
     JSON.stringify(history)
   );
 
@@ -1420,18 +1385,44 @@ window.showConceptPedagogy = function (concept) {
 
       </div>
 
-      <button onclick="this.closest('.concept-popup').remove()">
-        Close
-      </button>
+      <button id="closePedModal">Close</button>
 
     </div>
   `;
 
   document.body.appendChild(box);
+
+  // 🔥 scroll lock
+  document.body.style.overflow = "hidden";
+
+  document
+    .getElementById("closePedModal")
+    .onclick = () => {
+      box.remove();
+      document.body.style.overflow = "";
+    };
+
+  // click outside close
+  box.onclick = (e) => {
+    if (e.target === box) {
+      box.remove();
+      document.body.style.overflow = "";
+    }
+  };
 };
 
 window.goBack = function(){
+
+  if(history.length > 1){
+
+    history.back();
+
+  }else{
+
     location.href = "dashboard.html";
+
+  }
+
 };
 
 /* ======================
@@ -1501,22 +1492,17 @@ function isWeakConcept(concept){
 
 
 /* CONCEPT CLICK GLOBAL */
-document.addEventListener("click", e => {
+document.addEventListener("click", function(e){
 
-  const link =
-    e.target.closest(".concept-link");
+  const link = e.target.closest(".concept-link");
 
-  if (!link) return;
+  if(!link) return;
 
-  e.preventDefault();
-  e.stopPropagation();
+  const concept = link.getAttribute("data-concept");
 
-  const concept =
-    link.dataset.concept;
+  if(!concept || concept.trim() === "") return;
 
-  if (concept) {
-    showConceptPedagogy(concept);
-  }
+  showConceptPedagogy(concept);
 
 });
 
@@ -1527,7 +1513,7 @@ document
     selectedSubject = this.value;
 
     localStorage.setItem(
-      "piaget_subject",
+      "scert_subject",
       selectedSubject
     );
 
@@ -1541,47 +1527,69 @@ document
     prepareQuestions();
     loadQ();
 });
-
-document
-  .getElementById("questionLimit")
-  .addEventListener("change", function(){
-
-    selectedLimit = this.value;
-
-    localStorage.setItem(
-      "piaget_limit",
-      selectedLimit
-    );
-
-    // reset test
-    localStorage.removeItem(getIndexKey());
-    localStorage.removeItem(getOrderKey());
-    localStorage.removeItem(getAttemptKey());
-
-    index = 0;
-
-    prepareQuestions();
-    loadQ();
-});
 /* ======================
    INIT
 ====================== */
-
 window.addEventListener("DOMContentLoaded", () => {
 
   try {
+    // 🔥 Prepare subject-wise 30 random questions
+    prepareQuestions();
 
-    prepareQuestions();      // Step 1
-    checkResumePractice();   // Step 2
-    loadQ();                 // 🔥 Step 3 (MUST)
+    // Resume check
+    checkResumePractice();
+    
+    // Small delay → ensure module data ready
+    setTimeout(() => {
+      loadQ();
+    }, 50);
 
   } catch (e) {
 
     console.error("MCQ Init Error:", e);
 
-    // Safe fallback
-    prepareQuestions();
-    loadQ();
+    // Retry fallback
+    setTimeout(loadQ, 200);
+
   }
 
 });
+
+function formatSteps(text){
+
+  if(!text) return "";
+
+  // 🔥 Break before English Step (Step 1, Step 2., Step 3- etc.)
+  text = text.replace(/(Step\s*[0-9]+\s*[:.\-]?)/gi, "\n$1");
+
+  // 🔥 Break before Bengali ধাপ (ধাপ ১, ধাপ ২., ধাপ ৩- etc.)
+  // Supports Bengali digits ০১২৩৪৫৬৭৮৯ and English digits
+  text = text.replace(/(ধাপ\s*[০-৯0-9]+\s*[:.\-]?)/gi, "\n$1");
+
+  const lines = text
+    .split("\n")
+    .map(l => l.trim())
+    .filter(l => l !== "");
+
+  return `
+    <div class="step-container">
+      ${lines.map(line => {
+
+        const match = line.match(/^(Step\s*[0-9]+\s*[:.\-]?|ধাপ\s*[০-৯0-9]+\s*[:.\-]?)/i);
+
+        if(match){
+          return `
+            <div class="step-box">
+              <div class="step-badge">${match[0]}</div>
+              <div class="step-text">
+                ${line.replace(match[0], "").trim()}
+              </div>
+            </div>
+          `;
+        }
+
+        return `<div class="step-text">${line}</div>`;
+      }).join("")}
+    </div>
+  `;
+}

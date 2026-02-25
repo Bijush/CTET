@@ -28,38 +28,27 @@ window.go = page => {
 🌤️ GREETING SYSTEM
 ====================== */
 
-function setGreeting(){
+function setGreeting(name = "") {
+  const greetEl = document.getElementById("greetText");
+  if (!greetEl) return;
 
-  const greetEl =
-    document.getElementById(
-      "greetText"
-    );
+  const hour = new Date().getHours();
+  let greeting = "";
 
-  if(!greetEl) return;
+ if (hour >= 4 && hour < 12) {
+  greeting = "Good Morning ☀️";
+} 
+else if (hour >= 12 && hour < 17) {
+  greeting = "Good Afternoon 🌤️";
+} 
+else if (hour >= 17 && hour < 21) {
+  greeting = "Good Evening 🌆";
+} 
+else {
+  greeting = "Good Night 🌙";
+}
 
-  const h =
-    new Date().getHours();
-
-  let text =
-    "Good Evening 👋";
-
-  if(h < 12)
-    text =
-    "Good Morning ☀️";
-
-  else if(h < 17)
-    text =
-    "Good Afternoon 🌤";
-
-  else if(h < 21)
-    text =
-    "Good Evening 🌆";
-
-  else
-    text =
-    "Good Night 🌙";
-
-  greetEl.textContent = text;
+  greetEl.textContent = name ? `${greeting}, ${name}!` : greeting;
 }
 
 
@@ -71,19 +60,18 @@ function setGreeting(){
 function loadUsername(){
 
   const userEl =
-    document.getElementById(
-      "userName"
-    );
+    document.getElementById("userName"); // ✅ correct id
 
   if(!userEl) return;
 
   const name =
-    localStorage.getItem(
-      "username"
-    )
-    || "Bijush Kumar Roy";
+    localStorage.getItem("studentName")
+    || "Guest User";
 
   userEl.textContent = name;
+
+  // Greeting e name show korte chaile
+  setGreeting(name);
 }
 
 
@@ -281,8 +269,17 @@ document.getElementById(
 
 const installBtn =
 document.getElementById(
-  "installBtnTop"
+  "installBtn"
 );
+
+const closeBtn =
+document.getElementById("closeInstall");
+
+if(closeBtn){
+  closeBtn.addEventListener("click", ()=>{
+    installBox.style.display = "none";
+  });
+}
 
 if(!installBox || !installBtn)
 return;
@@ -409,14 +406,91 @@ document.addEventListener(
 ()=>{
 
 setGreeting();
+setInterval(() => {
+  setGreeting(
+    localStorage.getItem("studentName") || ""
+  );
+}, 60000); // every 1 minute
+
 loadUsername();
-loadProgress();
+//loadProgress();
 loadSavedBG();
 initRipple();
-setVersion();
+setCurrentDate();   // ✅ Date
+startAnalogClock(); // ✅ Analog Clock
+
 
 initInstallPrompt(); // ⭐ Install
 registerSW();        // ⭐ SW
 
 }
 );
+
+
+/* ======================
+📅 CURRENT DATE
+====================== */
+
+function setCurrentDate(){
+
+  const dateEl =
+    document.getElementById("currentDate");
+
+  if(!dateEl) return;
+
+  const now = new Date();
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  dateEl.textContent =
+    now.toLocaleDateString("en-IN", options);
+}
+
+
+/* ======================
+🕙 ANALOG CLOCK SYSTEM
+====================== */
+
+function startAnalogClock(){
+
+  const hourHand =
+    document.getElementById("hourHand");
+
+  const minuteHand =
+    document.getElementById("minuteHand");
+
+  const secondHand =
+    document.getElementById("secondHand");
+
+  if(!hourHand) return;
+
+  function updateClock(){
+
+    const now = new Date();
+
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours   = now.getHours();
+
+    const secDeg  = seconds * 6;
+    const minDeg  = minutes * 6 + seconds * 0.1;
+    const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+
+    secondHand.style.transform =
+      `translateX(-50%) rotate(${secDeg}deg)`;
+
+    minuteHand.style.transform =
+      `translateX(-50%) rotate(${minDeg}deg)`;
+
+    hourHand.style.transform =
+      `translateX(-50%) rotate(${hourDeg}deg)`;
+  }
+
+  updateClock();               // first run
+  setInterval(updateClock,1000); // every 1 second tick
+}

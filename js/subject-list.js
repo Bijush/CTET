@@ -19,9 +19,9 @@ const subjectData = {
     },
     {
       title:"Kohlberg Theory",
-      page:"kohlberg.html",
+      page:"kohlbarg.html",
       progress:20,
-      lock:true
+      lock:false
     }
   ],
 

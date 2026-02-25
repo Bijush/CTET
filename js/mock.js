@@ -12,6 +12,8 @@ import { detectBoosts } from "../utils/boost_detector.js";
 // 🔥 Subject first
 let selectedSubject =
   localStorage.getItem("mock_subject") || "ALL";
+  let selectedLimit =
+  localStorage.getItem("mock_limit") || "30";
 
 // 🔥 Dynamic index key
 function getIndexKey(){
@@ -21,17 +23,33 @@ function getIndexKey(){
 function getOrderKey(){
   return `mock_q_order_${selectedSubject}`;
 }
+function getAttemptKey(){
+  return `mock_attempt_map_${selectedSubject}`;
+}
+
+// new line function
+function nl2br(text = "") {
+  return text.replace(/\n/g, "<br>");
+}
+
 
 // 🔥 Load subject-wise index
 let index =
   parseInt(localStorage.getItem(getIndexKey())) || 0;
 
 let answered = false;
+let correctCount = 0;
+let wrongCount = 0;
+let skippedCount = 0; 
 let langMode =
   localStorage.getItem("mock_lang") || "BOTH";
 
 let questionOrder = [];
 let filteredQuestions = [];
+
+let attemptMap =
+  JSON.parse(localStorage.getItem(getAttemptKey())) || {};
+
 
 
 /* ======================
@@ -46,36 +64,7 @@ let lastScroll = 0;
 
 const bottomNav =
   document.querySelector(".bottom-tabs");
-/*
-window.addEventListener("scroll", () => {
 
-  const currentScroll = window.scrollY;
-
-  if (currentScroll <= 0) {
-    bottomNav.style.transform =
-      "translateX(-50%) translateY(0)";
-    bottomNav.style.opacity = "1";
-    return;
-  }
-
-  if (currentScroll > lastScroll) {
-
-    bottomNav.style.transform =
-      "translateX(-50%) translateY(120px)";
-    bottomNav.style.opacity = "0";
-
-  } else {
-
-    bottomNav.style.transform =
-      "translateX(-50%) translateY(0)";
-    bottomNav.style.opacity = "1";
-  }
-
-  lastScroll = currentScroll;
-
-});
-
-*/
 function shuffleArray(arr){
   return arr.sort(() => Math.random() - 0.5);
 }
@@ -112,7 +101,8 @@ function checkResumePractice() {
     console.warn("Invalid resume index. Resetting session...");
 
     localStorage.removeItem(getIndexKey());
-    localStorage.removeItem(getOrderKey());
+localStorage.removeItem(getOrderKey());
+localStorage.removeItem(getAttemptKey());
 
     index = 0;
     return;
@@ -135,21 +125,37 @@ function checkResumePractice() {
     /* ✅ Continue from saved position */
     index = savedIndex;
 
-  } else {
+} else {
 
-    /* 🔄 Start fresh test */
-    localStorage.removeItem(getIndexKey());
-    localStorage.removeItem(getOrderKey());
+  /* 🔄 Start fresh test */
+  localStorage.removeItem(getIndexKey());
+  localStorage.removeItem(getOrderKey());
+  localStorage.removeItem(getAttemptKey()); // 🔥 ADD THIS
 
-    index = 0;
+  index = 0;
+  attemptMap = {}; // memory reset
 
-    // regenerate fresh random set
-    prepareQuestions();
-  }
+  prepareQuestions();
+}
 }
 
 
 function prepareQuestions(){
+  
+  // FORCE reset if limit changed
+const savedLimit =
+  localStorage.getItem("mock_limit_saved");
+
+if (savedLimit !== selectedLimit) {
+  localStorage.removeItem(getIndexKey());
+  localStorage.removeItem(getOrderKey());
+  localStorage.removeItem(getAttemptKey());
+}
+
+localStorage.setItem(
+  "mock_limit_saved",
+  selectedLimit
+);
 
   /* 🔎 Filter by subject */
   if(selectedSubject === "ALL"){
@@ -188,28 +194,42 @@ function prepareQuestions(){
      🔥 Resume-Safe Smart Order System
   =================================== */
 
-  const savedOrder =
-    JSON.parse(localStorage.getItem(getOrderKey()));
+  let savedOrder = null;
 
+  try {
+    savedOrder =
+      JSON.parse(localStorage.getItem(getOrderKey()));
+  } catch(e){
+    console.warn("Saved order corrupted. Resetting...");
+    localStorage.removeItem(getOrderKey());
+    savedOrder = null;
+  }
+
+  let totalToTake;
+
+if (selectedLimit === "ALL") {
+  totalToTake = filteredQuestions.length;
+} else {
+  totalToTake = Math.min(
+    parseInt(selectedLimit),
+    filteredQuestions.length
+  );
+}
+
+  /* ✅ Resume Existing Test */
   if (
-    savedOrder &&
-    savedOrder.length &&
-    savedOrder.length <= filteredQuestions.length
+    Array.isArray(savedOrder) &&
+    savedOrder.length === totalToTake
   ){
 
-    // ✅ Resume existing order
     questionOrder = savedOrder;
 
-    // Important: Only keep required number of questions
     filteredQuestions =
-      filteredQuestions.slice(0, savedOrder.length);
+      filteredQuestions.slice(0, totalToTake);
 
   } else {
 
-    // 🔀 Create new random (max 30 or available count)
-    const totalToTake =
-      Math.min(30, filteredQuestions.length);
-
+    /* 🔀 Fresh New Test */
     filteredQuestions =
       shuffleArray(filteredQuestions)
         .slice(0, totalToTake);
@@ -217,10 +237,15 @@ function prepareQuestions(){
     questionOrder =
       filteredQuestions.map((_, i) => i);
 
-    localStorage.setItem(
-      getOrderKey(),
-      JSON.stringify(questionOrder)
-    );
+    // 🔥 RESET UPSC ATTEMPT TRACKER
+    attemptMap = {};
+
+localStorage.removeItem(getAttemptKey());
+
+localStorage.setItem(
+  getOrderKey(),
+  JSON.stringify(questionOrder)
+);
   }
 }
 /* ======================
@@ -255,10 +280,37 @@ function bookmarkSVG() {
 ====================== */
 function getBookmarks() {
   let b = JSON.parse(localStorage.getItem("bookmarks")) || [];
-  b = b.map(x => (typeof x === "string" ? { type: "MOCK", id: x } : x));
+
+  b = b.map(x => {
+
+    // Old string format fix
+    if (typeof x === "string") {
+      return {
+        type: "MCQ",
+        id: x,
+        subject: "General",
+        date: Date.now()
+      };
+    }
+
+    // Missing date fix
+    if (!x.date) {
+      x.date = Date.now();
+    }
+
+    // Missing subject fix
+    if (!x.subject) {
+      x.subject = "General";
+    }
+
+    return x;
+  });
+
   localStorage.setItem("bookmarks", JSON.stringify(b));
+
   return b;
 }
+
 function saveBookmarks(b) {
   localStorage.setItem("bookmarks", JSON.stringify(b));
 }
@@ -269,40 +321,85 @@ function saveBookmarks(b) {
 function showSnack(msg) {
 
   const sb = document.getElementById("snackbar");
-  const bookmarkBtn =
-    document.getElementById("bookmarkBtn");
+  const bookmarkBtn = document.getElementById("bookmarkBtn");
 
-  if (!sb || !bookmarkBtn) return;
+  if (!sb) return;
+
+  /* Reset */
+  sb.classList.remove(
+    "show",
+    "snack-success",
+    "snack-error",
+    "snack-info"
+  );
 
   sb.innerText = msg;
 
-  // 🎨 Dynamic color
-  if (msg.toLowerCase().includes("saved")) {
-    sb.style.background = "#059669"; // green
-  } else {
-    sb.style.background = "#dc2626"; // red
+  const text = msg.toLowerCase();
+
+  if (
+    text.includes("correct") ||
+    text.includes("saved") ||
+    text.includes("bookmarked")
+  ) {
+    sb.classList.add("snack-success");
+  }
+  else if (
+    text.includes("wrong") ||
+    text.includes("removed") ||
+    text.includes("error")
+  ) {
+    sb.classList.add("snack-error");
+  }
+  else {
+    sb.classList.add("snack-info");
   }
 
-  const rect = bookmarkBtn.getBoundingClientRect();
-
-  // 🔥 Scroll-safe position
-  const scrollTop = window.scrollY;
-  const scrollLeft = window.scrollX;
-
-  sb.style.position = "absolute";
-  sb.style.left =
-    rect.left + rect.width / 2 + scrollLeft + "px";
-
-  sb.style.top =
-    rect.bottom + 8 + scrollTop + "px";
-
+  /* Default center first (for width calc) */
+  sb.style.position = "fixed";
+  sb.style.left = "50%";
+  sb.style.bottom = "110px";
+  sb.style.top = "auto";
   sb.style.transform = "translateX(-50%)";
 
+  /* 📍 If bookmark exists → reposition */
+  if (bookmarkBtn) {
+
+    const rect = bookmarkBtn.getBoundingClientRect();
+
+    const snackWidth = sb.offsetWidth || 220;
+    const screenWidth = window.innerWidth;
+
+    let left =
+      rect.left +
+      rect.width / 2;
+
+    /* 🧠 Edge protection */
+    const margin = 12;
+
+    if (left - snackWidth / 2 < margin) {
+      left = snackWidth / 2 + margin;
+    }
+
+    if (left + snackWidth / 2 > screenWidth - margin) {
+      left =
+        screenWidth -
+        snackWidth / 2 -
+        margin;
+    }
+
+    sb.style.left = left + "px";
+    sb.style.top =
+      rect.bottom + 10 + "px";
+    sb.style.bottom = "auto";
+  }
+
+  /* Show */
   sb.classList.add("show");
 
   setTimeout(() => {
     sb.classList.remove("show");
-  }, 1500);
+  }, 1600);
 }
 
 /* ======================
@@ -352,10 +449,17 @@ if (statusBox) {
   /* 📊 progress */
   progressBar.style.width =
 ((index + 1) / filteredQuestions.length) * 100 + "%";
+const progressInfo =
+  document.getElementById("progressInfo");
+
+if (progressInfo) {
+  progressInfo.innerText =
+    `${index + 1} / ${filteredQuestions.length}`;
+}
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
-    .some(b => b.type === "MOCK" && b.id === q.id);
+    .some(b => b.type === "MCQ" && b.id === q.id);
 
   /* ======================
      QUESTION TEXT (STRICT)
@@ -363,26 +467,41 @@ if (statusBox) {
   let qText = "";
 
   if (langMode === "BOTH") {
-    qText = q.q_en;
-    if (q.q_bn && q.q_bn.trim() !== "") {
-      qText += `<div class="q-bn">(${q.q_bn})</div>`;
-    }
-  }
-  else if (langMode === "EN") {
-    qText = q.q_en;
-  }
-  else if (langMode === "BN") {
-    qText = (q.q_bn && q.q_bn.trim() !== "") ? q.q_bn : q.q_en;
+
+  qText = nl2br(q.q_en);
+
+  if (q.q_bn && q.q_bn.trim() !== "") {
+    qText += `<div class="q-bn">${nl2br(q.q_bn)}</div>`;
   }
 
+}
+else if (langMode === "EN") {
+
+  qText = nl2br(q.q_en);
+
+}
+else if (langMode === "BN") {
+
+  qText = (q.q_bn && q.q_bn.trim() !== "")
+    ? nl2br(q.q_bn)
+    : nl2br(q.q_en);
+
+}
+
   qBox.innerHTML = `
-    <div>
-      <h3>Q${index + 1}. ${qText}</h3>
+  <div class="q-title-row">
+
+    <div class="q-left">
+      <span class="q-number">Q${index + 1}.</span>
+      <h3>${qText}</h3>
     </div>
+
     <div class="bookmark ${isBookmarked ? "active" : ""}" id="bookmarkBtn">
       ${bookmarkSVG()}
     </div>
-  `;
+
+  </div>
+`;
 
   document.getElementById("bookmarkBtn").onclick = toggleBookmark;
 
@@ -412,17 +531,37 @@ if (statusBox) {
 
     const labels = ["A", "B", "C", "D"];
 
+let engLabels = ["A", "B", "C", "D"];
+let bnLabels  = ["ক", "খ", "গ", "ঘ"];
+
 btn.innerHTML = `
   <div class="option-text">
-    <span class="option-label">${labels[i]}.</span>
-    ${optText}
+
+    ${
+      langMode !== "BN"
+        ? `<div class="opt-en">
+             <span class="option-label">${engLabels[i]}.</span>
+             ${en}
+           </div>`
+        : ""
+    }
+
+    ${
+      langMode !== "EN" && bn && bn.trim() !== ""
+        ? `<div class="opt-bn">
+             <span class="option-label">(${bnLabels[i]})</span>
+             ${bn}
+           </div>`
+        : ""
+    }
+
   </div>
 
-<span class="trap-badge" style="display:none;">TRAP</span>
-<div class="trap-hint" style="display:none;"></div>
+  <span class="trap-badge" style="display:none;">TRAP</span>
+  <div class="trap-hint" style="display:none;"></div>
 
-<span class="boost-badge" style="display:none;">BOOST</span>
-<div class="boost-hint" style="display:none;"></div>
+  <span class="boost-badge" style="display:none;">BOOST</span>
+  <div class="boost-hint" style="display:none;"></div>
 `;
 
     btn.onclick = () => {
@@ -446,18 +585,40 @@ btn.innerHTML = `
   /* ======================
      ✅ CORRECT / WRONG
   ====================== */
-  if (clickedIndex === correctIndex) {
+if (clickedIndex === correctIndex) {
 
-    btn.classList.add("correct");
-    showSnack("✅ Correct Answer");
+  attemptMap[q.id] = {
+    visited: true,
+    answered: true,
+    correct: true,
+    selected: clickedIndex
+  };
 
-  } else {
+  btn.classList.add("correct");
 
-    btn.classList.add("wrong");
+  // ✅ GREEN SNACKBAR
+  showSnack("✅ Correct Answer");
 
-    optBox.children[correctIndex]
-      ?.classList.add("correct");
-  }
+} else {
+
+  attemptMap[q.id] = {
+    visited: true,
+    answered: true,
+    correct: false,
+    selected: clickedIndex
+  };
+
+  btn.classList.add("wrong");
+  optBox.children[correctIndex]?.classList.add("correct");
+
+  // 🔴 RED SNACKBAR
+  showSnack("❌ Wrong Answer");
+}
+/* 🔥 SAVE ATTEMPT MAP */
+localStorage.setItem(
+  getAttemptKey(),
+  JSON.stringify(attemptMap)
+);
   /* ======================
    📊 ANSWER STATUS BAR
 ====================== */
@@ -614,11 +775,11 @@ document
       ? `
       <hr>
       <b>Why correct?</b><br>
-      ${q.ans_reason_en || ""}
+      ${nl2br(q.ans_reason_en || "")}
       ${
         q.ans_reason_bn
         ? `<div class="q-bn">
-            ${q.ans_reason_bn}
+            ${nl2br(q.ans_reason_bn || "")}
            </div>`
         : ""
       }
@@ -997,24 +1158,47 @@ function highlightBoosts(
 ====================== */
 function toggleBookmark() {
 
- 
- const currentQIndex = questionOrder[index];
-const q = filteredQuestions[currentQIndex];
+  const currentQIndex = questionOrder[index];
+  const q = filteredQuestions[currentQIndex];
 
   let b = getBookmarks();
+  const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
 
-  const pos = b.findIndex(x => x.type === "MOCK" && x.id === q.id);
+  const btn = document.getElementById("bookmarkBtn");
+
+  if (!btn) return;
 
   if (pos > -1) {
-    b.splice(pos, 1);
-    showSnack("❌ Bookmark removed");
+
+    // 🔄 REMOVE BOOKMARK WITH ANIMATION
+    btn.classList.add("removing");
+
+    setTimeout(() => {
+      b.splice(pos, 1);
+      saveBookmarks(b);
+
+      btn.classList.remove("active", "removing");
+
+      showSnack("❌ Bookmark removed");
+    }, 300);
+
   } else {
-    b.push({ type: "MOCK", id: q.id, subject: q.subject });
+
+    // ⭐ ADD BOOKMARK
+    b.push({
+  type: "MCQ",
+  id: q.id,
+  subject: q.subject || "General",
+  date: Date.now()   // 🔥 IMPORTANT for Latest Sort
+});
+
+saveBookmarks(b);
+
+    btn.classList.remove("removing");
+    btn.classList.add("active");
+
     showSnack("⭐ Bookmark saved");
   }
-
-  saveBookmarks(b);
-  loadQ();
 }
 
 window.toggleAIExplain = function (el) {
@@ -1031,17 +1215,159 @@ window.toggleAIExplain = function (el) {
    NAVIGATION
 ====================== */
 window.nextQ = () => {
+
+  const currentQIndex = questionOrder[index];
+  const q = filteredQuestions[currentQIndex];
+
+  if (!q) return;
+
+  /* =====================================
+     🔥 If question not answered → mark skipped
+  ===================================== */
+
+  const attempt = attemptMap[q.id];
+
+  if (!attempt || attempt.answered !== true) {
+
+    attemptMap[q.id] = {
+      visited: true,
+      answered: false,
+      correct: false,
+      selected: null
+    };
+
+    localStorage.setItem(
+      getAttemptKey(),
+      JSON.stringify(attemptMap)
+    );
+  }
+
+  /* =====================================
+     ➡ Move Forward
+  ===================================== */
+
   if (index < filteredQuestions.length - 1) {
+
     index++;
+
+    localStorage.setItem(
+      getIndexKey(),
+      index
+    );
+
     loadQ();
+
+  } else {
+
+    saveResultAndGo();
+
   }
 };
+
 window.prevQ = () => {
   if (index > 0) {
     index--;
     loadQ();
   }
 };
+
+function saveResultAndGo(){
+
+  const total = filteredQuestions.length;
+
+  let correct = 0;
+  let wrong = 0;
+  let skipped = 0;
+
+  const detailedReview = [];
+
+  for (let i = 0; i < total; i++) {
+
+    const qIndex = questionOrder[i];
+    const q = filteredQuestions[qIndex];
+    const attempt = attemptMap[q.id];
+
+    let status = "skipped";
+
+    /* ======================================
+       🔥 CORRECT SKIPPED LOGIC FIX
+    ====================================== */
+
+    if (!attempt || attempt.answered === false) {
+
+      skipped++;
+      status = "skipped";
+
+    }
+    else if (attempt.correct === true) {
+
+      correct++;
+      status = "correct";
+
+    }
+    else {
+
+      wrong++;
+      status = "wrong";
+
+    }
+
+    detailedReview.push({
+      id: q.id,
+      question_en: q.q_en,
+      question_bn: q.q_bn,
+      options_en: q.options_en,
+      options_bn: q.options_bn,
+      correctAnswer: q.ans,
+      selected: attempt?.selected ?? null,
+      status: status,
+      explanation_en: q.ans_reason_en || "",
+      explanation_bn: q.ans_reason_bn || "",
+      concept: q.concept || "",
+      exam: q.exam || "",
+      year: q.year || ""
+    });
+  }
+
+  const resultData = {
+    subject: selectedSubject,
+    total,
+    correct,
+    wrong,
+    skipped,
+    percentage: total > 0
+      ? ((correct / total) * 100).toFixed(1)
+      : "0.0",
+    date: new Date().toLocaleString(),
+    review: detailedReview
+  };
+
+  /* 🔥 Save latest result */
+  localStorage.setItem(
+    "last_mock_result",
+    JSON.stringify(resultData)
+  );
+
+  /* 🔥 Push to history */
+  let history =
+    JSON.parse(localStorage.getItem("mock_test_history")) || [];
+
+  history.unshift(resultData);
+
+  localStorage.setItem(
+    "mock_test_history",
+    JSON.stringify(history)
+  );
+
+  /* 🔥 Clean resume keys */
+  localStorage.removeItem(getIndexKey());
+  localStorage.removeItem(getOrderKey());
+  localStorage.removeItem(getAttemptKey());
+
+  location.href = "result.html";
+}
+
+
 /* ======================
    🧠 WEAK PAGE NAV
 ====================== */
@@ -1218,6 +1544,29 @@ document
     // 🔥 Reset previous subject resume
     localStorage.removeItem(getIndexKey());
     localStorage.removeItem(getOrderKey());
+    localStorage.removeItem(getAttemptKey());
+
+    index = 0;
+
+    prepareQuestions();
+    loadQ();
+});
+
+document
+  .getElementById("questionLimit")
+  .addEventListener("change", function(){
+
+    selectedLimit = this.value;
+
+    localStorage.setItem(
+      "mock_limit",
+      selectedLimit
+    );
+
+    // reset test
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+    localStorage.removeItem(getAttemptKey());
 
     index = 0;
 
@@ -1227,27 +1576,22 @@ document
 /* ======================
    INIT
 ====================== */
+
 window.addEventListener("DOMContentLoaded", () => {
 
   try {
-    // 🔥 Prepare subject-wise 30 random questions
-    prepareQuestions();
 
-    // Resume check
-    checkResumePractice();
-    
-    // Small delay → ensure module data ready
-    setTimeout(() => {
-      loadQ();
-    }, 50);
+    prepareQuestions();      // Step 1
+    checkResumePractice();   // Step 2
+    loadQ();                 // 🔥 Step 3 (MUST)
 
   } catch (e) {
 
     console.error("MCQ Init Error:", e);
 
-    // Retry fallback
-    setTimeout(loadQ, 200);
-
+    // Safe fallback
+    prepareQuestions();
+    loadQ();
   }
 
 });
