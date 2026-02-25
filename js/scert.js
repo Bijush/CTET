@@ -1,13 +1,10 @@
 import { TAptitude } from "../data/scert/teaching-aptitude.js";
-//import { mcqQuestion } from "../data/question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
 import { detectBoosts } from "../utils/boost_detector.js";
 
-window.addEventListener("pageshow", e => {
-  if (e.persisted) location.reload();
-});
+
 /* ======================
    GLOBAL STATE (NO TIMER)
 ====================== */
@@ -15,6 +12,8 @@ window.addEventListener("pageshow", e => {
 // 🔥 Subject first
 let selectedSubject =
   localStorage.getItem("scert_subject") || "ALL";
+  let selectedLimit =
+  localStorage.getItem("scert_limit") || "30";
 
 // 🔥 Dynamic index key
 function getIndexKey(){
@@ -27,6 +26,12 @@ function getOrderKey(){
 function getAttemptKey(){
   return `scert_attempt_map_${selectedSubject}`;
 }
+
+// new line function
+function nl2br(text = "") {
+  return text.replace(/\n/g, "<br>");
+}
+
 
 // 🔥 Load subject-wise index
 let index =
@@ -44,8 +49,6 @@ let filteredQuestions = [];
 
 let attemptMap =
   JSON.parse(localStorage.getItem(getAttemptKey())) || {};
-  
-  
 
 
 
@@ -138,20 +141,32 @@ localStorage.removeItem(getAttemptKey());
 
 
 function prepareQuestions(){
+  
+  // FORCE reset if limit changed
+const savedLimit =
+  localStorage.getItem("scert_limit_saved");
 
-  if (selectedSubject === "ALL") {
-
-  // সব প্রশ্ন দেখাবে
-  filteredQuestions = [...TAptitude];
-
-} else {
-
-  // নির্দিষ্ট subject অনুযায়ী filter করবে
-  filteredQuestions = TAptitude.filter(
-    q => q.subject === selectedSubject
-  );
-
+if (savedLimit !== selectedLimit) {
+  localStorage.removeItem(getIndexKey());
+  localStorage.removeItem(getOrderKey());
+  localStorage.removeItem(getAttemptKey());
 }
+
+localStorage.setItem(
+  "scert_limit_saved",
+  selectedLimit
+);
+
+  /* 🔎 Filter by subject */
+  if(selectedSubject === "ALL"){
+    filteredQuestions = [...TAptitude];
+  } else {
+    filteredQuestions =
+      TAptitude.filter(
+        q => q.subject === selectedSubject
+      );
+  }
+
   /* 🚫 If no question found */
   if(filteredQuestions.length === 0){
 
@@ -190,8 +205,16 @@ function prepareQuestions(){
     savedOrder = null;
   }
 
-  const totalToTake =
-    Math.min(30, filteredQuestions.length);
+  let totalToTake;
+
+if (selectedLimit === "ALL") {
+  totalToTake = filteredQuestions.length;
+} else {
+  totalToTake = Math.min(
+    parseInt(selectedLimit),
+    filteredQuestions.length
+  );
+}
 
   /* ✅ Resume Existing Test */
   if (
@@ -263,7 +286,7 @@ function getBookmarks() {
     // Old string format fix
     if (typeof x === "string") {
       return {
-        type: "MOCK",
+        type: "MCQ",
         id: x,
         subject: "General",
         date: Date.now()
@@ -426,10 +449,17 @@ if (statusBox) {
   /* 📊 progress */
   progressBar.style.width =
 ((index + 1) / filteredQuestions.length) * 100 + "%";
+const progressInfo =
+  document.getElementById("progressInfo");
+
+if (progressInfo) {
+  progressInfo.innerText =
+    `${index + 1} / ${filteredQuestions.length}`;
+}
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
-    .some(b => b.type === "MOCK" && b.id === q.id);
+    .some(b => b.type === "MCQ" && b.id === q.id);
 
   /* ======================
      QUESTION TEXT (STRICT)
@@ -437,26 +467,41 @@ if (statusBox) {
   let qText = "";
 
   if (langMode === "BOTH") {
-    qText = q.q_en;
-    if (q.q_bn && q.q_bn.trim() !== "") {
-      qText += `<div class="q-bn">(${q.q_bn})</div>`;
-    }
-  }
-  else if (langMode === "EN") {
-    qText = q.q_en;
-  }
-  else if (langMode === "BN") {
-    qText = (q.q_bn && q.q_bn.trim() !== "") ? q.q_bn : q.q_en;
+
+  qText = nl2br(q.q_en);
+
+  if (q.q_bn && q.q_bn.trim() !== "") {
+    qText += `<div class="q-bn">${nl2br(q.q_bn)}</div>`;
   }
 
+}
+else if (langMode === "EN") {
+
+  qText = nl2br(q.q_en);
+
+}
+else if (langMode === "BN") {
+
+  qText = (q.q_bn && q.q_bn.trim() !== "")
+    ? nl2br(q.q_bn)
+    : nl2br(q.q_en);
+
+}
+
   qBox.innerHTML = `
-    <div>
-      <h3>Q${index + 1}. ${qText}</h3>
+  <div class="q-title-row">
+
+    <div class="q-left">
+      <span class="q-number">Q${index + 1}.</span>
+      <h3>${qText}</h3>
     </div>
+
     <div class="bookmark ${isBookmarked ? "active" : ""}" id="bookmarkBtn">
       ${bookmarkSVG()}
     </div>
-  `;
+
+  </div>
+`;
 
   document.getElementById("bookmarkBtn").onclick = toggleBookmark;
 
@@ -484,17 +529,7 @@ if (statusBox) {
       optText = (bn && bn.trim() !== "") ? bn : en; // BN fallback
     }
 
-    let labels;
-
-if (langMode === "BN") {
-  labels = ["ক", "খ", "গ", "ঘ"];
-}
-else if (langMode === "BOTH") {
-  labels = ["A (ক)", "B (খ)", "C (গ)", "D (ঘ)"];
-}
-else {
-  labels = ["A", "B", "C", "D"];
-}
+    const labels = ["A", "B", "C", "D"];
 
 let engLabels = ["A", "B", "C", "D"];
 let bnLabels  = ["ক", "খ", "গ", "ঘ"];
@@ -740,11 +775,11 @@ document
       ? `
       <hr>
       <b>Why correct?</b><br>
-    ${formatSteps(q.ans_reason_en)}
+      ${nl2br(q.ans_reason_en || "")}
       ${
         q.ans_reason_bn
         ? `<div class="q-bn">
-            ${formatSteps(q.ans_reason_bn)}
+            ${nl2br(q.ans_reason_bn || "")}
            </div>`
         : ""
       }
@@ -1127,7 +1162,7 @@ function toggleBookmark() {
   const q = filteredQuestions[currentQIndex];
 
   let b = getBookmarks();
-  const pos = b.findIndex(x => x.type === "MOCK" && x.id === q.id);
+  const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
 
   const btn = document.getElementById("bookmarkBtn");
 
@@ -1150,8 +1185,8 @@ function toggleBookmark() {
   } else {
 
     // ⭐ ADD BOOKMARK
-b.push({
-  type: "MOCK",
+    b.push({
+  type: "MCQ",
   id: q.id,
   subject: q.subject || "General",
   date: Date.now()   // 🔥 IMPORTANT for Latest Sort
@@ -1385,30 +1420,14 @@ window.showConceptPedagogy = function (concept) {
 
       </div>
 
-      <button id="closePedModal">Close</button>
+      <button onclick="this.closest('.concept-popup').remove()">
+        Close
+      </button>
 
     </div>
   `;
 
   document.body.appendChild(box);
-
-  // 🔥 scroll lock
-  document.body.style.overflow = "hidden";
-
-  document
-    .getElementById("closePedModal")
-    .onclick = () => {
-      box.remove();
-      document.body.style.overflow = "";
-    };
-
-  // click outside close
-  box.onclick = (e) => {
-    if (e.target === box) {
-      box.remove();
-      document.body.style.overflow = "";
-    }
-  };
 };
 
 window.goBack = function(){
@@ -1492,17 +1511,22 @@ function isWeakConcept(concept){
 
 
 /* CONCEPT CLICK GLOBAL */
-document.addEventListener("click", function(e){
+document.addEventListener("click", e => {
 
-  const link = e.target.closest(".concept-link");
+  const link =
+    e.target.closest(".concept-link");
 
-  if(!link) return;
+  if (!link) return;
 
-  const concept = link.getAttribute("data-concept");
+  e.preventDefault();
+  e.stopPropagation();
 
-  if(!concept || concept.trim() === "") return;
+  const concept =
+    link.dataset.concept;
 
-  showConceptPedagogy(concept);
+  if (concept) {
+    showConceptPedagogy(concept);
+  }
 
 });
 
@@ -1527,69 +1551,47 @@ document
     prepareQuestions();
     loadQ();
 });
+
+document
+  .getElementById("questionLimit")
+  .addEventListener("change", function(){
+
+    selectedLimit = this.value;
+
+    localStorage.setItem(
+      "scert_limit",
+      selectedLimit
+    );
+
+    // reset test
+    localStorage.removeItem(getIndexKey());
+    localStorage.removeItem(getOrderKey());
+    localStorage.removeItem(getAttemptKey());
+
+    index = 0;
+
+    prepareQuestions();
+    loadQ();
+});
 /* ======================
    INIT
 ====================== */
+
 window.addEventListener("DOMContentLoaded", () => {
 
   try {
-    // 🔥 Prepare subject-wise 30 random questions
-    prepareQuestions();
 
-    // Resume check
-    checkResumePractice();
-    
-    // Small delay → ensure module data ready
-    setTimeout(() => {
-      loadQ();
-    }, 50);
+    prepareQuestions();      // Step 1
+    checkResumePractice();   // Step 2
+    loadQ();                 // 🔥 Step 3 (MUST)
 
   } catch (e) {
 
     console.error("MCQ Init Error:", e);
 
-    // Retry fallback
-    setTimeout(loadQ, 200);
-
+    // Safe fallback
+    prepareQuestions();
+    loadQ();
   }
 
 });
-
-function formatSteps(text){
-
-  if(!text) return "";
-
-  // 🔥 Break before English Step (Step 1, Step 2., Step 3- etc.)
-  text = text.replace(/(Step\s*[0-9]+\s*[:.\-]?)/gi, "\n$1");
-
-  // 🔥 Break before Bengali ধাপ (ধাপ ১, ধাপ ২., ধাপ ৩- etc.)
-  // Supports Bengali digits ০১২৩৪৫৬৭৮৯ and English digits
-  text = text.replace(/(ধাপ\s*[০-৯0-9]+\s*[:.\-]?)/gi, "\n$1");
-
-  const lines = text
-    .split("\n")
-    .map(l => l.trim())
-    .filter(l => l !== "");
-
-  return `
-    <div class="step-container">
-      ${lines.map(line => {
-
-        const match = line.match(/^(Step\s*[0-9]+\s*[:.\-]?|ধাপ\s*[০-৯0-9]+\s*[:.\-]?)/i);
-
-        if(match){
-          return `
-            <div class="step-box">
-              <div class="step-badge">${match[0]}</div>
-              <div class="step-text">
-                ${line.replace(match[0], "").trim()}
-              </div>
-            </div>
-          `;
-        }
-
-        return `<div class="step-text">${line}</div>`;
-      }).join("")}
-    </div>
-  `;
-}
