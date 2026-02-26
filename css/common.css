@@ -824,3 +824,64 @@ STEP FORMAT PREMIUM
 .opt-bn {
   opacity: 0.9;
 }
+
+/* ======================
+PREMIUM FOOTER
+====================== */
+
+.premium-footer{
+
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+
+  height:65px;
+
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(16px);
+
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+
+  box-shadow:0 -6px 20px rgba(0,0,0,.15);
+
+  z-index:999;
+}
+
+.footer-item{
+
+  flex:1;
+  text-align:center;
+  font-size:12px;
+  font-weight:600;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  color:#777;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.footer-item span{
+  font-size:11px;
+  margin-top:4px;
+}
+
+.footer-item.active{
+  color:#1e88e5;
+  transform:translateY(-4px);
+}
+
+.footer-item:hover{
+  color:#1e88e5;
+}
+
+/* Bottom spacing fix */
+body{
+  padding-bottom:80px;
+}

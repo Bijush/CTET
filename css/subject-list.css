@@ -256,3 +256,30 @@ RIPPLE EFFECT
     opacity:0;
   }
 }
+.group-card{
+  background:#ffffff;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:bold;
+}
+
+.group-arrow{
+  transition:0.3s;
+}
+
+.group-arrow.rotate{
+  transform:rotate(180deg);
+}
+
+.child-container{
+  height:0;
+  overflow:hidden;
+  transition:height .4s ease;
+}
+

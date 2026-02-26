@@ -166,7 +166,7 @@ DIAGRAM
 
 #diagramContainer{
   margin-top:12px;
-  text-align:center;
+  margin-bottom:8px;
 }
 
 canvas{
@@ -282,7 +282,7 @@ FEATURE CARDS
 .feature-ctet{
   margin-top:6px;
   display:inline-block;
-  font-size:12px;
+  font-size:14px;
   background:#fff3cd;
   color:#5c3d00;
   padding:4px 8px;
