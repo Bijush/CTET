@@ -6,7 +6,8 @@
       content="width=device-width,initial-scale=1.0">
 
 <title>Subjects</title>
-
+<link rel="stylesheet"
+      href="../css/common.css">
 <link rel="stylesheet"
       href="../css/subject-list.css">
 </head>
@@ -77,6 +78,47 @@ Loading…
 <div id="conceptList">
 Loading concepts…
 </div>
+
+<!-- PREMIUM FOOTER -->
+<div class="premium-footer">
+
+  <div class="footer-item active"
+       onclick="location.href='dashboard.html'">
+    🏠
+    <span>Home</span>
+  </div>
+
+  <div class="footer-item"
+       onclick="location.href='subject-list.html'">
+    📘
+    <span>Concept</span>
+  </div>
+
+  <div class="footer-item"
+       onclick="location.href='test.html'">
+    📝
+    <span>Test</span>
+  </div>
+
+  <div class="footer-item"
+       onclick="location.href='profile.html'">
+    👤
+    <span>Profile</span>
+  </div>
+
+</div>
+<script>
+const path = location.pathname;
+
+document.querySelectorAll(".footer-item")
+.forEach(item=>{
+  if(item.getAttribute("onclick")
+    .includes(path.split("/").pop())){
+      item.classList.add("active");
+  }
+});
+</script>
+
 
 <script src="../js/subject-list.js"></script>
 
