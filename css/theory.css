@@ -48,7 +48,7 @@ PAGE CONTENT
 
 .tab-page{
   padding:12px;
-  padding-bottom:110px;
+  padding-bottom:150px;
   transition:
     opacity .35s ease,
     transform .35s ease;
@@ -295,9 +295,7 @@ BOTTOM NAV
 ====================== */
 .bottom-tabs{
   position: fixed;
-
   bottom: max(8px, env(safe-area-inset-bottom));
-
   left: 50%;
   transform: translateX(-50%);
 
@@ -305,25 +303,31 @@ BOTTOM NAV
   max-width: 520px;
 
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+
+  overflow-x: auto;     /* 🔥 Enable horizontal scroll */
+  overflow-y: hidden;
+
+  white-space: nowrap;
 
   padding: 10px;
 
   border-radius: 22px;
-
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   background: rgba(255,255,255,0.25);
   border: 1px solid rgba(255,255,255,0.35);
-
   box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 
   z-index: 999;
+
+  scroll-behavior: smooth;
 }
 
 .btab{
-  flex:1;
+  flex: 0 0 auto;
+  min-width: 70px;
   border:none;
   background:none;
   display:flex;
@@ -344,10 +348,27 @@ BOTTOM NAV
 }
 
 .btab.active{
-  color:#1e88e5;
-  background:rgba(255,255,255,0.45);
-  box-shadow:0 4px 12px rgba(30,136,229,.35);
-  transform:translateY(-4px);
+
+  background: linear-gradient(
+    135deg,
+    #1e88e5,
+    #42a5f5
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 18px rgba(30,136,229,.55),
+    0 0 12px rgba(30,136,229,.65);
+
+  transform: translateY(-6px) scale(1.05);
+
+  border: 1px solid rgba(255,255,255,.4);
+}
+.btab.active span{
+  text-shadow:
+    0 0 6px rgba(255,255,255,.9),
+    0 0 12px rgba(255,255,255,.6);
 }
 
 

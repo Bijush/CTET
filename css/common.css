@@ -19,7 +19,9 @@ html,body{
 body{
   margin:0;
   padding:0;
-  padding-bottom:120px;
+
+  padding-bottom:calc(150px + env(safe-area-inset-bottom));
+
   min-height:100vh;
 
   font-family:"Segoe UI", system-ui, -apple-system, sans-serif;
@@ -311,17 +313,29 @@ small {
   bottom: max(8px, env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
+
   width: 92%;
   max-width: 520px;
+
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+
+  overflow-x: auto;      /* 🔥 Horizontal scroll */
+  overflow-y: hidden;
+
+  white-space: nowrap;
+
   padding: 10px;
+
   border-radius: 22px;
   backdrop-filter: blur(18px);
   background: rgba(255,255,255,0.25);
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+
   z-index: 999;
+
+  scroll-behavior: smooth;
 }
 /* Floating glow aura */
 .top-navbar{
@@ -881,7 +895,4 @@ PREMIUM FOOTER
   color:#1e88e5;
 }
 
-/* Bottom spacing fix */
-body{
-  padding-bottom:80px;
-}
+
