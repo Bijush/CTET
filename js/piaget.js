@@ -6,6 +6,21 @@ LOAD BOX
 let box;
 
 window.openTab = function(tab, ev){
+    // Remove old active
+document.querySelectorAll(".btab")
+.forEach(btn => btn.classList.remove("active"));
+
+// Add active to clicked button
+if(event){
+  event.currentTarget.classList.add("active");
+
+  // 🔥 Auto scroll to center active tab
+  event.currentTarget.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "nearest"
+  });
+}
 
   /* ----------------------
   1️⃣ BOX SAFETY CHECK

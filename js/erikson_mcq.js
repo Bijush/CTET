@@ -1,4 +1,4 @@
-import { TAptitude } from "../data/scert/teaching-aptitude.js";
+import { eriksonMcq } from "../data/eriksonDataMcq.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
 import { getPedagogyProfile } from "../utils/pedagogy_ai.js";
@@ -11,20 +11,20 @@ import { detectBoosts } from "../utils/boost_detector.js";
 
 // 🔥 Subject first
 let selectedSubject =
-  localStorage.getItem("scert_subject") || "ALL";
+  localStorage.getItem("erikson_subject") || "ALL";
   let selectedLimit =
-  localStorage.getItem("scert_limit") || "30";
+  localStorage.getItem("erikson_limit") || "30";
 
 // 🔥 Dynamic index key
 function getIndexKey(){
-  return `scert_q_index_${selectedSubject}`;
+  return `erikson_q_index_${selectedSubject}`;
 }
 
 function getOrderKey(){
-  return `scert_q_order_${selectedSubject}`;
+  return `erikson_q_order_${selectedSubject}`;
 }
 function getAttemptKey(){
-  return `scert_attempt_map_${selectedSubject}`;
+  return `erikson_attempt_map_${selectedSubject}`;
 }
 
 // new line function
@@ -42,7 +42,7 @@ let correctCount = 0;
 let wrongCount = 0;
 let skippedCount = 0; 
 let langMode =
-  localStorage.getItem("scert_lang") || "BOTH";
+  localStorage.getItem("erikson_lang") || "BOTH";
 
 let questionOrder = [];
 let filteredQuestions = [];
@@ -116,7 +116,7 @@ localStorage.removeItem(getAttemptKey());
 
   /* 🔔 Show resume alert only if user actually progressed */
   const resume = confirm(
-    `Resume ${selectedSubject} scert test?\n\n` +
+    `Resume ${selectedSubject} erikson test?\n\n` +
     `You were at Question ${savedIndex + 1} of ${savedOrder.length}.`
   );
 
@@ -144,7 +144,7 @@ function prepareQuestions(){
   
   // FORCE reset if limit changed
 const savedLimit =
-  localStorage.getItem("scert_limit_saved");
+  localStorage.getItem("erikson_limit_saved");
 
 if (savedLimit !== selectedLimit) {
   localStorage.removeItem(getIndexKey());
@@ -153,16 +153,16 @@ if (savedLimit !== selectedLimit) {
 }
 
 localStorage.setItem(
-  "scert_limit_saved",
+  "erikson_limit_saved",
   selectedLimit
 );
 
   /* 🔎 Filter by subject */
   if(selectedSubject === "ALL"){
-    filteredQuestions = [...TAptitude];
+    filteredQuestions = [...eriksonMcq];
   } else {
     filteredQuestions =
-      TAptitude.filter(
+      eriksonMcq.filter(
         q => q.subject === selectedSubject
       );
   }
@@ -259,7 +259,7 @@ window.toggleLangView = () => {
   else if (langMode === "EN") langMode = "BN";
   else langMode = "BOTH";
 
-  localStorage.setItem("scert_lang", langMode);
+  localStorage.setItem("erikson_lang", langMode);
 
   answered = false;      // reset state
   loadQ();               // full re-render
@@ -1371,18 +1371,18 @@ function saveResultAndGo(){
 
   /* 🔥 Save latest result */
   localStorage.setItem(
-    "last_scert_result",
+    "last_erikson_result",
     JSON.stringify(resultData)
   );
 
   /* 🔥 Push to history */
   let history =
-    JSON.parse(localStorage.getItem("scert_test_history")) || [];
+    JSON.parse(localStorage.getItem("erikson_test_history")) || [];
 
   history.unshift(resultData);
 
   localStorage.setItem(
-    "scert_test_history",
+    "erikson_test_history",
     JSON.stringify(history)
   );
 
@@ -1465,7 +1465,7 @@ window.goBack = function(){
 
   }else{
 
-    location.href = "dashboard.html";
+    location.href = "erikson.html";
 
   }
 
@@ -1564,7 +1564,7 @@ document
     selectedSubject = this.value;
 
     localStorage.setItem(
-      "scert_subject",
+      "erikson_subject",
       selectedSubject
     );
 
@@ -1586,7 +1586,7 @@ document
     selectedLimit = this.value;
 
     localStorage.setItem(
-      "scert_limit",
+      "erikson_limit",
       selectedLimit
     );
 

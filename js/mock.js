@@ -1,3 +1,4 @@
+
 import { mockQuestion } from "../data/mock_question.js";
 import { detectTraps } from "../utils/trap_detector.js";
 import { offlineAIExplain } from "../utils/ai_explainer.js";
@@ -788,53 +789,80 @@ document
     }
 
 ${
-  q.elimination_en?.length ||
-  q.elimination_bn?.length ||
-  q.elimination?.length
-  ? `
-  <hr>
-  <b>Why other options are wrong?</b>
+  (() => {
 
-  <ul class="elim-list">
+    let elimList = [];
 
-    ${
-      (
-        langMode === "BN"
-          ? (q.elimination_bn || q.elimination)
-          : (q.elimination_en || q.elimination)
-      )
-      ?.map((e, i) => {
+    // 🌐 Language based selection
+    if (langMode === "EN") {
 
-        let cls = "elim-wrong";
-        let icon = "❌";
+      elimList = q.elimination_en || [];
 
-        if(i === correctIndex){
-          cls = "elim-correct";
-          icon = "✔";
-        }
-        else if(i === userWrongIndex){
-          cls = "elim-your";
-          icon = "❌";
-        }
+    } 
+    else if (langMode === "BN") {
 
-        return `
-          <li class="${cls}">
+      elimList = q.elimination_bn || [];
 
-            <b>${icon} Option ${
-              String.fromCharCode(65 + i)
-            }:</b>
+    } 
+    else { // BOTH MODE
 
-            ${e}
+      // Combine EN + BN properly
+      if (q.elimination_en && q.elimination_bn) {
 
-          </li>
-        `;
-      })
-      .join("") || ""
+        elimList = q.elimination_en.map((enText, i) => {
+
+          const bnText = q.elimination_bn[i] || "";
+
+          return `
+            <div>${enText}</div>
+            <div class="q-bn">${bnText}</div>
+          `;
+
+        });
+
+      } else {
+
+        elimList = q.elimination_en || q.elimination_bn || [];
+
+      }
+
     }
 
-  </ul>
-  `
-  : ""
+    if (!Array.isArray(elimList) || !elimList.length) {
+      return "";
+    }
+
+    return `
+      <hr>
+      <b>Why other options are wrong?</b>
+
+      <ul class="elim-list">
+
+        ${elimList.map((e, i) => {
+
+          let cls = "elim-wrong";
+          let icon = "❌";
+
+          if (i === correctIndex) {
+            cls = "elim-correct";
+            icon = "✔";
+          }
+          else if (i === userWrongIndex) {
+            cls = "elim-your";
+          }
+
+          return `
+            <li class="${cls}">
+              <b>${icon} Option ${String.fromCharCode(65 + i)}:</b>
+              ${e}
+            </li>
+          `;
+
+        }).join("")}
+
+      </ul>
+    `;
+  })()
 }
 ${
       (() => {

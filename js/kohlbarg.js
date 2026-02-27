@@ -6,6 +6,21 @@ LOAD BOX
 let box;
 
 window.openTab = function(tab, ev){
+    // Remove old active
+document.querySelectorAll(".btab")
+.forEach(btn => btn.classList.remove("active"));
+
+// Add active to clicked button
+if(event){
+  event.currentTarget.classList.add("active");
+
+  // 🔥 Auto scroll to center active tab
+  event.currentTarget.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "nearest"
+  });
+}
 
   /* ----------------------
   1️⃣ BOX SAFETY CHECK
@@ -2379,9 +2394,8 @@ window.toggleMCQ = function(el){
 BACK BUTTON
 ====================== */
 
-window.goBack =
-function(){
-  history.back();
+window.goBack = function(){
+  window.location.replace("subject-list.html");
 };
 
 /* ======================
@@ -2392,7 +2406,7 @@ PIAGET MCQ PAGE GO
 PIAGET MCQ PAGE GO
 ====================== */
 
-window.goPiagetMCQ = function(event){
+window.goKohlberg = function(event){
 
   // Active remove
   document
@@ -2445,7 +2459,7 @@ window.goPiagetMCQ = function(event){
   // Redirect
   setTimeout(()=>{
     window.location.href =
-      "piaget-mcq.html";
+      "kohlbarg-mcq-page.html";
   },180);
 
 };
