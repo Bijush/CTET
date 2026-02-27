@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Mathematics Content Pedagogy</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>Mathematics Content Pedagogy (Class 1–5)</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('number', event)">
+    <span>🔢</span>
+    <label>Number</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('fraction', event)">
+    <span>➗</span>
+    <label>Fraction</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('algebra', event)">
+    <span>🧮</span>
+    <label>Algebra</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('geometry', event)">
+    <span>📐</span>
+    <label>Geometry</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('mensuration', event)">
+    <span>📏</span>
+    <label>Mensuration</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('data', event)">
+    <span>📊</span>
+    <label>Data</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('word', event)">
+    <span>📝</span>
+    <label>Word</label>
+  </button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../js/math-content.js">
+</script>
+
+<script defer
+        src="../js/progress-tracker.js">
+</script>
+
+</body>
+</html>

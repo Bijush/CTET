@@ -3,8 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<title>Vygotsky</title>
+<title>Inclusive Mathematics Education</title>
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1">
@@ -27,7 +26,7 @@ HEADER
     ⬅
   </button>
 
-  <h2> Vygotsky Theory</h2>
+  <h2>Inclusive Mathematics Education</h2>
 
 </div>
 
@@ -46,43 +45,35 @@ BOTTOM NAV GLASS TABS
 <div class="bottom-tabs">
 
   <button class="btab active"
-          onclick="openTab('definition', event)">
-    <span>📘</span>
-    <label>Def</label>
+          onclick="openTab('cwsn', event)">
+    <span>♿</span>
+    <label>CWSN</label>
   </button>
 
   <button class="btab"
-          onclick="openTab('zpd', event)">
-    <span>🧠</span>
-    <label>ZPD</label>
+          onclick="openTab('dyscalculia', event)">
+    <span>🔢</span>
+    <label>Dyscalculia</label>
   </button>
 
   <button class="btab"
-          onclick="openTab('criticism', event)">
-    <span>⚠️</span>
-    <label>Critic</label>
+          onclick="openTab('anxiety', event)">
+    <span>😟</span>
+    <label>Math Anxiety</label>
   </button>
 
   <button class="btab"
-          onclick="openTab('compare', event)">
-    <span>🆚</span>
-    <label>Compare</label>
+          onclick="openTab('gifted', event)">
+    <span>🌟</span>
+    <label>Gifted</label>
   </button>
-<!-- Teaching -->
-<button class="btab"
-        onclick="openTab('teaching', event)">
-  <span>👩‍🏫</span>
-  <label>Teach</label>
-</button>
 
-<!-- Piaget MCQ -->
-<button class="btab"
-        onclick="goVygotsky(event)">
+  <button class="btab"
+          onclick="openTab('gender', event)">
+    <span>⚖</span>
+    <label>Gender Bias</label>
+  </button>
 
-  <span>🧠</span>
-  <label>Vygotsky MCQ</label>
-
-</button>
 </div>
 
 <!-- ======================
@@ -90,9 +81,12 @@ SCRIPT
 ====================== -->
 
 <script type="module"
-        src="../js/vygotsky.js">
+        src="../js/math-inclusive.js">
 </script>
-<script defer src="../js/progress-tracker.js"></script>
+
+<script defer
+        src="../js/progress-tracker.js">
+</script>
 
 </body>
 </html>

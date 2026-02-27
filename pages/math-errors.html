@@ -3,8 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<title>Vygotsky</title>
+<title>Error Analysis – Mathematics</title>
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1">
@@ -27,7 +26,7 @@ HEADER
     ⬅
   </button>
 
-  <h2> Vygotsky Theory</h2>
+  <h2>Error Analysis & Misconceptions in Mathematics</h2>
 
 </div>
 
@@ -46,43 +45,41 @@ BOTTOM NAV GLASS TABS
 <div class="bottom-tabs">
 
   <button class="btab active"
-          onclick="openTab('definition', event)">
-    <span>📘</span>
-    <label>Def</label>
-  </button>
-
-  <button class="btab"
-          onclick="openTab('zpd', event)">
-    <span>🧠</span>
-    <label>ZPD</label>
-  </button>
-
-  <button class="btab"
-          onclick="openTab('criticism', event)">
+          onclick="openTab('common', event)">
     <span>⚠️</span>
-    <label>Critic</label>
+    <label>Common</label>
   </button>
 
   <button class="btab"
-          onclick="openTab('compare', event)">
-    <span>🆚</span>
-    <label>Compare</label>
+          onclick="openTab('number', event)">
+    <span>🔢</span>
+    <label>Number</label>
   </button>
-<!-- Teaching -->
-<button class="btab"
-        onclick="openTab('teaching', event)">
-  <span>👩‍🏫</span>
-  <label>Teach</label>
-</button>
 
-<!-- Piaget MCQ -->
-<button class="btab"
-        onclick="goVygotsky(event)">
+  <button class="btab"
+          onclick="openTab('fraction', event)">
+    <span>➗</span>
+    <label>Fraction</label>
+  </button>
 
-  <span>🧠</span>
-  <label>Vygotsky MCQ</label>
+  <button class="btab"
+          onclick="openTab('placevalue', event)">
+    <span>📊</span>
+    <label>Place Value</label>
+  </button>
 
-</button>
+  <button class="btab"
+          onclick="openTab('language', event)">
+    <span>🗣</span>
+    <label>Language</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('remedial', event)">
+    <span>🛠</span>
+    <label>Remedial</label>
+  </button>
+
 </div>
 
 <!-- ======================
@@ -90,9 +87,12 @@ SCRIPT
 ====================== -->
 
 <script type="module"
-        src="../js/vygotsky.js">
+        src="../js/math-errors.js">
 </script>
-<script defer src="../js/progress-tracker.js"></script>
+
+<script defer
+        src="../js/progress-tracker.js">
+</script>
 
 </body>
 </html>
