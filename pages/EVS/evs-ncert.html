@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<title>EVS – NCERT</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>🌿 EVS – NCERT (Class 3–5)</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('class3', event)">
+    <span>📘</span>
+    <label>Class 3</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('class4', event)">
+    <span>📗</span>
+    <label>Class 4</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('class5', event)">
+    <span>📕</span>
+    <label>Class 5</label>
+  </button>
+
+  <button class="btab"
+          onclick="goEvsMcq(event)">
+    <span>📝</span>
+    <label>EVS MCQ</label>
+  </button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/evs/evs-ncert.js">
+</script>
+
+<script defer
+        src="../../js/progress-tracker.js">
+</script>
+
+</body>
+</html>

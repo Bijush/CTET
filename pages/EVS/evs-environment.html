@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>EVS – Environmental Themes</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>🌍 Environmental Themes</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page fade-in"
+     data-tab="pollution">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('pollution', event)">
+    <span>🌫</span>
+    <label>Pollution</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('forest', event)">
+    <span>🌳</span>
+    <label>Forest</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('water', event)">
+    <span>💧</span>
+    <label>Water</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('climate', event)">
+    <span>🌍</span>
+    <label>Climate</label>
+  </button>
+  <button class="btab"
+          onclick="goEvsMcq(event)">
+    <span>📝</span>
+    <label>EVS MCQ</label>
+  </button>
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/evs/evs-environment.js">
+</script>
+
+<script defer
+        src="../../js/progress-tracker.js">
+</script>
+
+<script>
+/* ======================
+GO BACK
+====================== */
+function goBack(){
+  if(document.referrer){
+    history.back();
+  }else{
+    window.location.replace("../evs.html");
+  }
+}
+</script>
+
+</body>
+</html>
