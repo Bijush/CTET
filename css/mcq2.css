@@ -1,0 +1,207 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg,#eef2ff,#fdf4ff,#f0fdfa);
+  min-height:100vh;
+  padding-bottom:120px;
+}
+
+/* =========================================
+   TOP NAVBAR – GLASS GRADIENT
+========================================= */
+
+.top-navbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:14px 6px; /* ← LOW LEFT RIGHT */
+  backdrop-filter:blur(14px);
+  background:linear-gradient(90deg,#3b82f6,#9333ea,#10b981);
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  color:white;
+}
+
+.nav-row-1{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+.nav-row-2{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.page-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.lang-switch,
+.subject-dropdown,
+.weak-btn{
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(8px);
+  border:none;
+  padding:8px 10px; /* low side padding */
+  border-radius:12px;
+  font-size:12px;
+  font-weight:600;
+  color:white;
+  cursor:pointer;
+}
+
+/* =========================================
+   QUESTION CARD
+========================================= */
+
+#qBox{
+  margin-top:15px;
+  padding:18px 6px; /* ← VERY LOW SIDE */
+  border-radius:20px;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(10px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+#qBox h3{
+  font-size:17px;
+  line-height:1.8;
+  font-weight:600;
+  color:#111827;
+}
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+#options{
+  margin-top:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#options button{
+  padding:14px 8px; /* ← LOW SIDE PADDING */
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,0.05);
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(6px);
+  font-size:15px;
+  text-align:left;
+  transition:0.25s ease;
+  box-shadow:0 6px 18px rgba(0,0,0,0.05);
+}
+
+#options button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.1);
+}
+
+/* CORRECT */
+#options button.correct{
+  background:linear-gradient(90deg,#10b981,#059669);
+  color:white;
+  border:none;
+}
+
+/* WRONG */
+#options button.wrong{
+  background:linear-gradient(90deg,#ef4444,#dc2626);
+  color:white;
+  border:none;
+}
+
+/* =========================================
+   EXPLANATION BOX
+========================================= */
+
+#explainBox{
+  margin-top:18px;
+  padding:18px 6px; /* ← LOW SIDE */
+  border-radius:18px;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+#explainBox h4{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#2563eb,#9333ea);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* =========================================
+   BOTTOM NAV
+========================================= */
+
+.bottom-tabs{
+  position:fixed;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  max-width:500px;
+  display:flex;
+  justify-content:space-between;
+  padding:14px 10px;
+  border-radius:22px;
+  backdrop-filter:blur(16px);
+  background:rgba(255,255,255,0.7);
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.bottom-tabs button{
+  flex:1;
+  margin:0 6px;
+  padding:10px 0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#3b82f6,#9333ea);
+  color:white;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+#progressBar{
+  height:6px;
+  background:linear-gradient(90deg,#3b82f6,#9333ea,#10b981);
+  border-radius:10px;
+  transition:0.3s ease;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:600px){
+
+  #qBox h3{
+    font-size:16px;
+  }
+
+  #options button{
+    font-size:14px;
+  }
+
+}
