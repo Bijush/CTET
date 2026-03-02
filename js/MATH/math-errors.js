@@ -112,38 +112,31 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+COMMON ERRORS
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "common"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>⚠️ Common Errors in Mathematics</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+Errors are natural in learning.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+শেখার সময় ভুল হওয়া স্বাভাবিক।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
+Mistakes reveal thinking process.
 <br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
+ভুল চিন্তার প্রক্রিয়া বোঝায়।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Keyword: Error analysis + Misconception
 </div>
 </div>
 `;
@@ -151,38 +144,28 @@ CTET Trigger: Activity-based learning
 
 
 /* ======================
-MATH LAB
+NUMBER SYSTEM
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "number"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>🔢 Misconceptions in Number System</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
+Confusion between larger digit & larger number.
 <br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
+বড় অঙ্ক মানেই বড় সংখ্যা ভাবা।
 </span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
-<br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
-</span>
-</div>
-
-<div class="feature-card">
-Supports conceptual clarity.
-<br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
-</span>
+Example: 345 < 1000 but child may compare digits only.
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Trigger: Place value misunderstanding
 </div>
 </div>
 `;
@@ -190,38 +173,28 @@ Keyword: Learning by doing
 
 
 /* ======================
-ICT
+FRACTION
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "fraction"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>➗ Misconceptions in Fractions</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
+Believing 1/4 > 1/2 because 4 > 2.
 <br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
+4 বড় তাই 1/4 বড় ভাবা।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
-<br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
-</span>
-</div>
-
-<div class="feature-card">
-Supports interactive learning.
-<br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
-</span>
+Difficulty understanding numerator & denominator.
 </div>
 
 <div class="feature-ctet">
-CTET Line: Technology integration
+CTET Favourite Area
 </div>
 </div>
 `;
@@ -229,38 +202,99 @@ CTET Line: Technology integration
 
 
 /* ======================
-MANIPULATIVES
+PLACE VALUE
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "placevalue"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>📊 Place Value Confusion</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
+Writing 305 as 35.
 <br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
+305 কে 35 লেখা।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
+Ignoring zero as placeholder.
 <br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
-</span>
-</div>
-
-<div class="feature-card">
-Helps in better conceptual understanding.
-<br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
+শূন্যের স্থানীয় মান না বোঝা।
 </span>
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+Keyword: Place value error
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+LANGUAGE ERROR
+====================== */
+
+else if(tab === "language"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🗣 Word Problem Language Errors</h3>
+
+<div class="feature-card">
+Misinterpreting question language.
+<br><span class="feature-bn">
+প্রশ্নের ভাষা ঠিকমতো না বোঝা।
+</span>
+</div>
+
+<div class="feature-card">
+Difficulty in translating words to mathematical form.
+</div>
+
+<div class="feature-ctet">
+CTET Focus: Language barrier in math
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+REMEDIAL
+====================== */
+
+else if(tab === "remedial"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🛠 Remedial Teaching for Errors</h3>
+
+<div class="feature-card">
+Step 1: Diagnose error
+<br><span class="feature-bn">
+প্রথমে ত্রুটি নির্ণয়।
+</span>
+</div>
+
+<div class="feature-card">
+Step 2: Identify misconception
+<br><span class="feature-bn">
+ভুল ধারণা শনাক্ত।
+</span>
+</div>
+
+<div class="feature-card">
+Step 3: Provide targeted activity
+<br><span class="feature-bn">
+নির্দিষ্ট কার্যভিত্তিক শিক্ষণ।
+</span>
+</div>
+
+<div class="feature-ctet">
+Sequence: Diagnostic → Remedial
 </div>
 </div>
 `;
@@ -282,8 +316,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","common");
+    loadTabContent("common");
   }
 );
 

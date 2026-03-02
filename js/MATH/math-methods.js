@@ -112,38 +112,31 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+INDUCTIVE
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "inductive"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>🔍 Inductive Method</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+From specific examples → general rule.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+নির্দিষ্ট উদাহরণ থেকে সাধারণ নিয়ম।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
-<br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
-</span>
+Example:  
+2+4=6  
+4+6=10  
+Even + Even = Even
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Keyword: Child-centered + Discovery
 </div>
 </div>
 `;
@@ -151,38 +144,30 @@ CTET Trigger: Activity-based learning
 
 
 /* ======================
-MATH LAB
+DEDUCTIVE
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "deductive"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>📐 Deductive Method</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
+General rule → specific example.
 <br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
+সাধারণ নিয়ম থেকে উদাহরণ।
 </span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
-<br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
-</span>
-</div>
-
-<div class="feature-card">
-Supports conceptual clarity.
-<br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
-</span>
+Example:  
+Area of rectangle = l × b  
+Apply formula directly.
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Trap: Not suitable for primary level alone
 </div>
 </div>
 `;
@@ -190,38 +175,28 @@ Keyword: Learning by doing
 
 
 /* ======================
-ICT
+ANALYTIC
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "analytic"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>🧠 Analytic Method</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
+Start from unknown → reach known.
 <br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
+অজানা থেকে জানা দিকে অগ্রসর।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
-<br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
-</span>
-</div>
-
-<div class="feature-card">
-Supports interactive learning.
-<br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
-</span>
+Used in geometry proofs.
 </div>
 
 <div class="feature-ctet">
-CTET Line: Technology integration
+CTET Line: Logical reasoning method
 </div>
 </div>
 `;
@@ -229,38 +204,159 @@ CTET Line: Technology integration
 
 
 /* ======================
-MANIPULATIVES
+PROBLEM SOLVING
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "problem"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>🧩 Problem Solving Method</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
-<br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
-</span>
+Students learn by solving real-life problems.
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
-<br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
-</span>
-</div>
-
-<div class="feature-card">
-Helps in better conceptual understanding.
-<br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
-</span>
+Steps:  
+Understand → Plan → Solve → Verify
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+CTET Favourite Method
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+HEURISTIC
+====================== */
+
+else if(tab === "heuristic"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🔎 Heuristic Method</h3>
+
+<div class="feature-card">
+Learning by self-discovery.
+<br><span class="feature-bn">
+নিজে আবিষ্কার করে শেখা।
+</span>
+</div>
+
+<div class="feature-card">
+Teacher gives hints, not answers.
+</div>
+
+<div class="feature-ctet">
+Keyword: Inquiry method
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+PROJECT
+====================== */
+
+else if(tab === "project"){
+
+box.innerHTML = `
+<div class="card">
+<h3>📊 Project Method</h3>
+
+<div class="feature-card">
+Learning through practical projects.
+</div>
+
+<div class="feature-card">
+Example: Survey and create graph.
+</div>
+
+<div class="feature-ctet">
+CTET Line: Learning by doing
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+PLAYWAY
+====================== */
+
+else if(tab === "playway"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🎲 Play Way Method</h3>
+
+<div class="feature-card">
+Learning through games and activities.
+</div>
+
+<div class="feature-card">
+Example: Math puzzles, flash cards.
+</div>
+
+<div class="feature-ctet">
+Best for primary classes
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+LAB
+====================== */
+
+else if(tab === "lab"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🧪 Laboratory Method</h3>
+
+<div class="feature-card">
+Hands-on learning using materials.
+</div>
+
+<div class="feature-card">
+Use of math lab, models, TLM.
+</div>
+
+<div class="feature-ctet">
+CTET Keyword: Activity-based learning
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+ABL
+====================== */
+
+else if(tab === "abl"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🎯 Activity Based Learning (ABL)</h3>
+
+<div class="feature-card">
+Students actively participate in learning.
+</div>
+
+<div class="feature-card">
+Focus on concept, not memorization.
+</div>
+
+<div class="feature-ctet">
+Exam Trap: Lecture method ❌
 </div>
 </div>
 `;
@@ -282,8 +378,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","inductive");
+    loadTabContent("inductive");
   }
 );
 

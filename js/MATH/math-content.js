@@ -112,38 +112,31 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+NUMBER SYSTEM
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "number"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>🔢 Number System Pedagogy</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+Develop number sense before formal algorithms.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+অ্যালগরিদম শেখানোর আগে সংখ্যা বোধ গড়ে তুলতে হবে।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
+Use number line, beads, bundles, abacus.
 <br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
+সংখ্যারেখা, গুটি, বান্ডিল, অ্যাবাকাস ব্যবহার।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Focus: Concept > Procedure
 </div>
 </div>
 `;
@@ -151,38 +144,31 @@ CTET Trigger: Activity-based learning
 
 
 /* ======================
-MATH LAB
+FRACTIONS
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "fraction"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>➗ Fractions Pedagogy</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
+Start with concrete objects (paper folding, pizza model).
 <br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
+বাস্তব উপকরণ দিয়ে শুরু করতে হবে।
 </span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
+Explain part-whole relationship clearly.
 <br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
-</span>
-</div>
-
-<div class="feature-card">
-Supports conceptual clarity.
-<br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
+অংশ-সমগ্র সম্পর্ক বোঝানো জরুরি।
 </span>
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Favourite Topic
 </div>
 </div>
 `;
@@ -190,38 +176,31 @@ Keyword: Learning by doing
 
 
 /* ======================
-ICT
+ALGEBRA READINESS
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "algebra"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>🧮 Algebra Readiness</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
+Focus on patterns and number relationships.
 <br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
+প্যাটার্ন ও সংখ্যার সম্পর্ক বোঝানো।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
+Introduce simple unknowns through activities.
 <br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
-</span>
-</div>
-
-<div class="feature-card">
-Supports interactive learning.
-<br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
+কার্যভিত্তিকভাবে অজানা সংখ্যা পরিচয় করানো।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Line: Technology integration
+Keyword: Pattern recognition
 </div>
 </div>
 `;
@@ -229,38 +208,127 @@ CTET Line: Technology integration
 
 
 /* ======================
-MANIPULATIVES
+GEOMETRY
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "geometry"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>📐 Geometry Teaching</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
+Begin with shapes in real life.
 <br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
+বাস্তব জীবনের আকার দিয়ে শুরু।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
+Use models and drawing activities.
 <br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
-</span>
-</div>
-
-<div class="feature-card">
-Helps in better conceptual understanding.
-<br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
+মডেল ও আঁকার কার্যক্রম ব্যবহার।
 </span>
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+CTET Trigger: Visualization skill
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+MENSURATION
+====================== */
+
+else if(tab === "mensuration"){
+
+box.innerHTML = `
+<div class="card">
+<h3>📏 Mensuration Teaching</h3>
+
+<div class="feature-card">
+Teach measurement using real objects.
+<br><span class="feature-bn">
+বাস্তব বস্তু দিয়ে পরিমাপ শেখানো।
+</span>
+</div>
+
+<div class="feature-card">
+Start with non-standard units first.
+<br><span class="feature-bn">
+প্রথমে অ-মানক একক ব্যবহার।
+</span>
+</div>
+
+<div class="feature-ctet">
+CTET Line: Concrete → Abstract
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+DATA HANDLING
+====================== */
+
+else if(tab === "data"){
+
+box.innerHTML = `
+<div class="card">
+<h3>📊 Data Handling Teaching</h3>
+
+<div class="feature-card">
+Collect real classroom data.
+<br><span class="feature-bn">
+শ্রেণিকক্ষের বাস্তব তথ্য সংগ্রহ।
+</span>
+</div>
+
+<div class="feature-card">
+Create pictograph and bar graph.
+<br><span class="feature-bn">
+চিত্রলেখ ও বার গ্রাফ তৈরি।
+</span>
+</div>
+
+<div class="feature-ctet">
+CTET Focus: Activity-based learning
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+WORD PROBLEMS
+====================== */
+
+else if(tab === "word"){
+
+box.innerHTML = `
+<div class="card">
+<h3>📝 Word Problem Strategy</h3>
+
+<div class="feature-card">
+Teach language comprehension first.
+<br><span class="feature-bn">
+প্রথমে ভাষা বোঝার দক্ষতা গড়ে তুলতে হবে।
+</span>
+</div>
+
+<div class="feature-card">
+Use step approach: Read → Plan → Solve → Check.
+<br><span class="feature-bn">
+পড়ো → পরিকল্পনা করো → সমাধান করো → যাচাই করো।
+</span>
+</div>
+
+<div class="feature-ctet">
+Exam Trap: Direct formula application ❌
 </div>
 </div>
 `;
@@ -282,8 +350,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","number");
+    loadTabContent("number");
   }
 );
 

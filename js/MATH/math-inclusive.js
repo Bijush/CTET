@@ -112,38 +112,31 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+CWSN
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "cwsn"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>♿ CWSN in Mathematics Classroom</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+CWSN = Children With Special Needs.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+বিশেষ চাহিদাসম্পন্ন শিশু।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
+Inclusive classroom teaches all children together.
 <br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
+অন্তর্ভুক্তিমূলক শ্রেণিকক্ষে সবাই একসাথে শেখে।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Keyword: Inclusive education + Equal opportunity
 </div>
 </div>
 `;
@@ -151,38 +144,31 @@ CTET Trigger: Activity-based learning
 
 
 /* ======================
-MATH LAB
+DYSCALCULIA
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "dyscalculia"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>🔢 Dyscalculia</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
+Specific learning disability in mathematics.
 <br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
+গণিতে নির্দিষ্ট শেখার অসুবিধা।
 </span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
+Difficulty in number sense and calculation.
 <br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
-</span>
-</div>
-
-<div class="feature-card">
-Supports conceptual clarity.
-<br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
+সংখ্যা বোধ ও হিসাব করতে অসুবিধা।
 </span>
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Trigger: Difficulty in basic number understanding
 </div>
 </div>
 `;
@@ -190,38 +176,38 @@ Keyword: Learning by doing
 
 
 /* ======================
-ICT
+MATH ANXIETY
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "anxiety"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>😟 Math Anxiety</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
+Fear or tension related to mathematics.
 <br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
+গণিত সম্পর্কিত ভয় বা মানসিক চাপ।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
+May affect performance negatively.
 <br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
+ফলাফলে নেতিবাচক প্রভাব ফেলতে পারে।
 </span>
 </div>
 
 <div class="feature-card">
-Supports interactive learning.
+Teacher should create stress-free environment.
 <br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
+শিক্ষককে চাপমুক্ত পরিবেশ তৈরি করতে হবে।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Line: Technology integration
+Exam Trap: Punishment reduces anxiety ❌
 </div>
 </div>
 `;
@@ -229,38 +215,63 @@ CTET Line: Technology integration
 
 
 /* ======================
-MANIPULATIVES
+GIFTED
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "gifted"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>🌟 Gifted Learners in Mathematics</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
+High logical reasoning and quick problem solving.
 <br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
+উচ্চ যুক্তি ও দ্রুত সমস্যা সমাধান ক্ষমতা।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
+Need enrichment activities.
 <br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
-</span>
-</div>
-
-<div class="feature-card">
-Helps in better conceptual understanding.
-<br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
+অতিরিক্ত চ্যালেঞ্জিং কাজ প্রয়োজন।
 </span>
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+CTET Line: Provide differentiated instruction
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+GENDER BIAS
+====================== */
+
+else if(tab === "gender"){
+
+box.innerHTML = `
+<div class="card">
+<h3>⚖ Gender Bias in Mathematics</h3>
+
+<div class="feature-card">
+Mathematics ability is not gender-based.
+<br><span class="feature-bn">
+গণিত দক্ষতা লিঙ্গভিত্তিক নয়।
+</span>
+</div>
+
+<div class="feature-card">
+Teacher should avoid stereotypes.
+<br><span class="feature-bn">
+শিক্ষককে লিঙ্গভিত্তিক ধারণা এড়াতে হবে।
+</span>
+</div>
+
+<div class="feature-ctet">
+CTET Trap: Boys are naturally better at math ❌
 </div>
 </div>
 `;
@@ -282,8 +293,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","cwsn");
+    loadTabContent("cwsn");
   }
 );
 

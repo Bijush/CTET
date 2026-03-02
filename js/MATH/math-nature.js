@@ -5,7 +5,7 @@ LOAD BOX
 let box;
 
 window.openTab = function(tab, ev){
-  // Remove old active
+    // Remove old active
 document.querySelectorAll(".btab")
 .forEach(btn => btn.classList.remove("active"));
 
@@ -112,155 +112,163 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+DEFINITION
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "definition"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>📘 Nature of Mathematics</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+Mathematics is a logical, systematic and abstract discipline.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+গণিত একটি যৌক্তিক, সুশৃঙ্খল ও বিমূর্ত বিষয়।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
+It develops reasoning, critical thinking and problem-solving ability.
 <br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
+এটি যুক্তি, সমালোচনামূলক চিন্তা ও সমস্যা সমাধান ক্ষমতা বৃদ্ধি করে।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Keyword: Logical Thinking + Pattern + Reasoning
 </div>
 </div>
 `;
 }
 
-
 /* ======================
-MATH LAB
+AIMS
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "aims"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>🎯 Aims of Teaching Mathematics</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
-<br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
-</span>
+✔ Develop logical thinking
+<br><span class="feature-bn">যুক্তি শক্তি বৃদ্ধি</span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
-<br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
-</span>
+✔ Develop problem-solving ability
+<br><span class="feature-bn">সমস্যা সমাধান দক্ষতা</span>
 </div>
 
 <div class="feature-card">
-Supports conceptual clarity.
-<br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
-</span>
+✔ Apply mathematics in daily life
+<br><span class="feature-bn">বাস্তব জীবনে প্রয়োগ</span>
+</div>
+
+<div class="feature-card">
+✔ Develop accuracy and precision
+<br><span class="feature-bn">সঠিকতা ও নির্ভুলতা</span>
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Trap: Aim ≠ Memorization
 </div>
 </div>
 `;
 }
 
-
 /* ======================
-ICT
+VALUES
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "values"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>💎 Values of Mathematics</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
-<br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
-</span>
+✔ Intellectual Value
+<br><span class="feature-bn">বুদ্ধিবৃত্তিক মূল্য</span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
-<br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
-</span>
+✔ Practical Value
+<br><span class="feature-bn">ব্যবহারিক মূল্য</span>
 </div>
 
 <div class="feature-card">
-Supports interactive learning.
-<br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
-</span>
+✔ Disciplinary Value
+<br><span class="feature-bn">শৃঙ্খলাগত মূল্য</span>
 </div>
 
-<div class="feature-ctet">
-CTET Line: Technology integration
+<div class="feature-card">
+✔ Cultural Value
+<br><span class="feature-bn">সাংস্কৃতিক মূল্য</span>
 </div>
 </div>
 `;
 }
 
-
 /* ======================
-MANIPULATIVES
+CORRELATION
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "correlation"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>🔗 Correlation of Mathematics</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
-<br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
-</span>
+✔ Math with Science (Measurement, Data)
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
-<br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
-</span>
+✔ Math with Social Science (Statistics, Graph)
 </div>
 
 <div class="feature-card">
-Helps in better conceptual understanding.
-<br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
-</span>
+✔ Math with Daily Life (Money, Time, Distance)
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+CTET Focus: Real-life connection is essential
+</div>
+</div>
+`;
+}
+
+/* ======================
+DAILY LIFE
+====================== */
+
+else if(tab === "daily-life"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🌍 Mathematics in Daily Life</h3>
+
+<div class="feature-card">
+✔ Budget calculation
+</div>
+
+<div class="feature-card">
+✔ Time management
+</div>
+
+<div class="feature-card">
+✔ Measurement in cooking & shopping
+</div>
+
+<div class="feature-card">
+✔ Logical decision making
+</div>
+
+<div class="feature-ctet">
+CTET Trap: Math is not only classroom subject
 </div>
 </div>
 `;
@@ -282,8 +290,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","definition");
+    loadTabContent("definition");
   }
 );
 

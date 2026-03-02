@@ -112,38 +112,31 @@ function loadTabContent(tab){
 if (!box) return;
 
 /* ======================
-USE OF TLM
+PIAGET
 ====================== */
 
-if(tab === "tlm"){
+if(tab === "piaget"){
 
 box.innerHTML = `
 <div class="card">
-<h3>📘 Use of Teaching Learning Materials (TLM)</h3>
+<h3>🧠 Jean Piaget in Mathematics</h3>
 
 <div class="feature-card">
-TLM makes abstract concepts concrete.
+Children construct knowledge actively.
 <br><span class="feature-bn">
-শিক্ষণ উপকরণ অমূর্ত ধারণাকে বাস্তব করে তোলে।
+শিশুরা সক্রিয়ভাবে জ্ঞান গঠন করে।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Number line, flash cards, beads, charts.
+Primary learners are mostly in Concrete Operational Stage (7–11 years).
 <br><span class="feature-bn">
-উদাহরণ: সংখ্যারেখা, ফ্ল্যাশ কার্ড, গুটি, চার্ট।
-</span>
-</div>
-
-<div class="feature-card">
-Improves engagement and participation.
-<br><span class="feature-bn">
-শিক্ষার্থীদের অংশগ্রহণ বাড়ায়।
+প্রাথমিক স্তরের শিশুরা Concrete Operational পর্যায়ে থাকে।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Trigger: Activity-based learning
+CTET Keyword: Constructivism + Concrete Operational + TLM
 </div>
 </div>
 `;
@@ -151,38 +144,38 @@ CTET Trigger: Activity-based learning
 
 
 /* ======================
-MATH LAB
+VYGOTSKY
 ====================== */
 
-else if(tab === "mathlab"){
+else if(tab === "vygotsky"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🧪 Mathematics Laboratory</h3>
+<h3>🤝 Lev Vygotsky in Mathematics</h3>
 
 <div class="feature-card">
-Provides hands-on experience in mathematics.
+Learning happens through social interaction.
 <br><span class="feature-bn">
-গণিতে হাতে-কলমে শেখার সুযোগ দেয়।
+শেখা সামাজিক মিথস্ক্রিয়ার মাধ্যমে ঘটে।
 </span>
 </div>
 
 <div class="feature-card">
-Encourages experimentation and discovery.
+ZPD helps child solve problems with guidance.
 <br><span class="feature-bn">
-অনুসন্ধান ও আবিষ্কারভিত্তিক শিক্ষণ।
+ZPD-এর মাধ্যমে শিশু সহায়তায় সমস্যা সমাধান করে।
 </span>
 </div>
 
 <div class="feature-card">
-Supports conceptual clarity.
+Scaffolding supports gradual independence.
 <br><span class="feature-bn">
-ধারণাগত স্পষ্টতা বাড়ায়।
+Scaffolding ধীরে ধীরে স্বনির্ভরতা বাড়ায়।
 </span>
 </div>
 
 <div class="feature-ctet">
-Keyword: Learning by doing
+CTET Trigger: Guided learning / Peer learning
 </div>
 </div>
 `;
@@ -190,38 +183,31 @@ Keyword: Learning by doing
 
 
 /* ======================
-ICT
+BRUNER
 ====================== */
 
-else if(tab === "ict"){
+else if(tab === "bruner"){
 
 box.innerHTML = `
 <div class="card">
-<h3>💻 Use of ICT in Mathematics</h3>
+<h3>📚 Jerome Bruner in Mathematics</h3>
 
 <div class="feature-card">
-Use of digital tools and smart boards.
+Enactive → Iconic → Symbolic learning stages.
 <br><span class="feature-bn">
-ডিজিটাল উপকরণ ও স্মার্ট বোর্ডের ব্যবহার।
+কাজ → ছবি → প্রতীক ধাপ।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in visualization of graphs and geometry.
+Spiral curriculum revisits concepts deeply.
 <br><span class="feature-bn">
-গ্রাফ ও জ্যামিতি বোঝাতে সহায়ক।
-</span>
-</div>
-
-<div class="feature-card">
-Supports interactive learning.
-<br><span class="feature-bn">
-ইন্টারেক্টিভ শেখাকে সমর্থন করে।
+Spiral curriculum একই ধারণা উচ্চতর স্তরে শেখায়।
 </span>
 </div>
 
 <div class="feature-ctet">
-CTET Line: Technology integration
+CTET Line: Discovery learning
 </div>
 </div>
 `;
@@ -229,38 +215,102 @@ CTET Line: Technology integration
 
 
 /* ======================
-MANIPULATIVES
+CONSTRUCTIVISM
 ====================== */
 
-else if(tab === "manipulatives"){
+else if(tab === "constructivism"){
 
 box.innerHTML = `
 <div class="card">
-<h3>🔢 Use of Manipulatives</h3>
+<h3>🧩 Constructivism in Math Classroom</h3>
 
 <div class="feature-card">
-Concrete materials used to teach math concepts.
+Students build their own understanding.
 <br><span class="feature-bn">
-বাস্তব উপকরণ দিয়ে গণিত শেখানো।
+শিক্ষার্থীরা নিজেরাই ধারণা গঠন করে।
 </span>
 </div>
 
 <div class="feature-card">
-Examples: Base-10 blocks, fraction strips, counters.
+Teacher acts as facilitator.
 <br><span class="feature-bn">
-উদাহরণ: Base-10 ব্লক, ভগ্নাংশ স্ট্রিপ, কাউন্টার।
+শিক্ষক সহায়ক হিসেবে কাজ করেন।
 </span>
 </div>
 
 <div class="feature-card">
-Helps in better conceptual understanding.
+Errors are part of learning.
 <br><span class="feature-bn">
-ধারণাগত বোঝাপড়া উন্নত করে।
+ভুল শেখার অংশ।
 </span>
 </div>
 
 <div class="feature-ctet">
-Exam Trap: Only lecture method is enough ❌
+Exam Trap: Rote learning ❌
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+BEHAVIORISM
+====================== */
+
+else if(tab === "behaviorism"){
+
+box.innerHTML = `
+<div class="card">
+<h3>🔁 Behaviorism in Mathematics</h3>
+
+<div class="feature-card">
+Learning through reinforcement and practice.
+<br><span class="feature-bn">
+অনুশীলন ও পুনর্বলনের মাধ্যমে শেখা।
+</span>
+</div>
+
+<div class="feature-card">
+Drill and practice method.
+<br><span class="feature-bn">
+Drill পদ্ধতি।
+</span>
+</div>
+
+<div class="feature-ctet">
+CTET Line: Skinner / Reinforcement
+</div>
+</div>
+`;
+}
+
+
+/* ======================
+GAGNE
+====================== */
+
+else if(tab === "gagne"){
+
+box.innerHTML = `
+<div class="card">
+<h3>📊 Gagne’s Hierarchy in Mathematics</h3>
+
+<div class="feature-card">
+Learning occurs in hierarchical order.
+<br><span class="feature-bn">
+শেখা ধাপে ধাপে হয়।
+</span>
+</div>
+
+<div class="feature-card">
+Simple → Complex progression.
+<br><span class="feature-bn">
+সহজ থেকে জটিল।
+</span>
+</div>
+
+<div class="feature-ctet">
+CTET Trigger: Sequential learning
 </div>
 </div>
 `;
@@ -282,8 +332,8 @@ window.addEventListener(
 
     if (!box) return;
 
-    box.setAttribute("data-tab","tlm");
-    loadTabContent("tlm");
+    box.setAttribute("data-tab","piaget");
+    loadTabContent("piaget");
   }
 );
 
