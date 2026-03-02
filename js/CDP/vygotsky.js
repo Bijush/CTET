@@ -2596,7 +2596,7 @@ BACK BUTTON
 ====================== */
 
 window.goBack = function(){
-  window.location.replace("subject-list.html");
+  window.location.href="subject-list.html";
 };
 
 /* ======================
