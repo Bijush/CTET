@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>scert Practice</title>
+  <title>Mock Practice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- CSS -->
@@ -17,8 +17,14 @@
 
   <!-- ROW 1 -->
   <div class="nav-row nav-row-1">
-    <h2 class="page-title">📝 scert Practice</h2>
-  </div>
+
+  <button class="top-back-btn" onclick="goBack()">
+    ←
+  </button>
+
+  <h2 class="page-title">📝 MCQ Practice</h2>
+
+</div>
 
   <!-- ROW 2 -->
   <div class="nav-row nav-row-2">
@@ -28,14 +34,13 @@
     </div>
 
     <select id="subjectSelect" class="subject-dropdown">
-      <option value="ALL">Full Mock (All Subjects)</option>
-<option value="TeachingAptitude">Teaching Aptitude</option>
-<option value="Reasoning">Reasoning</option>
-<option value="GK">General Knowledge</option>
-<option value="currentAffairs">Current Affairs</option>
-
+      <option value="ALL">All Subjects</option>
+      <option value="CDP">CDP</option>
+      <option value="MATH">Math</option>
+      <option value="EVS">EVS</option>
     </select>
-        <select id="questionLimit" class="subject-dropdown">
+    
+    <select id="questionLimit" class="subject-dropdown">
   <option value="10">10 Questions</option>
   <option value="20">20 Questions</option>
   <option value="30" selected>30 Questions</option>
@@ -79,30 +84,15 @@
 
 <!-- NAV BUTTONS -->
 
-<div class="bottom-tabs">
+<button class="nav-float nav-prev" onclick="prevQ()">
+  ⬅
+  
+</button>
 
-  <!-- Previous -->
-  <button class="btab"
-          onclick="prevQ()">
-    <span>⬅</span>
-    <label>Prev</label>
-  </button>
-
-  <!-- Next -->
-  <button class="btab"
-          onclick="nextQ()">
-    <span>➡</span>
-    <label>Next</label>
-  </button>
-
-  <!-- Back -->
-  <button class="btab"
-          onclick="goBack()">
-    <span>🏠</span>
-    <label>Back</label>
-  </button>
-
-</div>
+<button class="nav-float nav-next" onclick="nextQ()">
+  ➡
+ 
+</button>
 
 <!-- SNACKBAR -->
 <div id="snackbar"></div>
