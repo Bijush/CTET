@@ -286,7 +286,7 @@ function getBookmarks() {
     // Old string format fix
     if (typeof x === "string") {
       return {
-        type: "MCQ",
+        type: "MOCK",
         id: x,
         subject: "General",
         date: Date.now()
@@ -413,7 +413,7 @@ function loadQ() {
   // Data not loaded yet
 if (!filteredQuestions || !filteredQuestions.length) {
 
-    console.warn("MCQ data not ready → retrying");
+    console.warn("MOCK data not ready → retrying");
 
     setTimeout(loadQ, 100);
     return;
@@ -459,7 +459,7 @@ if (progressInfo) {
 
   /* ⭐ bookmark state */
   const isBookmarked = getBookmarks()
-    .some(b => b.type === "MCQ" && b.id === q.id);
+    .some(b => b.type === "MOCK" && b.id === q.id);
 
   /* ======================
      QUESTION TEXT (STRICT)
@@ -1189,7 +1189,7 @@ function toggleBookmark() {
   const q = filteredQuestions[currentQIndex];
 
   let b = getBookmarks();
-  const pos = b.findIndex(x => x.type === "MCQ" && x.id === q.id);
+  const pos = b.findIndex(x => x.type === "MOCK" && x.id === q.id);
 
   const btn = document.getElementById("bookmarkBtn");
 
@@ -1213,7 +1213,7 @@ function toggleBookmark() {
 
     // ⭐ ADD BOOKMARK
     b.push({
-  type: "MCQ",
+  type: "MOCK",
   id: q.id,
   subject: q.subject || "General",
   date: Date.now()   // 🔥 IMPORTANT for Latest Sort
@@ -1614,7 +1614,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   } catch (e) {
 
-    console.error("MCQ Init Error:", e);
+    console.error("MOCK Init Error:", e);
 
     // Safe fallback
     prepareQuestions();
