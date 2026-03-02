@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Teaching Methods – Mathematics</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>Teaching Methods of Mathematics</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('inductive', event)">
+    <span>🔍</span>
+    <label>Inductive</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('deductive', event)">
+    <span>📐</span>
+    <label>Deductive</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('analytic', event)">
+    <span>🧠</span>
+    <label>Analytic</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('problem', event)">
+    <span>🧩</span>
+    <label>Problem</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('heuristic', event)">
+    <span>🔎</span>
+    <label>Heuristic</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('project', event)">
+    <span>📊</span>
+    <label>Project</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('playway', event)">
+    <span>🎲</span>
+    <label>Play Way</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('lab', event)">
+    <span>🧪</span>
+    <label>Lab</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('abl', event)">
+    <span>🎯</span>
+    <label>ABL</label>
+  </button>
+  <!-- Piaget MCQ -->
+<button class="btab"
+        onclick="goErikson(event)">
+
+  <span>🧠</span>
+  <label>erikson MCQ</label>
+
+</button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/MATH/math-methods.js">
+</script>
+
+<script defer src="../../js/progress-tracker.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Assessment – Mathematics</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>Assessment & Evaluation in Mathematics</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('formative', event)">
+    <span>📘</span>
+    <label>Formative</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('summative', event)">
+    <span>📝</span>
+    <label>Summative</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('diagnostic', event)">
+    <span>🔍</span>
+    <label>Diagnostic</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('remedial', event)">
+    <span>🛠</span>
+    <label>Remedial</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('cce', event)">
+    <span>📊</span>
+    <label>CCE</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('bloom', event)">
+    <span>🧠</span>
+    <label>Bloom</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('hots', event)">
+    <span>🚀</span>
+    <label>HOTS</label>
+  </button>
+  
+  <!-- Piaget MCQ -->
+<button class="btab"
+        onclick="goKohlberg(event)">
+
+  <span>🧠</span>
+  <label>Kohalberg MCQ</label>
+
+</button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/MATH/math-assessment.js">
+</script>
+
+<script defer src="../../js/progress-tracker.js"></script>
+
+</body>
+</html>

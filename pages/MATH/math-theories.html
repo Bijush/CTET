@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Math</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+      <!-- Google Icons CDN (Head er vitore add koro ekbar) -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+      rel="stylesheet" />
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>Learning Theories Applied to Mathematics</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('piaget', event)">
+    <span class="material-symbols-rounded">psychology</span>
+    <label>Piaget</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('vygotsky', event)">
+    <span class="material-symbols-rounded">groups</span>
+    <label>Vygotsky</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('bruner', event)">
+    <span class="material-symbols-rounded">menu_book</span>
+    <label>Bruner</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('constructivism', event)">
+    <span class="material-symbols-rounded">architecture</span>
+    <label>Constructivism</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('behaviorism', event)">
+    <span class="material-symbols-rounded">smart_toy</span>
+    <label>Behaviorism</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('gagne', event)">
+    <span class="material-symbols-rounded">school</span>
+    <label>Gagne</label>
+  </button>
+
+  <button class="btab"
+          onclick="goErikson(event)">
+    <span class="material-symbols-rounded">quiz</span>
+    <label>Erikson MCQ</label>
+  </button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/MATH/math-theories.js">
+</script>
+<script defer src="../../js/progress-tracker.js">
+  
+</script>
+
+</body>
+</html>
