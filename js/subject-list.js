@@ -90,63 +90,63 @@ const subjectData = {
   {
     group:"Nature & Philosophy of Mathematics",
     items:[
-      { title:"Nature & Aims", page:"math-nature.html", progress:0, lock:false }
+      { title:"Nature & Aims", page:"MATH/math-nature.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Learning Theories Applied to Mathematics",
     items:[
-      { title:"Learning Theories in Math", page:"math-theories.html", progress:0, lock:false }
+      { title:"Learning Theories in Math", page:"MATH/math-theories.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Teaching Methods of Mathematics",
     items:[
-      { title:"Teaching Methods", page:"math-methods.html", progress:0, lock:false }
+      { title:"Teaching Methods", page:"MATH/math-methods.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Learning Resources & TLM",
     items:[
-      { title:"TLM & ICT", page:"math-tlm.html", progress:0, lock:false }
+      { title:"TLM & ICT", page:"MATH/math-tlm.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Assessment & Evaluation in Mathematics",
     items:[
-      { title:"Assessment in Math", page:"math-assessment.html", progress:0, lock:false }
+      { title:"Assessment in Math", page:"MATH/math-assessment.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Error Analysis & Misconceptions",
     items:[
-      { title:"Error Analysis", page:"math-errors.html", progress:0, lock:false }
+      { title:"Error Analysis", page:"MATH/math-errors.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Inclusive Mathematics Education",
     items:[
-      { title:"Inclusive Math Classroom", page:"math-inclusive.html", progress:0, lock:false }
+      { title:"Inclusive Math Classroom", page:"MATH/math-inclusive.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Curriculum & Policies",
     items:[
-      { title:"Curriculum & Policy", page:"math-policy.html", progress:0, lock:false }
+      { title:"Curriculum & Policy", page:"MATH/math-policy.html", progress:0, lock:false }
     ]
   },
 
   {
     group:"Mathematics Content Pedagogy (Class 1–5 Focus)",
     items:[
-      { title:"Content Pedagogy", page:"math-content.html", progress:0, lock:false }
+      { title:"Content Pedagogy", page:"MATH/math-content.html", progress:0, lock:false }
     ]
   }
 
