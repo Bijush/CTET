@@ -1187,7 +1187,7 @@ BACK BUTTON
 ====================== */
 
 window.goBack = function(){
-  window.location.href="subject-list.html";
+  window.location.replace("../subject-list.html");
 };
 
 /* ======================
