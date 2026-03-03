@@ -158,10 +158,10 @@ EVS:[
   items:[
     { title:"📘 NCERT EVS (Class 3–5)", page:"EVS/evs-ncert.html", progress:0, lock:false },
     { title:"🌍 Environmental Themes", page:"EVS/evs-environment.html", progress:0, lock:false },
-    { title:"👩‍🎓 Gender & Inclusion Stories", page:"evs-gender.html", progress:0, lock:false },
-    { title:"🚆 Migration & Livelihood", page:"evs-migration.html", progress:0, lock:false },
-    { title:"🏔 Adaptation & Climate", page:"evs-adaptation.html", progress:0, lock:false },
-    { title:"♻ Resources & Conservation", page:"evs-resources.html", progress:0, lock:false }
+    { title:"👩‍🎓 Gender & Inclusion Stories", page:"EVS/evs-gender.html", progress:0, lock:false },
+    { title:"🚆 Migration & Livelihood", page:"EVS/evs-migration.html", progress:0, lock:false },
+    { title:"🏔 Adaptation & Climate", page:"EVS/evs-adaptation.html", progress:0, lock:false },
+    { title:"♻ Resources & Conservation", page:"EVS/evs-resources.html", progress:0, lock:false }
   ]
 },
 
