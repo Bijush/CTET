@@ -97,28 +97,53 @@ HEADER TITLE
 TABS
 ====================== */
 
+/* ======================
+PREMIUM TABS
+====================== */
+
 .tabs{
   display:flex;
-  gap:8px;
-  padding:10px;
-  background:#fff;
+  gap:10px;
+  padding:12px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(0,0,0,.05);
 }
 
+/* Normal Tab */
 .tab{
   flex:1;
-  padding:10px;
+  padding:12px 6px;
   border:none;
-  border-radius:10px;
-  background:#e3f2fd;
-  font-weight:bold;
+  border-radius:14px;
+
+  background:#f4f7fc;
+  color:#444;
+
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.6px;
+
   cursor:pointer;
-  transition:.2s;
+  transition:.25s ease;
+
+  box-shadow:0 4px 10px rgba(0,0,0,.06);
 }
 
+.tab:hover{
+  transform:translateY(-2px);
+}
+
+/* Active Tab */
 .tab.active{
-  background:var(--theme);
+  background:linear-gradient(
+    135deg,
+    var(--theme),
+    #ffffff22
+  );
   color:#fff;
-  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  transform:scale(1.06);
 }
 
 
@@ -126,10 +151,55 @@ TABS
 TITLE
 ====================== */
 
+/* ======================
+PREMIUM SUBJECT TITLE
+====================== */
+
 #subjectTitle{
-  padding:12px;
-  font-weight:bold;
-  font-size:18px;
+  position:relative;
+  padding:22px 12px;
+  text-align:center;
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:.5px;
+  backdrop-filter:blur(8px);
+
+  background:linear-gradient(
+    135deg,
+    var(--theme),
+    #ffffff
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:fadeSlide .6s ease;
+}
+
+/* 🔥 Animated underline accent */
+#subjectTitle::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:8px;
+  transform:translateX(-50%);
+  width:60px;
+  height:4px;
+  border-radius:20px;
+  background:var(--theme);
+  box-shadow:0 0 12px var(--theme);
+}
+
+/* 🔥 Entry animation */
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 
