@@ -21,12 +21,20 @@ GLASS HEADER
 PREMIUM HEADER
 ====================== -->
 
-<div class="header">
+<div class="header-left"
+     onclick="goBack()">
+  ⬅
+</div>
 
-  <div class="header-left"
-       onclick="history.back()">
-    ⬅
-  </div>
+<script>
+function goBack(){
+  if(history.length > 1){
+    history.back();
+  } else {
+    window.location.href = "subject-select.html"; 
+  }
+}
+</script>
 
   <div class="header-title">
     📘 Concept Subjects
