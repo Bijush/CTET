@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>EVS – Resources & Conservation</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../css/theory.css">
+
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+
+<div class="theory-head">
+
+  <button class="back-btn"
+          onclick="goBack()">
+    ⬅
+  </button>
+
+  <h2>♻ Resources & Conservation</h2>
+
+</div>
+
+<!-- ======================
+PAGE CONTENT
+====================== -->
+
+<div id="theoryBox"
+     class="tab-page fade-in"
+     data-tab="natural">
+</div>
+
+<!-- ======================
+BOTTOM NAV GLASS TABS
+====================== -->
+
+<div class="bottom-tabs">
+
+  <button class="btab active"
+          onclick="openTab('natural',event)">
+    <span>🌍</span>
+    <label>Natural</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('renewable',event)">
+    <span>♻</span>
+    <label>Renewable</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('nonrenewable',event)">
+    <span>⛽</span>
+    <label>Non-Renew</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('conservation',event)">
+    <span>🌱</span>
+    <label>Conserve</label>
+  </button>
+
+  <button class="btab"
+          onclick="openTab('sustainable',event)">
+    <span>🌏</span>
+    <label>Sustain</label>
+  </button>
+
+  <button class="btab"
+          onclick="goEvsMcq(event)">
+    <span>📝</span>
+    <label>EVS MCQ</label>
+  </button>
+
+</div>
+
+<!-- ======================
+SCRIPT
+====================== -->
+
+<script type="module"
+        src="../../js/EVS/evs-resources.js">
+</script>
+
+
+<script>
+/* ======================
+GO BACK
+====================== */
+function goBack(){
+  if(document.referrer){
+    history.back();
+  }else{
+    window.location.replace("../evs.html");
+  }
+}
+</script>
+
+</body>
+</html>
