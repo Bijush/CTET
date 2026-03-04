@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>EVS Pedagogy – Constructivism</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../../css/theory.css">
+
+</head>
+
+<body>
+
+<div class="theory-head">
+
+<button class="back-btn"
+        onclick="goBack()">
+⬅
+</button>
+
+<h2>🧠 Constructivism in EVS</h2>
+
+</div>
+
+<div id="theoryBox"
+     class="tab-page fade-in"
+     data-tab="meaning">
+</div>
+
+<div class="bottom-tabs">
+
+<button class="btab active"
+        onclick="openTab('meaning',event)">
+<span>🧠</span>
+<label>Meaning</label>
+</button>
+
+<button class="btab"
+        onclick="openTab('principles',event)">
+<span>⭐</span>
+<label>Principles</label>
+</button>
+
+<button class="btab"
+        onclick="openTab('evs',event)">
+<span>🌿</span>
+<label>EVS</label>
+</button>
+
+<button class="btab"
+        onclick="openTab('ctet',event)">
+<span>🎯</span>
+<label>CTET</label>
+</button>
+
+<button class="btab"
+        onclick="goEvsMcq(event)">
+<span>📝</span>
+<label>EVS MCQ</label>
+</button>
+
+</div>
+
+<script type="module"
+        src="../../../js/evs/pedagogy/evs-constructivism.js">
+</script>
+
+<script defer src="../../../js/progress-tracker.js"></script>
+
+<script>
+function goBack(){
+if(document.referrer){
+history.back();
+}else{
+window.location.replace("../../subject-list.html");
+}
+}
+</script>
+
+</body>
+</html>

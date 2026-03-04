@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>EVS Pedagogy – TLM</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+      href="../../../css/theory.css">
+
+</head>
+
+<body>
+
+<div class="theory-head">
+
+<button class="back-btn"
+onclick="goBack()">
+⬅
+</button>
+
+<h2>📚 TLM & Activity Based Learning</h2>
+
+</div>
+
+<div id="theoryBox"
+class="tab-page fade-in"
+data-tab="tlm">
+</div>
+
+<div class="bottom-tabs">
+
+<button class="btab active"
+onclick="openTab('tlm',event)">
+<span>📚</span>
+<label>TLM</label>
+</button>
+
+<button class="btab"
+onclick="openTab('types',event)">
+<span>📦</span>
+<label>Types</label>
+</button>
+
+<button class="btab"
+onclick="openTab('activity',event)">
+<span>⚡</span>
+<label>Activity</label>
+</button>
+
+<button class="btab"
+onclick="openTab('ctet',event)">
+<span>🎯</span>
+<label>CTET</label>
+</button>
+
+<button class="btab"
+onclick="goEvsMcq(event)">
+<span>📝</span>
+<label>EVS MCQ</label>
+</button>
+
+</div>
+
+<script type="module"
+src="../../../js/evs/pedagogy/evs-tlm.js">
+</script>
+
+<script defer src="../../../js/progress-tracker.js"></script>
+
+<script>
+
+function goBack(){
+if(document.referrer){
+history.back();
+}else{
+window.location.replace("../../subject-list.html");
+}
+}
+
+</script>
+
+</body>
+</html>
