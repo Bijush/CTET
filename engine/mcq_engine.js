@@ -11,7 +11,7 @@ export function startMCQ(config){
 
 const FEATURES = {
 
-AI_EXPLANATION:false,   // 🤖 AI panel
+AI_EXPLANATION:true,   // 🤖 AI panel
 TRAP_DETECT:true,       // ⚠ Trap detector
 BOOST_DETECT:true       // 🚀 Concept booster
 
@@ -1155,175 +1155,192 @@ boostSignals=[];
   ====================== */
   let ai = {};
 
-  try {
+try {
 
-    ai =
-      offlineAIExplain(
-        q,
-        clickedIndex,
-        langMode
-      ) || {};
+  ai =
+    offlineAIExplain(
+      q,
+      clickedIndex,
+      langMode
+    ) || {};
 
-  } catch(e){
+} catch(e){
 
-    console.warn("AI Error:", e);
+  console.warn("AI Error:", e);
 
-    ai = {
-      concept:"",
-      elimination:[],
-      classroom:"",
-      ncert:"",
-      personal:"",
-      intent:"",
-      prediction:"",
-      micro:""
-    };
-  }
+  ai = {
+    concept:"",
+    elimination:[],
+    classroom:"",
+    ncert:""
+  };
+}
 
-  /* ======================
-     🤖 AI PANEL
-  ====================== */
-  if(FEATURES.AI_EXPLANATION){
+/* ======================
+🤖 AI PANEL
+====================== */
 
-  explainBox.innerHTML += `
-  <hr>
+if(FEATURES.AI_EXPLANATION){
 
-  <div class="ai-toggle"
-       onclick="toggleAIExplain(this)">
-    🤖 AI Teacher Explanation
-    <span class="ai-arrow">▲</span>
-  </div>
+const labels = ["A","B","C","D"];
 
-  <div class="ai-content"
-       style="display:block;">
+let eliminationHTML = "";
 
-    <!-- 🧠 CONCEPT -->
-    <div class="ai-block">
-      <h4>🧠 Concept Intelligence</h4>
-      ${highlightTraps(
-        ai.concept || "",
-        q.subject,
-        "ai"
-      )}
-    </div>
+if(Array.isArray(ai.elimination) && ai.elimination.length){
 
-    ${
-      (ai.elimination || []).length
-      ? `
-      <hr>
-      <h4>❓ Why Options (Deep AI View)</h4>
+eliminationHTML = `
+<div class="ai-card">
 
-      <div class="ai-options">
+<div class="ai-card-title">
+❓ Why Options
+</div>
 
-        ${(ai.elimination || [])
-          .map((text,idx)=>{
+<div class="ai-options">
 
-            let state="";
-            let tag="";
+${ai.elimination.map((text,idx)=>{
 
-            if(idx===correctIndex){
-              state="correct";
-              tag="✔ Correct";
-            }
-            else if(idx===clickedIndex){
-              state="wrong";
-              tag="❌ Your Choice";
-            }
+let state="";
+let tag="";
 
-            return `
-              <div class="ai-option ${state}">
+if(idx===correctIndex){
+state="correct";
+tag="✔ Correct";
+}
+else if(idx===clickedIndex){
+state="wrong";
+tag="❌ Your Choice";
+}
 
-                <div class="ai-option-title">
-                  ${labels[idx]}. ${tag}
-                </div>
+return `
+<div class="ai-option ${state}">
 
-                <div class="ai-option-text">
-                  ${highlightTraps(
-                    text || "",
-                    q.subject,
-                    "ai"
-                  )}
-                </div>
+<div class="ai-option-title">
+Option ${labels[idx]}
+<span class="ai-tag">${tag}</span>
+</div>
 
-              </div>
-            `;
-        }).join("")}
+<div class="ai-option-text">
+${highlightTraps(text || "", q.subject,"ai")}
+</div>
 
-      </div>
-      `
-      : ""
-    }
+</div>
+`;
 
-    <hr>
-    <div class="classroom">
-      🏫 <b>Classroom Example:</b><br>
-      ${highlightTraps(
-        ai.classroom || "",
-        q.subject,
-        "ai"
-      )}
-    </div>
+}).join("")}
 
-    <hr>
-    <div class="ncert">
-      📘 <b>NCERT Reference:</b><br>
-      ${highlightTraps(
-        ai.ncert || "",
-        q.subject,
-        "ai"
-      )}
-    </div>
+</div>
+</div>
+`;
 
-    <!-- 🧠 PEDAGOGY -->
-    <hr>
-    <h4>🧠 Pedagogy Intelligence</h4>
+}
 
-    <div class="ai-pedagogy">
+explainBox.innerHTML += `
+<hr>
 
-      <div class="ped-card concept-link"
-           data-concept="${q.concept}">
-        🧠 Bloom’s Level<br>
-        ${pedagogy.bloom || "—"}
-      </div>
+<div class="ai-panel">
 
-      <div class="ped-card concept-link"
-           data-concept="${q.concept}">
-        👶 Piaget Stage<br>
-        ${pedagogy.piaget || "—"}
-      </div>
+<div class="ai-header" onclick="toggleAIExplain(this)">
 
-      <div class="ped-card concept-link"
-           data-concept="${q.concept}">
-        👥 Vygotsky Link<br>
-        ${pedagogy.vygotsky || "—"}
-      </div>
+<div class="ai-title">
+🤖 AI Teacher Explanation
+</div>
 
-      <div class="ped-card concept-link"
-           data-concept="${q.concept}">
-        🧱 Constructivism<br>
-        ${pedagogy.constructivism || "—"}
-      </div>
+<div class="ai-toggle-icon">
+▲
+</div>
 
-    </div>
+</div>
 
-    ${
-      isWeakConcept(q.concept)
-      ? `
-      <hr>
-      <div class="personal">
-        🎯 You are weak in
-        <b>${q.concept}</b>.
-        Revise again.
-      </div>
-      `
-      : ""
-    }
+<div class="ai-content" style="display:none;">
 
-  </div>
-  `;
-  }
-};
+<div class="ai-card ai-concept">
 
+<div class="ai-card-title">
+🧠 Concept Intelligence
+</div>
+
+<div class="ai-card-body">
+${highlightTraps(ai.concept || "", q.subject,"ai")}
+</div>
+
+</div>
+
+${eliminationHTML}
+
+<div class="ai-card">
+
+<div class="ai-card-title">
+🏫 Classroom Example
+</div>
+
+<div class="ai-card-body">
+${highlightTraps(ai.classroom || "", q.subject,"ai")}
+</div>
+
+</div>
+
+<div class="ai-card">
+
+<div class="ai-card-title">
+📘 NCERT Reference
+</div>
+
+<div class="ai-card-body">
+${highlightTraps(ai.ncert || "", q.subject,"ai")}
+</div>
+
+</div>
+
+<div class="ai-card pedagogy-card">
+
+<div class="ai-card-title">
+🧠 Pedagogy Intelligence
+</div>
+
+<div class="ai-pedagogy">
+
+<div class="ped-card concept-link"
+data-concept="${q.concept}">
+🧠 Bloom’s Level
+<span>${pedagogy.bloom || "—"}</span>
+</div>
+
+<div class="ped-card concept-link"
+data-concept="${q.concept}">
+👶 Piaget Stage
+<span>${pedagogy.piaget || "—"}</span>
+</div>
+
+<div class="ped-card concept-link"
+data-concept="${q.concept}">
+👥 Vygotsky Link
+<span>${pedagogy.vygotsky || "—"}</span>
+</div>
+
+<div class="ped-card concept-link"
+data-concept="${q.concept}">
+🧱 Constructivism
+<span>${pedagogy.constructivism || "—"}</span>
+</div>
+
+</div>
+
+</div>
+
+${
+isWeakConcept(q.concept)
+? `<div class="ai-warning">
+⚠ You are weak in <b>${q.concept}</b>
+</div>`
+: ""
+}
+
+</div>
+</div>
+`;
+
+}
+}
     optBox.appendChild(btn);
   });
 }
@@ -1491,15 +1508,26 @@ showSnack("⭐ Bookmark saved");
 
 }
 
-window.toggleAIExplain = function (el) {
+window.toggleAIExplain = function(el){
 
-  const content = el.nextElementSibling;
-  const arrow = el.querySelector(".ai-arrow");
+const panel = el.closest(".ai-panel");
+if(!panel) return;
 
-  const open = content.style.display === "block";
+const content = panel.querySelector(".ai-content");
+const arrow = el.querySelector(".ai-toggle-icon");
 
-  content.style.display = open ? "none" : "block";
-  arrow.innerText = open ? "▼" : "▲";
+if(!content) return;
+
+const open = content.style.display === "block";
+
+content.style.display = open ? "none" : "block";
+
+if(arrow){
+arrow.style.transform = open
+? "rotate(0deg)"
+: "rotate(180deg)";
+}
+
 };
 /* ======================
    NAVIGATION
@@ -1631,6 +1659,12 @@ function saveResultAndGo(){
     date: new Date().toLocaleString(),
     review: detailedReview
   };
+  /* 🔥 ADD THIS LINE */
+localStorage.setItem(
+  "last_test_page",
+  location.pathname
+);
+
 
   /* 🔥 Save latest result */
   localStorage.setItem(
