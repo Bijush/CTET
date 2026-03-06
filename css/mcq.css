@@ -517,3 +517,416 @@ OPTION TEXT FIX
   }
 
 }
+/* ======================
+OPTION ELIMINATION STYLE
+====================== */
+
+/* ======================
+   OPTION CONTAINER
+====================== */
+
+.elim-options{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:10px;
+
+}
+
+/* ======================
+   OPTION CARD
+====================== */
+
+.elim-option{
+
+background:#f8fafc;
+border:1px solid #e5e7eb;
+
+padding:14px;
+border-radius:12px;
+
+position:relative;
+
+}
+
+/* ======================
+   OPTION HEADER
+====================== */
+
+.elim-head{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+font-weight:600;
+margin-bottom:6px;
+
+}
+
+/* ======================
+   OPTION TEXT
+====================== */
+
+.elim-body{
+
+font-size:14px;
+line-height:1.6;
+
+}
+
+/* ======================
+   CORRECT OPTION
+====================== */
+
+.elim-option.elim-correct{
+
+background:#ecfdf5;
+border-left:4px solid #22c55e;
+
+}
+
+/* ======================
+   WRONG OPTION
+====================== */
+
+.elim-option.elim-wrong{
+
+background:#fef2f2;
+border-left:4px solid #dc2626;
+
+}
+
+/* ======================
+   USER CHOICE
+====================== */
+
+.elim-option.elim-your{
+
+background:#fff7ed;
+border-left:4px solid #f97316;
+
+}
+
+/* ======================
+   TAG
+====================== */
+
+.elim-tag{
+
+font-size:12px;
+
+background:#e5e7eb;
+color:#374151;
+
+padding:2px 8px;
+border-radius:6px;
+
+}
+
+/* ======================
+   OPTION DIVIDER
+====================== */
+
+.elim-divider{
+
+height:1px;
+
+background:linear-gradient(
+90deg,
+transparent,
+#d1d5db,
+transparent
+);
+
+margin:10px 0;
+
+}
+/* ======================
+QUESTION META PANEL
+====================== */
+
+.meta-box{
+
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+
+margin-top:12px;
+
+background:rgba(255,255,255,0.75);
+backdrop-filter:blur(10px);
+
+border-radius:14px;
+padding:14px;
+
+border:1px solid rgba(0,0,0,0.06);
+
+box-shadow:0 6px 16px rgba(0,0,0,0.06);
+
+}
+
+/* item */
+
+.meta-item{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:6px 0;
+
+}
+
+/* label */
+
+.meta-label{
+
+font-size:12px;
+font-weight:700;
+
+color:#6b7280;
+letter-spacing:.5px;
+
+text-transform:uppercase;
+
+}
+
+/* value */
+
+.meta-value{
+
+font-size:14px;
+font-weight:600;
+color:#111827;
+
+}
+
+/* concept link */
+
+.concept-link{
+
+color:#2563eb;
+cursor:pointer;
+font-weight:700;
+
+}
+
+.concept-link:hover{
+text-decoration:underline;
+}
+
+/* weak badge */
+
+.weak-badge{
+
+background:#fee2e2;
+color:#dc2626;
+
+font-size:11px;
+font-weight:700;
+
+padding:2px 6px;
+border-radius:6px;
+
+margin-left:6px;
+
+}
+
+/* difficulty colors */
+
+.difficulty-easy{
+color:#16a34a;
+}
+
+.difficulty-medium{
+color:#f59e0b;
+}
+
+.difficulty-hard{
+color:#dc2626;
+}
+
+/* exam year */
+
+.exam-year{
+
+color:#6b7280;
+font-size:12px;
+
+margin-left:4px;
+
+}
+.explain-title{
+font-size:16px;
+font-weight:700;
+margin-bottom:10px;
+color:#111827;
+}
+
+.explain-question-card{
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:14px;
+margin-bottom:12px;
+}
+
+.question-label{
+font-size:13px;
+font-weight:600;
+color:#2563eb;
+margin-bottom:6px;
+}
+
+.question-text{
+font-size:15px;
+line-height:1.6;
+color:#1f2937;
+}
+
+.question-en{
+font-weight:500;
+}
+
+.question-bn{
+margin-top:6px;
+font-size:14px;
+color:#6b7280;
+}
+.correct-answer-card{
+background:#ecfdf5;
+border:1px solid #10b981;
+border-radius:12px;
+padding:12px 14px;
+margin-bottom:12px;
+}
+
+.answer-label{
+font-size:13px;
+font-weight:600;
+color:#059669;
+margin-bottom:6px;
+}
+
+.answer-text{
+font-size:15px;
+line-height:1.6;
+color:#064e3b;
+}
+
+.answer-en{
+font-weight:600;
+}
+
+.answer-bn{
+margin-top:4px;
+font-size:14px;
+color:#065f46;
+}
+.why-card{
+background:#fffbeb;
+border:1px solid #f59e0b;
+border-radius:12px;
+padding:12px 14px;
+margin-top:12px;
+}
+
+.why-label{
+font-size:13px;
+font-weight:600;
+color:#b45309;
+margin-bottom:6px;
+}
+
+.why-text{
+font-size:14px;
+line-height:1.6;
+color:#78350f;
+}
+
+.why-en{
+font-weight:500;
+}
+
+.why-bn{
+margin-top:6px;
+font-size:13px;
+color:#92400e;
+}
+.option-analysis-card{
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:14px;
+margin-top:14px;
+}
+
+.analysis-title{
+font-size:14px;
+font-weight:600;
+color:#111827;
+margin-bottom:10px;
+}
+
+.elim-options{
+display:grid;
+gap:10px;
+}
+
+.elim-option{
+background:#ffffff;
+border:1px solid #e5e7eb;
+border-radius:10px;
+padding:10px 12px;
+}
+
+.elim-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+.elim-label{
+color:#374151;
+}
+
+.elim-tag{
+font-size:11px;
+padding:2px 6px;
+border-radius:6px;
+background:#e5e7eb;
+color:#374151;
+}
+
+.elim-body{
+font-size:14px;
+line-height:1.5;
+color:#4b5563;
+}
+
+/* Correct option */
+.elim-correct{
+border-color:#10b981;
+background:#ecfdf5;
+}
+
+.elim-correct .elim-tag{
+background:#10b981;
+color:#fff;
+}
+
+/* User wrong choice */
+.elim-your{
+border-color:#ef4444;
+background:#fef2f2;
+}
+
+.elim-your .elim-tag{
+background:#ef4444;
+color:#fff;
+}
