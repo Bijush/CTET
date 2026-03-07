@@ -14,6 +14,7 @@ startMCQ({
 
   orderKey: "erikson_q_order",
 
-  attemptKey: "erikson_attempt_map"
+  attemptKey: "erikson_attempt_map",
+  resultKey: "erikson_test_result"
 
 });

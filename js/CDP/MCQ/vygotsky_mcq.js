@@ -13,6 +13,7 @@ startMCQ({
 
   orderKey: "vygotsky_q_order",
 
-  attemptKey: "vygotsky_attempt_map"
+  attemptKey: "vygotsky_attempt_map",
+  resultKey: "vygotsky_test_result"
 
 });

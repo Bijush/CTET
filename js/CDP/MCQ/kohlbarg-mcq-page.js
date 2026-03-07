@@ -15,6 +15,7 @@ startMCQ({
 
   orderKey: "kohlbarg_q_order",
 
-  attemptKey: "kohlbarg_attempt_map"
+  attemptKey: "kohlbarg_attempt_map",
+  resultKey: "kohlbarg_test_result"
 
 });
