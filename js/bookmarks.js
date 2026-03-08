@@ -1,12 +1,14 @@
-import { mcqQuestion } from "../data/mcq_question.js";
-import { mockQuestion } from "../data/mock_question.js";
-import { conceptCDP } from "../data/concept_cdp.js";
-import { conceptMath } from "../data/concept_math.js";
-import { conceptEVS } from "../data/concept_evs.js";
-import { detectTraps } from "../utils/trap_detector.js";
-import { piagetMcq } 
-from "../data/piaget_mcq_question.js";
-import { TAptitude } from "../data/scert/teaching-aptitude.js";
+import { findItem }
+from "../engine/bookmark_engine.js";
+
+import "../data/mcq_question.js";
+import "../data/mock_question.js";
+import "../data/piaget_mcq_question.js";
+import "../data/scert/teaching-aptitude.js";
+import "../data/vygotskyMcq.js";
+import "../data/kohlbarg-mcq.js";
+import "../data/eriksonDataMcq.js";
+
 
 const list = document.getElementById("list");
 
@@ -121,30 +123,9 @@ function renderBookmarks() {
   }
 
   filtered.forEach(bm => {
-    let item = null;
+    const item = findItem(bm.type, bm.id);
 
-    if (bm.type === "MCQ") {
-      item = mcqQuestion.find(q => q.id === bm.id)
-        || piagetMcq.find(q => q.id === bm.id);
-    }
-
-    else if (bm.type === "MOCK") {
-      item =
-        mockQuestion.find(q => q.id === bm.id)
-        || TAptitude.find(q => q.id === bm.id);
-    }
-
-    else if (bm.type === "CONCEPT") {
-      const allConcepts = [
-        ...conceptCDP,
-        ...conceptMath,
-        ...conceptEVS
-      ];
-      item =
-        allConcepts.find(c => c.id === bm.id);
-    }
-
-    if (!item) return;
+if (!item) return;
 
     const card = document.createElement("div");
     card.className = "bookmark-card";

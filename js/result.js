@@ -1,85 +1,51 @@
+import { loadResultHistory }
+from "../engine/result_engine.js";
+
+const TEST_HEADERS = {
+
+MCQ:"🎯 MCQ Practice Completed",
+SCERT:"🎓 SCERT Practice Completed",
+PIAGET:"🧠 Piaget Practice Completed",
+VYGOTSKY:"📘 Vygotsky Practice Completed",
+KOHLBARG:"⚖️ Kohlbarg Practice Completed",
+MOCK:"🚀 Mock Test Completed"
+
+};
 
 function getPerformanceText(percent){
 
-  percent = parseFloat(percent);
+percent = parseFloat(percent);
 
-  if(percent >= 80)
-    return "🔥 Excellent Performance! UPSC Ready Level.";
+if(percent >= 90)
+return "🏆 Topper Level Performance";
 
-  if(percent >= 60)
-    return "💪 Good Attempt. Keep polishing weak areas.";
+if(percent >= 80)
+return "🔥 Excellent Performance";
 
-  if(percent >= 40)
-    return "⚠ Average. Revise concepts again.";
+if(percent >= 70)
+return "💪 Very Good Attempt";
 
-  return "🚨 Needs Serious Revision. Focus on weak topics.";
+if(percent >= 60)
+return "👍 Good Attempt";
+
+if(percent >= 50)
+return "⚠ Average Performance";
+
+if(percent >= 40)
+return "📚 Needs Revision";
+
+return "🚨 Serious Improvement Needed";
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  const mockHistory =
-  JSON.parse(localStorage.getItem("mock_test_history")) || [];
-
-const mcqHistory =
-  JSON.parse(localStorage.getItem("mcq_test_history")) || [];
-
-const scertHistory =
-  JSON.parse(localStorage.getItem("scert_test_history")) || [];
   
-  const piagetHistory =
-  JSON.parse(localStorage.getItem("piaget_test_history")) || [];
-  
-  const vygotskyHistory =
-  JSON.parse(localStorage.getItem("vygotsky_test_history")) || [];
-  
-  const kohlbargHistory =
-  JSON.parse(localStorage.getItem("kohlbarg_test_history")) || [];
+const lastPage =
+localStorage.getItem("last_test_page") || "";
+const lastType =
+localStorage.getItem("last_test_type") || "";
 
-
-/* 🔥 Add type flag */
-const taggedMock = mockHistory.map(x => ({
-  ...x,
-  testType: "MOCK"
-}));
-
-const taggedMcq = mcqHistory.map(x => ({
-  ...x,
-  testType: "MCQ"
-}));
-
-const taggedScert = scertHistory.map(x => ({
-  ...x,
-  testType: "SCERT"
-}));
-
-const taggedPiaget = piagetHistory.map(x => ({
-  ...x,
-  testType: "PIAGET"
-}));
-
-const taggedVygotsky = vygotskyHistory.map(x => ({
-  ...x,
-  testType: "VYGOTSKY"
-}));
-
-const taggedKohlbarg =
-  kohlbargHistory.map(x => ({
-    ...x,
-    testType: "KOHLBARG"
-}));
-
-const history =
-  [
-    ...taggedMock,
-    ...taggedMcq,
-    ...taggedScert,
-    ...taggedPiaget,
-    ...taggedVygotsky,
-    ...taggedKohlbarg   // 🔥 ADD THIS
-  ]
-  .sort((a,b) =>
-    new Date(b.date) - new Date(a.date)
-  );
+  let history = loadResultHistory();
 
   const box = document.getElementById("resultBox");
   const reviewBox = document.getElementById("reviewSection");
@@ -98,6 +64,8 @@ const history =
   box.innerHTML = "";
 
   history.forEach((result, index) => {
+    const percent =
+parseFloat(result.percentage) || 0;
 
     const isLatest = index === 0;
 
@@ -111,23 +79,12 @@ const history =
 
         <div>
 <div class="result-header">
-  ${
-  result.testType === "MCQ"
-    ? "🎉 MCQ Practice Completed"
-    : result.testType === "SCERT"
-      ? "🎓 SCERT Practice Completed"
-      : result.testType === "PIAGET"
-        ? "🧠 Piaget Practice Completed"
-        : result.testType === "VYGOTSKY"
-          ? "🎓 Vygotsky Practice Completed"
-          : result.testType === "KOHLBARG"   // 🔥 EI LINE ADD
-            ? "⚖️ Kohlbarg Practice Completed"
-            : "🎉 Mock Test Completed"
-}
+  ${TEST_HEADERS[result.testType] || 
+`🎉 ${result.testType} Practice Completed`}
 </div>
 
           <div class="result-subject">
-            Subject: <b>${result.subject}</b>
+            Subject: <b>${result.subject || "General"}</b>
           </div>
 
           <div style="font-size:12px;color:#6b7280;">
@@ -136,7 +93,7 @@ const history =
         </div>
 
         <div style="font-weight:700;">
-          ${result.percentage}%
+          ${percent}%
         </div>
 
       </div>
@@ -149,7 +106,7 @@ const history =
              id="circle${index}">
           <div class="circle-inner">
             <div class="score-percent">
-              ${result.percentage}%
+              ${percent}%
             </div>
             <div class="score-label">Score</div>
           </div>
@@ -158,25 +115,25 @@ const history =
         <div class="score-grid">
 
           <div class="score-box score-total">
-            Total <b>${result.total}</b>
+            Total <b>${result.total || 0}</b>
           </div>
 
           <div class="score-box score-correct">
-            Correct <b>${result.correct}</b>
+            Correct <b>${result.correct || 0}</b>
           </div>
 
           <div class="score-box score-wrong">
-            Wrong <b>${result.wrong}</b>
+            Wrong <b>${result.wrong || 0}</b>
           </div>
 
           <div class="score-box score-skipped">
-            Skipped <b>${result.skipped}</b>
+            Skipped <b>${result.skipped || 0}</b>
           </div>
 
         </div>
 
         <div class="performance-text">
-          ${getPerformanceText(result.percentage)}
+          ${getPerformanceText(percent)}
         </div>
 
         <!-- 🔥 REVIEW SECTION (ONLY FOR LATEST) -->
@@ -207,7 +164,7 @@ const history =
         if (!circle) return;
 
         let start = 0;
-        const end = parseFloat(result.percentage);
+        const end = percent;
         const duration = 1200;
         const stepTime = 10;
         const increment = end / (duration / stepTime);
@@ -221,14 +178,19 @@ const history =
             clearInterval(counter);
           }
 
-          circle.style.setProperty("--score", start);
+          circle.style.setProperty(
+"--score",
+Math.min(start,100)
+);
 
         }, stepTime);
 
       }, 300);
 
       /* 🔥 Render Review for Latest */
-      renderReview(result.review, index);
+      if(Array.isArray(result.review)){
+renderReview(result.review, index);
+}
     }
 
   });
@@ -350,11 +312,7 @@ window.restartTest = function(){
   /* 🔥 Clear resume / attempt data */
   Object.keys(localStorage).forEach(key => {
 
-    if (
-      key.includes("_q_index_") ||
-      key.includes("_q_order_") ||
-      key.includes("_attempt_map_")
-    ){
+    if(/_q_index_|_q_order_|_attempt_map_/.test(key)){
       localStorage.removeItem(key);
     }
 
