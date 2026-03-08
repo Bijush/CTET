@@ -1,4 +1,7 @@
 
+import { registerData }
+from "../engine/bookmark_engine.js";
+
 /* previous Year JANUARY 2024 */
 
 export const mockQuestion = [
@@ -3452,6 +3455,7 @@ elimination_bn: [
 }
 
 ];
+registerData("MOCK", mockQuestion);
 
 
 

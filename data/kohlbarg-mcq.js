@@ -1,3 +1,5 @@
+import { registerData }
+from "../engine/bookmark_engine.js";
 
 export const kohlbargMcq = [
   
@@ -4439,3 +4441,4 @@ export const kohlbargMcq = [
   year: 2027
 }
 ];
+registerData("MCQ", kohlbargMcq);

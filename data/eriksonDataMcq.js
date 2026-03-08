@@ -1,3 +1,6 @@
+import { registerData }
+from "../engine/bookmark_engine.js";
+
 export const eriksonMcq = [
 
 {
@@ -3067,3 +3070,4 @@ export const eriksonMcq = [
 }
 
 ];
+registerData("MCQ", eriksonMcq);

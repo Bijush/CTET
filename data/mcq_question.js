@@ -2,6 +2,9 @@
 import { piagetHighProbMCQ }
 from "./piaget_mcq.js";
 
+import { registerData }
+from "../engine/bookmark_engine.js";
+
 export const mcqQuestion = [
 
   {
@@ -1114,3 +1117,5 @@ export const mcqQuestion = [
 
   ...piagetHighProbMCQ
 ];
+registerData("MCQ", mcqQuestion);
+

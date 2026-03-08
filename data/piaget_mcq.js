@@ -1,3 +1,5 @@
+import { registerData }
+from "../engine/bookmark_engine.js";
 export const piagetHighProbMCQ = [
 
 /* ===============================
@@ -400,3 +402,4 @@ export const piagetHighProbMCQ = [
 }
 
 ];
+registerData("MCQ", piagetHighProbMCQ);

@@ -1,3 +1,7 @@
+import { registerData }
+from "../engine/bookmark_engine.js";
+
+
 export const VygotskyMcq = [
 
 {
@@ -5789,3 +5793,5 @@ export const VygotskyMcq = [
 
 
 ];
+
+registerData("MCQ", VygotskyMcq);

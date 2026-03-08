@@ -1,3 +1,5 @@
+import { registerData }
+from "../engine/bookmark_engine.js";
 export const piagetMcq = [
 
 {
@@ -3721,3 +3723,4 @@ export const piagetMcq = [
     "ব্রুনার স্পাইরাল কারিকুলাম দেন।\nএকই ধারণা ধাপে ধাপে জটিল হয়।\nকঠোর বয়সভিত্তিক নয়।\nঅতএব III ভুল।"
 }
 ];
+registerData("MCQ", piagetMcq);
