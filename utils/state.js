@@ -1,23 +1,9 @@
-export function setSubject(sub){
-  localStorage.setItem(
-    "subject", sub
-  );
-}
+const AppState = {
 
-export function getSubject(){
-  return localStorage.getItem(
-    "subject"
-  );
-}
+bookmarks: [],
+progress: {},
+weakTopics: []
 
-export function setConcept(id){
-  localStorage.setItem(
-    "concept", id
-  );
-}
+};
 
-export function getConcept(){
-  return localStorage.getItem(
-    "concept"
-  );
-}
+export default AppState;
