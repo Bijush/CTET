@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test Result</title>
+<!--
+  <link rel="stylesheet" href="../css/common.css">
+  -->
+  <link rel="stylesheet" href="../css/result.css">
+</head>
+<body>
+
+  <!-- 🔥 Animated Gradient Floating Navbar -->
+  <div class="top-navbar">
+
+    <div class="nav-title">
+      📊 Test Result
+    </div>
+
+    <div class="nav-actions">
+      <button onclick="restartTest()" class="nav-btn restart-btn">
+        🔄 Restart
+      </button>
+
+      <button onclick="goDashboard()" class="nav-btn dash-btn">
+        🏠 Dashboard
+      </button>
+    </div>
+
+  </div>
+
+  <div class="result-container">
+    <div id="resultBox"></div>
+    <div id="reviewSection"></div>
+  </div>
+
+<script type="module" src="../js/result.js"></script>
+</body>
+</html>
