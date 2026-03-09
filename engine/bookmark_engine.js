@@ -6,7 +6,9 @@ const registry = {
   MCQ: [],
   MOCK: [],
   CONCEPT: [],
-  THEORY: []
+  THEORY: [],
+  GK: []
+  
 };
 
 /* ======================

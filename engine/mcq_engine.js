@@ -37,20 +37,87 @@ resultKey
 
 function validateMCQData(data){
 
-if(!Array.isArray(data)) return false;
+if(!Array.isArray(data)){
+console.error("MCQ Data is not an array");
+return false;
+}
 
-return data.every(q =>
-q &&
-q.id &&
-q.q_en &&
-Array.isArray(q.options_en) &&
-typeof q.ans === "number"
-);
+let valid = true;
+
+data.forEach((q,i)=>{
+
+if(!q){
+console.warn(`Question ${i} is null`);
+valid = false;
+return;
+}
+
+/* ID FIX */
+if(!q.id){
+q.id = "q_" + i;
+}
+
+/* QUESTION TEXT FIX */
+if(!q.q_en){
+console.warn(`Question ${q.id} missing q_en`);
+q.q_en = "Question text missing";
+}
+
+/* OPTIONS FIX */
+if(!Array.isArray(q.options_en)){
+
+if(typeof q.options_en === "string"){
+q.options_en = [q.options_en];
+}
+else{
+q.options_en = [];
+}
+
+}
+
+/* BN OPTIONS SAFE */
+if(!Array.isArray(q.options_bn)){
+q.options_bn = [];
+}
+
+/* ANSWER FIX */
+if(typeof q.ans === "string"){
+q.ans = parseInt(q.ans);
+}
+
+if(typeof q.ans !== "number" || isNaN(q.ans)){
+console.warn(`Question ${q.id} invalid ans`);
+q.ans = 0;
+}
+
+/* ELIMINATION SAFE */
+if(!Array.isArray(q.elimination_en)){
+q.elimination_en = [];
+}
+
+if(!Array.isArray(q.elimination_bn)){
+q.elimination_bn = [];
+}
+
+});
+
+return valid;
 
 }
 
 window.addEventListener("pageshow", e => {
-  if (e.persisted) location.reload();
+
+  if (e.persisted) {
+    console.log("Page restored from cache");
+
+    // optional reload guard
+    if(!sessionStorage.getItem("pageRestored")){
+      sessionStorage.setItem("pageRestored","1");
+      location.reload();
+    }
+
+  }
+
 });
 /* ======================
    GLOBAL STATE (NO TIMER)
@@ -202,16 +269,21 @@ localStorage.removeItem(getAttemptKey());
 
 
 function prepareQuestions(){
+  
+  questionOrder = [];
 
   /* 🔎 Filter by subject */
-  if(selectedSubject === "ALL"){
-    filteredQuestions = [...data];
-  } else {
-    filteredQuestions =
-      data.filter(
-        q => (q.subject || "ALL") === selectedSubject
-      );
-  }
+if(selectedSubject === "ALL"){
+  filteredQuestions = [...data];
+}
+else{
+
+  filteredQuestions = data.filter(q =>
+selectedSubject === "ALL" ||
+(q.subject || "").trim().toLowerCase() === selectedSubject.trim().toLowerCase()
+);
+
+}
 
   /* 🚫 If no question found */
   if(filteredQuestions.length === 0){
@@ -241,6 +313,21 @@ function prepareQuestions(){
   =================================== */
 
   let savedOrder = null;
+  
+  /* 🔥 LIMIT CHANGE FIX */
+
+const savedLimit = localStorage.getItem(limitKey);
+
+if(savedLimit && savedLimit !== selectedLimit){
+
+localStorage.removeItem(getOrderKey());
+localStorage.removeItem(getAttemptKey());
+localStorage.removeItem(getIndexKey());
+
+savedOrder = null;
+
+}
+  
 
   try {
     savedOrder =
@@ -263,25 +350,26 @@ if (selectedLimit === "ALL") {
 }
 
   /* ✅ Resume Existing Test */
-  if (
-    Array.isArray(savedOrder) &&
-    savedOrder.length === totalToTake
-  ){
-
+if (
+  Array.isArray(savedOrder) &&
+  savedOrder.length === totalToTake &&
+  selectedSubject !== "ALL"
+){
     questionOrder = savedOrder;
-
-    filteredQuestions =
-      filteredQuestions.slice(0, totalToTake);
 
   } else {
 
     /* 🔀 Fresh New Test */
-    filteredQuestions =
-      shuffleArray(filteredQuestions)
-        .slice(0, totalToTake);
+    const shuffled =
+shuffleArray(filteredQuestions);
 
-    questionOrder =
-      filteredQuestions.map((_, i) => i);
+const selected =
+shuffled.slice(0, totalToTake);
+
+questionOrder =
+selected.map(q =>
+filteredQuestions.indexOf(q)
+);
 
     // 🔥 RESET UPSC ATTEMPT TRACKER
     attemptMap = {};
@@ -292,6 +380,30 @@ localStorage.setItem(
   getOrderKey(),
   JSON.stringify(questionOrder)
 );
+
+if(index >= questionOrder.length){
+index = 0;
+localStorage.setItem(getIndexKey(),0);
+}
+/* 🔒 SAFETY GUARD */
+
+if(!Array.isArray(questionOrder) || questionOrder.length === 0){
+
+console.error("Question order empty");
+
+qBox.innerHTML = `
+<div class="no-question">
+⚠️ No questions prepared for this test.
+</div>
+`;
+
+optBox.innerHTML = "";
+explainBox.style.display = "none";
+
+return;
+}
+
+
   }
 }
 /* ======================*/
@@ -459,17 +571,49 @@ function loadQ() {
     .querySelectorAll(".btab")
     .forEach(btn => btn.disabled = false);
   // Data not loaded yet
-if (!filteredQuestions || !filteredQuestions.length) {
+if (!Array.isArray(filteredQuestions) || filteredQuestions.length === 0) {
 
-    console.warn("MCQ data not ready → retrying");
+console.error("No questions found → ending test");
 
-    setTimeout(loadQ, 100);
+saveResultAndGo();
+return;
+
+}
+  /* ⭐ GUARD ADD HERE (BEFORE currentQIndex) */
+  if(index >= questionOrder.length){
+
+    console.warn("Index exceeded question order → submitting test");
+
+    saveResultAndGo();
     return;
   }
   
+  
   const currentQIndex = questionOrder[index];
-  const q = filteredQuestions[currentQIndex];
-  if (!q) return;
+
+if(currentQIndex === undefined){
+console.error("Invalid question index");
+saveResultAndGo();
+return;
+}
+
+const q = filteredQuestions[currentQIndex];
+
+if(!q){
+console.error("Question not found → submitting test");
+
+
+
+saveResultAndGo();
+return;
+}
+/* 🔒 SAFE DATA GUARD */
+q.elimination_en = q.elimination_en || [];
+q.elimination_bn = q.elimination_bn || [];
+q.options_en = q.options_en || [];
+q.options_bn = q.options_bn || [];
+q.ans_reason_en = q.ans_reason_en || "";
+q.ans_reason_bn = q.ans_reason_bn || "";
 
   localStorage.setItem(getIndexKey(), index);
 
@@ -497,18 +641,18 @@ if (statusBox) {
 
   /* 📊 progress */
   progressBar.style.width =
-((index + 1) / filteredQuestions.length) * 100 + "%";
+((index + 1) / questionOrder.length) * 100 + "%";
 const progressInfo =
   document.getElementById("progressInfo");
 
 if (progressInfo) {
   progressInfo.innerText =
-    `${index + 1} / ${filteredQuestions.length}`;
+    `${index + 1} / ${questionOrder.length}`;
 }
 
   /* ⭐ bookmark state */
-  const isBookmarked = getBookmarks()
-    .some(b => b.type === "MCQ" && b.id === q.id);
+ const isBookmarked = getBookmarks()
+  .some(b => b.id === q.id);
 
   /* ======================
      QUESTION TEXT (STRICT)
@@ -562,7 +706,7 @@ else if (langMode === "BN") {
   /* ======================
      OPTIONS (STRICT)
   ====================== */
-  q.options_en.forEach((_, i) => {
+  (q.options_en || []).forEach((_, i) => {
     const btn = document.createElement("button");
 
     const en = q.options_en[i];
@@ -1416,7 +1560,7 @@ return;
 let b = getBookmarks() || [];
 
 const pos = b.findIndex(
-x => x.type === "MCQ" && x.id === q.id
+x => x.id === q.id
 );
 
 const btn =
@@ -1461,7 +1605,7 @@ else{
 if(!b.some(x => x.id === q.id)){
 
 b.push({
-type:"MCQ",
+type:q.type || "MCQ",
 id:q.id,
 subject:q.subject || "General",
 date:Date.now()
@@ -1506,52 +1650,47 @@ arrow.style.transform = open
 ====================== */
 window.nextQ = () => {
 
-  const currentQIndex = questionOrder[index];
-  const q = filteredQuestions[currentQIndex];
+const currentQIndex = questionOrder[index];
+const q = filteredQuestions[currentQIndex];
 
-  if (!q) return;
+if(!q){
+saveResultAndGo();
+return;
+}
 
-  /* =====================================
-     🔥 If question not answered → mark skipped
-  ===================================== */
+const attempt = attemptMap[q.id];
 
-  const attempt = attemptMap[q.id];
+if(!attempt || attempt.answered !== true){
 
-  if (!attempt || attempt.answered !== true) {
+attemptMap[q.id] = {
+visited:true,
+answered:false,
+correct:false,
+selected:null
+};
 
-    attemptMap[q.id] = {
-      visited: true,
-      answered: false,
-      correct: false,
-      selected: null
-    };
+localStorage.setItem(
+getAttemptKey(),
+JSON.stringify(attemptMap)
+);
 
-    localStorage.setItem(
-      getAttemptKey(),
-      JSON.stringify(attemptMap)
-    );
-  }
+}
 
-  /* =====================================
-     ➡ Move Forward
-  ===================================== */
+/* 🔥 LAST QUESTION FIX */
+if(index >= questionOrder.length - 1){
+saveResultAndGo();
+return;
+}
 
-  if (index < filteredQuestions.length - 1) {
+index++;
 
-    index++;
+localStorage.setItem(
+getIndexKey(),
+index
+);
 
-    localStorage.setItem(
-      getIndexKey(),
-      index
-    );
+loadQ();
 
-    loadQ();
-
-  } else {
-
-    saveResultAndGo();
-
-  }
 };
 
 window.prevQ = () => {
@@ -1563,7 +1702,8 @@ window.prevQ = () => {
 
 function saveResultAndGo(){
 
-  const total = filteredQuestions.length;
+  /* 🔥 USE ORDER LENGTH (FIX FOR ALL SUBJECT MODE) */
+  const total = questionOrder.length;
 
   let correct = 0;
   let wrong = 0;
@@ -1575,15 +1715,18 @@ function saveResultAndGo(){
 
     const qIndex = questionOrder[i];
     const q = filteredQuestions[qIndex];
+
+    if(!q) continue;
+
     const attempt = attemptMap[q.id];
 
     let status = "skipped";
 
-    /* ======================================
-       🔥 CORRECT SKIPPED LOGIC FIX
-    ====================================== */
+    /* ==============================
+       ANSWER STATUS CHECK
+    ============================== */
 
-    if (!attempt || attempt.answered === false) {
+    if (!attempt || attempt.answered !== true) {
 
       skipped++;
       status = "skipped";
@@ -1617,59 +1760,86 @@ function saveResultAndGo(){
       exam: q.exam || "",
       year: q.year || ""
     });
+
   }
+
+  /* ==============================
+     RESULT DATA
+  ============================== */
 
   const resultData = {
     subject: selectedSubject,
-    total,
-    correct,
-    wrong,
-    skipped,
-    percentage: total > 0
-      ? ((correct / total) * 100).toFixed(1)
-      : "0.0",
+    total: total,
+    correct: correct,
+    wrong: wrong,
+    skipped: skipped,
+    percentage:
+      total > 0
+        ? ((correct / total) * 100).toFixed(1)
+        : "0.0",
     date: new Date().toLocaleString(),
     review: detailedReview
   };
-  /* 🔥 ADD THIS LINE */
-localStorage.setItem(
-  "last_test_page",
- // location.pathname
- location.href
- 
-);
-localStorage.setItem(
-  "last_test_type",
-  resultKey || "MCQ"
-);
 
+  /* ==============================
+     SAVE LAST TEST PAGE
+  ============================== */
 
-  /* 🔥 Save latest result */
   localStorage.setItem(
-resultKey,
+    "last_test_page",
+    location.href
+  );
+
+  localStorage.setItem(
+    "last_test_type",
+    resultKey || "MCQ"
+  );
+
+  /* ==============================
+     SAVE LATEST RESULT
+  ============================== */
+
+  localStorage.setItem(
+    resultKey,
     JSON.stringify(resultData)
   );
 
-  /* 🔥 Push to history */
+  /* ==============================
+     SAVE RESULT HISTORY
+  ============================== */
+
   let history =
-JSON.parse(localStorage.getItem(resultKey.replace("result","history"))) || [];
+    JSON.parse(
+      localStorage.getItem(
+        resultKey.replace("result","history")
+      )
+    ) || [];
 
   history.unshift(resultData);
+
   if(history.length > 50){
-history = history.slice(0,50);
-}
+    history = history.slice(0,50);
+  }
 
   localStorage.setItem(
-  resultKey.replace("result","history"),
-  JSON.stringify(history)
-);
+    resultKey.replace("result","history"),
+    JSON.stringify(history)
+  );
 
-  /* 🔥 Clean resume keys */
+  /* ==============================
+     CLEAR SESSION
+  ============================== */
+
   localStorage.removeItem(getIndexKey());
   localStorage.removeItem(getOrderKey());
   localStorage.removeItem(getAttemptKey());
 
-  window.location.href ="../result.html";
+  /* ==============================
+     GO RESULT PAGE
+  ============================== */
+
+  window.location.href = "../result.html";
+
 }
 
 
@@ -1749,9 +1919,8 @@ window.goBack = function(){
 
 };
 
-/* ======================
-   🧠 TRACK WEAK CONCEPT
-====================== */
+
+
 
 function trackWeakConcept(concept, isWrong){
 
@@ -1834,6 +2003,40 @@ document.addEventListener("click", e => {
   }
 
 });
+
+
+/* ======================
+   🔥 AUTO SUBJECT LOADER
+====================== */
+
+function autoLoadSubjects(){
+
+const subjectSelect =
+document.getElementById("subjectSelect");
+
+if(!subjectSelect) return;
+
+/* keep ALL option */
+subjectSelect.innerHTML =
+`<option value="ALL">All Subjects</option>`;
+
+/* detect subjects from data */
+const subjects =
+[...new Set(data.map(q => q.subject || "General"))];
+
+subjects.forEach(sub => {
+
+const opt =
+document.createElement("option");
+
+opt.value = sub;
+opt.textContent = sub;
+
+subjectSelect.appendChild(opt);
+
+});
+
+}
 
 /* ======================
    SUBJECT SELECT ENGINE
@@ -1941,7 +2144,7 @@ loadQ();
    INIT CALL
 ====================== */
 
-initSubjectSelector();
+
 
 /* ======================
    QUESTION LIMIT SELECT
@@ -1952,55 +2155,58 @@ document.getElementById("questionLimit");
 
 /* element not found → safe exit */
 if(!limitSelect){
-console.warn("questionLimit element not found");
+  console.warn("questionLimit element not found");
 }
 else{
 
-/* prevent double binding */
-if(limitSelect.dataset.bound === "true") return;
-limitSelect.dataset.bound = "true";
+  /* prevent double binding */
+  if(limitSelect.dataset.bound !== "true"){
 
-/* auto sync saved value */
-const savedLimit =
-localStorage.getItem(limitKey);
+    limitSelect.dataset.bound = "true";
 
-if(savedLimit){
-limitSelect.value = savedLimit;
-selectedLimit = savedLimit;
-}
+    /* auto sync saved value */
+    const savedLimit =
+    localStorage.getItem(limitKey);
 
-/* change handler */
-limitSelect.addEventListener("change",function(){
+    if(savedLimit){
+      limitSelect.value = savedLimit;
+      selectedLimit = savedLimit;
+    }
 
-const newLimit = this.value;
+    /* change handler */
+    limitSelect.addEventListener("change",function(){
 
-/* same limit → ignore */
-if(newLimit === selectedLimit) return;
+      const newLimit = this.value;
 
-selectedLimit = newLimit;
+      /* same limit → ignore */
+      if(newLimit === selectedLimit) return;
 
-/* save limit */
-localStorage.setItem(
-limitKey,
-selectedLimit
-);
+      selectedLimit = newLimit;
 
-/* reset session */
-localStorage.removeItem(getIndexKey());
-localStorage.removeItem(getOrderKey());
-localStorage.removeItem(getAttemptKey());
+      /* save limit */
+      localStorage.setItem(
+        limitKey,
+        selectedLimit
+      );
 
-/* reset engine state */
-index = 0;
-attemptMap = {};
-questionOrder = [];
-filteredQuestions = [];
+      /* reset session */
+      localStorage.removeItem(getIndexKey());
+      localStorage.removeItem(getOrderKey());
+      localStorage.removeItem(getAttemptKey());
 
-/* reload questions */
-prepareQuestions();
-loadQ();
+      /* reset engine state */
+      index = 0;
+      attemptMap = {};
+      questionOrder = [];
+      filteredQuestions = [];
 
-});
+      /* reload questions */
+      prepareQuestions();
+      loadQ();
+
+    });
+
+  }
 
 }
 /* ======================
@@ -2012,6 +2218,10 @@ window.addEventListener("DOMContentLoaded", () => {
 console.error("MCQ DATA INVALID");
 return;
 }
+
+/* 🔥 AUTO SUBJECT LOAD */
+autoLoadSubjects();
+initSubjectSelector();
 
   try {
     // 🔥 Prepare subject-wise 30 random questions
@@ -2055,8 +2265,7 @@ setTimeout(()=>{
 sb.classList.remove("show");
 },1500);
 }
-
+  
 });
-
 
 }
