@@ -6,9 +6,21 @@ import { mcqQuestion } from "../../data/mcq_question.js";
 import { mockQuestion } from "../../data/mock_question.js";
 import { eriksonMcq } from "../../data/eriksonDataMcq.js";
 import { kohlbargMcq } from "../../data/kohlbarg-mcq.js";
+import { TAptitude } from "../../data/scert/teaching-aptitude.js";
+//import { GK } from "../../data/scert/gk.js";
+//import { reasoning } from "../../data/scert/reasoning.js";
+//import { currentAffairs } from "../../data/scert/current-affairs.js";
+/*
+const SCERT_COMBINED = [
 
+...TAptitude,
+...GK,
+...reasoning,
+...currentAffairs
 
-alert("LOADER STARTED");
+];
+*/
+
 
 /* ======================
    📦 TEST DATA MAP
@@ -24,7 +36,8 @@ const TEST_DATA = {
 
   mock: mockQuestion,
   erikson: eriksonMcq,
-  kohlbarg: kohlbargMcq
+  kohlbarg: kohlbargMcq,
+  scert: TAptitude
 
 };
 
@@ -36,7 +49,7 @@ const TEST_DATA = {
 const params = new URLSearchParams(location.search);
 
 //const test = params.get("test") || "piaget";
-let test = params.get("test");
+let test = params.get("test")?.toLowerCase();
 
 /* restart bug fix */
 if(test && test.includes("?")){
