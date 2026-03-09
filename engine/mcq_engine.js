@@ -1838,7 +1838,7 @@ function saveResultAndGo(){
      GO RESULT PAGE
   ============================== */
 
-  window.location.href = "../result.html";
+  window.location.href = "/CTET_APP/pages/result.html";
 
 }
 
