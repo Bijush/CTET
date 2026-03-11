@@ -1,4 +1,8 @@
-import { findItem }
+import {
+findItem,
+bookmarkSubjectCount,
+getBookmarks
+}
 from "../engine/bookmark_engine.js";
 
 import "../data/mcq_question.js";
@@ -15,62 +19,31 @@ const list = document.getElementById("list");
 /* ======================
    📦 GET BOOKMARKS
 ====================== */
-function getBookmarks() {
-  try {
-    let b = JSON.parse(localStorage.getItem("bookmarks")) || [];
 
-    b = b.map(x => {
-
-      // 🔹 Old string format support
-      if (typeof x === "string") {
-        return {
-          type: "MCQ",
-          id: x,
-          subject: "General",
-          date: Date.now()
-        };
-      }
-
-      // 🔹 Missing subject fix
-      if (!x.subject) {
-        x.subject = "General";
-      }
-
-      // 🔹 Missing date fix (for sort)
-      if (!x.date) {
-        x.date = Date.now();
-      }
-
-      return x;
-    });
-
-    localStorage.setItem("bookmarks", JSON.stringify(b));
-
-    return b;
-
-  } catch {
-    return [];
-  }
-}
 
 const bookmarks = getBookmarks();
 
+
+
+const subjectCounts =
+bookmarkSubjectCount();
+
 const subjectSelect =
-  document.getElementById("filterSubject");
+document.getElementById("filterSubject");
 
-const uniqueSubjects = [
-  ...new Set(
-    bookmarks
-      .map(b => b.subject)
-      .filter(Boolean)
-  )
-];
+Object.keys(subjectCounts)
+.forEach(sub => {
 
-uniqueSubjects.forEach(sub => {
-  const opt = document.createElement("option");
-  opt.value = sub;
-  opt.textContent = sub;
-  subjectSelect.appendChild(opt);
+const opt =
+document.createElement("option");
+
+opt.value = sub;
+
+opt.textContent =
+`${sub} (${subjectCounts[sub]})`;
+
+subjectSelect.appendChild(opt);
+
 });
 
 /* ======================
@@ -82,7 +55,7 @@ function renderBookmarks() {
     document.getElementById("filterType")?.value || "ALL";
 
   const subjectFilter =
-    document.getElementById("filterSubject")?.value || "ALL";
+document.getElementById("filterSubject")?.value || "ALL";
 
   const sortValue =
     document.getElementById("sortBy")?.value || "LATEST";
@@ -134,10 +107,17 @@ if (!item) return;
       <h4>${item.title || item.q_en}</h4>
       <div>${item.short || item.q_bn || ""}</div>
 
-      <div style="margin-top:6px;font-size:13px;color:#6b7280;">
-        📘 ${bm.subject || "Unknown"}
-        • 🏷 ${bm.type}
-      </div>
+<div class="meta-row">
+
+<span class="subject-badge subject-${(bm.subject || "general").toLowerCase()}">
+${bm.subject || "General"}
+</span>
+
+<span class="type-badge">
+${bm.type}
+</span>
+
+</div>
 
       <div class="bookmark-actions">
         <button class="bookmark-btn"
@@ -179,16 +159,22 @@ window.removeBookmark = (type, id) => {
   bookmarks.push(...updated);
 
   renderBookmarks(); // 🔥 re-render only
+  location.reload(); // update badge count
 };
 
 ["filterType",
- "filterSubject",
+"filterSubject",
  "sortBy"].forEach(id => {
 
   document
     .getElementById(id)
     ?.addEventListener("change",
       renderBookmarks);
+      
 });
 
 renderBookmarks();
+
+
+
+

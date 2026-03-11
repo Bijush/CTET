@@ -9,7 +9,7 @@ const subjectData = {
     {
       group:"Development Theories",
       items:[
-        { title:"Jean Piaget Theory", page:"CDP/piaget.html", progress:0, lock:false },
+        { title:"Jean Piaget Theory", page:"THEORY/theory.html?topic=piaget", progress:0, lock:false },
         { title:"Lev Vygotsky Theory", page:"CDP/vygotsky.html", progress:0, lock:false },
         { title:"Kohlberg Moral Development", page:"CDP/kohlbarg.html", progress:0, lock:false },
         { title:"Erikson Psychosocial Theory", page:"CDP/erikson.html", progress:0, lock:false },
@@ -179,6 +179,132 @@ EVS:[
       { title:"Environmental Sensitivity", page:"EVS/PEDAGOGY/evs-sensitivity.html", progress:0, lock:false }
     ]
   }
+
+],
+BENGALI:[
+
+{
+  group:"Language Pedagogy",
+  items:[
+    { title:"Nature of Language", page:"BENGALI/bengali-nature.html", progress:0, lock:false },
+    { title:"Language Acquisition vs Learning", page:"BENGALI/bengali-acquisition.html", progress:0, lock:false },
+    { title:"Principles of Language Teaching", page:"BENGALI/bengali-principles.html", progress:0, lock:false },
+    { title:"Constructivism in Language", page:"BENGALI/bengali-constructivism.html", progress:0, lock:false },
+    { title:"Role of Teacher in Language Classroom", page:"BENGALI/bengali-teacher-role.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Language Skills (LSRW)",
+  items:[
+    { title:"Listening Skill", page:"BENGALI/bengali-listening.html", progress:0, lock:false },
+    { title:"Speaking Skill", page:"BENGALI/bengali-speaking.html", progress:0, lock:false },
+    { title:"Reading Skill", page:"BENGALI/bengali-reading.html", progress:0, lock:false },
+    { title:"Writing Skill", page:"BENGALI/bengali-writing.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Teaching Methods",
+  items:[
+    { title:"Grammar Translation Method", page:"BENGALI/bengali-gtm.html", progress:0, lock:false },
+    { title:"Direct Method", page:"BENGALI/bengali-direct.html", progress:0, lock:false },
+    { title:"Communicative Approach", page:"BENGALI/bengali-communicative.html", progress:0, lock:false },
+    { title:"Activity Based Learning", page:"BENGALI/bengali-abl.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Assessment in Language",
+  items:[
+    { title:"Formative Assessment", page:"BENGALI/bengali-formative.html", progress:0, lock:false },
+    { title:"Summative Assessment", page:"BENGALI/bengali-summative.html", progress:0, lock:false },
+    { title:"Diagnostic Test", page:"BENGALI/bengali-diagnostic.html", progress:0, lock:false },
+    { title:"CCE in Language", page:"BENGALI/bengali-cce.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Grammar & Vocabulary",
+  items:[
+    { title:"Synonym (সমার্থক শব্দ)", page:"BENGALI/bengali-synonym.html", progress:0, lock:false },
+    { title:"Antonym (বিপরীত শব্দ)", page:"BENGALI/bengali-antonym.html", progress:0, lock:false },
+    { title:"Idioms (বাগধারা)", page:"BENGALI/bengali-idioms.html", progress:0, lock:false },
+    { title:"Sentence Correction", page:"BENGALI/bengali-sentence.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Reading Comprehension",
+  items:[
+    { title:"Prose Comprehension", page:"BENGALI/bengali-prose.html", progress:0, lock:false },
+    { title:"Poetry Comprehension", page:"BENGALI/bengali-poetry.html", progress:0, lock:false }
+  ]
+}
+
+],
+ENGLISH:[
+
+{
+  group:"Language Pedagogy",
+  items:[
+    { title:"Nature of Language", page:"ENGLISH/english-nature.html", progress:0, lock:false },
+    { title:"Language Acquisition vs Learning", page:"ENGLISH/english-acquisition.html", progress:0, lock:false },
+    { title:"Principles of Language Teaching", page:"ENGLISH/english-principles.html", progress:0, lock:false },
+    { title:"Constructivism in Language Teaching", page:"ENGLISH/english-constructivism.html", progress:0, lock:false },
+    { title:"Role of Teacher in Language Classroom", page:"ENGLISH/english-teacher-role.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Language Skills (LSRW)",
+  items:[
+    { title:"Listening Skill", page:"ENGLISH/english-listening.html", progress:0, lock:false },
+    { title:"Speaking Skill", page:"ENGLISH/english-speaking.html", progress:0, lock:false },
+    { title:"Reading Skill", page:"ENGLISH/english-reading.html", progress:0, lock:false },
+    { title:"Writing Skill", page:"ENGLISH/english-writing.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Teaching Methods",
+  items:[
+    { title:"Grammar Translation Method", page:"ENGLISH/english-gtm.html", progress:0, lock:false },
+    { title:"Direct Method", page:"ENGLISH/english-direct.html", progress:0, lock:false },
+    { title:"Communicative Approach", page:"ENGLISH/english-communicative.html", progress:0, lock:false },
+    { title:"Activity Based Learning", page:"ENGLISH/english-abl.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Assessment in Language",
+  items:[
+    { title:"Formative Assessment", page:"ENGLISH/english-formative.html", progress:0, lock:false },
+    { title:"Summative Assessment", page:"ENGLISH/english-summative.html", progress:0, lock:false },
+    { title:"Diagnostic Test", page:"ENGLISH/english-diagnostic.html", progress:0, lock:false },
+    { title:"CCE in Language", page:"ENGLISH/english-cce.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Grammar & Vocabulary",
+  items:[
+    { title:"Parts of Speech", page:"ENGLISH/english-parts.html", progress:0, lock:false },
+    { title:"Tense", page:"ENGLISH/english-tense.html", progress:0, lock:false },
+    { title:"Active & Passive Voice", page:"ENGLISH/english-voice.html", progress:0, lock:false },
+    { title:"Direct & Indirect Speech", page:"ENGLISH/english-speech.html", progress:0, lock:false },
+    { title:"Synonyms & Antonyms", page:"ENGLISH/english-synonym.html", progress:0, lock:false },
+    { title:"Idioms & Phrases", page:"ENGLISH/english-idioms.html", progress:0, lock:false }
+  ]
+},
+
+{
+  group:"Reading Comprehension",
+  items:[
+    { title:"Prose Comprehension", page:"ENGLISH/english-prose.html", progress:0, lock:false },
+    { title:"Poetry Comprehension", page:"ENGLISH/english-poetry.html", progress:0, lock:false }
+  ]
+}
 
 ],
 

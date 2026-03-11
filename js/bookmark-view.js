@@ -57,7 +57,7 @@ const item = findItem(type, id);
 if(!item){
 
   box.innerHTML =
-  "<p>Question not found</p>";
+"<p>⚠️ Question not found</p>";
 
   throw new Error("Not found");
 }
@@ -69,8 +69,7 @@ if(!item){
 
 const trapWords =
 detectTraps(
-  (item.q_en || "") +
-  (item.q_bn || ""),
+  (item.q_en || "") + " " + (item.q_bn || ""),
   item.subject
 );
 
@@ -94,13 +93,11 @@ offlineAIExplain(
 let html = `
 <div class="card">
 
-<h3>
+<h3 class="q-en">
 ${item.q_en || ""}
 </h3>
 
-<p>
-${item.q_bn || ""}
-</p>
+${item.q_bn ? `<p class="q-bn">${item.q_bn}</p>` : ""}
 `;
 
 
@@ -221,8 +218,6 @@ ${ai.concept}
 }
 
 
-/* OPTION-WISE AI */
-
 ${
 ai.elimination?.length
 ?`
@@ -295,7 +290,6 @@ return `
 }
 
 
-/* CLASSROOM */
 
 ${
 ai.classroom
@@ -311,7 +305,7 @@ ${ai.classroom}
 }
 
 
-/* NCERT */
+
 
 ${
 ai.ncert
@@ -327,7 +321,7 @@ ${ai.ncert}
 }
 
 
-/* PERSONAL */
+
 
 ${
 ai.personal
